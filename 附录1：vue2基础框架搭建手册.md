@@ -54,4 +54,7 @@ Lint on save：打开
 npm install babel-eslint@7.2.3 --save-dev
 ```
 
+## 三、新建目录结构
+
+下载下来的模板，还不能满足实战项目的需求，需要新建各种目录，比如新建api目录，directive目录，lib目录，config目录等，具体见本项目所拥有的目录结构，也可以针对自己需求调整，不用非要保持一致
 
