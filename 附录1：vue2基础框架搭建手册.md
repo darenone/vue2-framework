@@ -46,6 +46,8 @@ Lint on save：打开
 
 ## 二、改造eslintrc.js
 
+要想让vscode编辑器，在保存代码时自动格式化代码，你项目里首先需要安装`babel-eslint`，同时需要重新配置`.eslintrc.js`文件，vscode还需要安装`vetur`和`eslint`拓展插件，同时需要设置`settings.json`文件（见附录3）
+
 需要先安装开发依赖`babel-eslint`：
 
 ```
