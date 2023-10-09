@@ -1,5 +1,7 @@
 # vue2-framework
 
+vue2项目基础框架，可以直接使用，开发基于vue2的各种项目
+
 ## Project setup
 ```
 npm install
