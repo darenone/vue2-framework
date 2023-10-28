@@ -44,7 +44,7 @@ Lint on save：打开
 
 以上就获取了一个基于vue2的基础模板
 
-## 二、改造eslintrc.js
+## 二、利用vscode实现代码自动格式化
 
 要想让vscode编辑器，在保存代码时自动格式化代码，你项目里首先需要安装`babel-eslint`，同时需要重新配置`.eslintrc.js`文件，vscode还需要安装`vetur`和`eslint`拓展插件，同时需要设置`settings.json`文件（见附录3）
 
@@ -56,5 +56,5 @@ npm install babel-eslint@7.2.3 --save-dev
 
 ## 三、新建目录结构
 
-下载下来的模板，还不能满足实战项目的需求，需要新建各种目录，比如新建api目录，directive目录，lib目录，config目录等，具体见本项目所拥有的目录结构，也可以针对自己需求调整，不用非要保持一致
+下载下来的模板，需要新建各种目录，以满足实际开发需要，比如新建api目录，directive目录，lib目录，config目录等，具体参考此基础框架所拥有的结构，也可以针对自己需求调整，不用非要保持一致
 
