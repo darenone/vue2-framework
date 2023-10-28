@@ -204,7 +204,8 @@ module.exports = {
       objectsInObjects: false
     }],
     'array-bracket-spacing': [2, 'never'],
-    'vue/script-indent': ['error', 2, { baseIndent: 1 }]
+    'vue/script-indent': ['error', 2, { baseIndent: 1 }],
+    'vue/multi-word-component-names': 'off'
   },
   overrides: [
     {
