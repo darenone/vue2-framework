@@ -10,6 +10,8 @@ import difference from 'lodash/difference'
 
 ## 一、数组类
 
+# lodash在项目中的妙用
+
 ### 1、_.compact(array)
 
 [作用]：剔除掉数组中的假值（假值包括`false`,`null`,`0`,`""`,`undefined`,和`NaN`这5个）元素，并返回一个新数组

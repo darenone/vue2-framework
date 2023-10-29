@@ -14,6 +14,7 @@ const resolve = dir => {
 module.exports = defineConfig({
   // lintOnSave: false, // 关闭eslint检查
   transpileDependencies: true,
+  runtimeCompiler: true,
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src')) // 用@代替src，在项目里你需要引入文件的时候，只需要@/api,@/config,@/mock...即可

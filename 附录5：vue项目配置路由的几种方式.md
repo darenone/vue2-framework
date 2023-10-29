@@ -1,4 +1,6 @@
-# 第一种
+# vue项目配置路由的几种方式
+
+## 第一种
 
 ```js
 import layout from '@/views/layout/index';
@@ -97,7 +99,7 @@ const router = new VueRouter({
   routes,
 });
 ```
-# 第二种
+## 第二种
 
 ```js
 import layout from '@/views/layout/index';

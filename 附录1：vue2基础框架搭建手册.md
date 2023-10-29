@@ -138,4 +138,577 @@ this.$router.replace({name: 'task-detail', params: { taskId: 1}})
 ```
 - 嵌套路由：
 
-具体配置见`src/views/prodct`，路由配置见`src/router/index.js`里的`/product`，嵌套路由的要诀：发现index.vue和ele-product.vue页面都有`<router-view/>`这个标签，因为和App.vue页面一样，它们都是父页面，App.vue是根页面，是项目中所有页面的父页面，而index.vue是ele-product.vue页面的父页面，ele-product.vue是phone.vue和computer.vue的父页面，只要这个页面是父页面就需要添加`<router-view/>`这个标签
+具体配置见`src/views/prodct`，路由配置见`src/router/index.js`里的`/product`
+
+嵌套路由的要诀：发现index.vue和ele-product.vue页面都有`<router-view/>`这个标签，因为和App.vue页面一样，它们都是父页面，App.vue是根页面，是项目中所有页面的父页面，而index.vue是ele-product.vue页面的父页面，ele-product.vue是phone.vue和computer.vue的父页面，只要这个页面是父页面就需要添加`<router-view/>`这个标签
+
+- 命名路由
+
+路由列表里的name属性就是命名路由，可以用在路由跳转上
+
+```
+<router-link to="/product/ele-product/computer">电脑</router-link>
+
+<router-link :to="{name: 'computer'}">电脑</router-link>
+```
+
+- 命名视图
+
+形如：
+
+```
+<router-view name="apple"/>
+<router-view name="huawei"/>
+<router-view name="xiaomi"/>
+```
+
+具体配置见`route/index.js`的`/product`路由，组件见`src/views/module/product/eleProduct.vue`
+
+- 路由别名
+
+```js
+const routes = [
+  {
+    path: '/task-detail/:taskId',
+    alias: '/task-detail',
+    name: 'taskDetail',
+    component: () => import('../views/task-detail.vue')
+  },
+]
+```
+
+- 路由重定向
+
+```js
+{
+  path: '/web-task',
+  component: Layout,
+  redirect: '/web-task/task-list',
+  name: 'web-task',
+  meta: {
+    title: '拨测任务管理',
+  },
+  children: [
+    {
+      path: 'task-list',
+      component: resolve => require(['@/views/web-task/task-list.vue'], resolve),
+      name: 'task-list',
+      meta: { 
+        title: '拨测任务列表', 
+      },
+    },
+  ]
+}
+```
+
+- 路由组件传参
+
+`$route.query`和`$route.params`放到组件里，路由和组件之间有着高度的耦合，不能最大程度复用组件，可以使用路由组件传参，将组件和路由解耦
+
+路由组件传参有以下几种方式：
+
+1. 布尔模式
+
+```js
+ {
+    path: '/task-detail/:taskId',
+    name: 'task-detail',
+    component: () => import('../views/task-detail.vue'),
+    props: true
+  }
+```
+组件里面获取路由传递过来的值
+```html
+<template>
+    <section>
+        {{taskId}}
+    </section>
+</template>
+<script>
+export default {
+    props: {
+        taskId: {
+            type: [String, Number],
+            default: ''
+        }
+    },
+    data () {
+        return {
+            
+        }
+    }
+}
+</script>
+```
+当需要这个组件复用时，要想给组件传递taskId这个值，只需要调用这个组件即可
+```html
+<task-detail :taskId="10000218"></task-detail>
+```
+
+2. 对象模式
+
+```js
+  {
+    path: '/task-detail',
+    name: 'task-detail',
+    component: () => import('../views/task-detail.vue'),
+    props: {
+      taskId: '10000218'
+    }
+  }
+```
+通过路由给组件传值的时候要这样写:
+```
+<router-link to="/task-detail">任务详情10000217</router-link>
+```
+页面里获取还是这样写：
+```html
+<template>
+  <div class="about">
+    <h1>This is an about page {{taskId}}</h1>
+  </div>
+</template>
+<script>
+export default {
+    props: {
+        taskId: '',
+    },
+    data () {
+        return {
+
+        }
+    }
+}
+</script>
+```
+
+3. 函数模式
+
+```js
+  {
+    path: '/task-detail/:taskId',
+    name: 'task-detail',
+    component: () => import('../views/task-detail.vue'),
+    props: route => {
+      if (route.params && route.params.taskId) {
+        return {
+          taskId: route.params.taskId
+        }
+      }
+    }
+  },
+```
+通过路由给组件传值的时候要这样写:
+```html
+<router-link to="/task-detail/10000217">任务详情10000217</router-link>
+```
+
+- HTML5 History模式
+
+讲这个之前，我先来介绍一个html中锚点的概念，锚点的作用是实现页面内的跳转
+
+```
+快速访问页面中的内容，可以这样来写
+```html
+<a href="#title1">内容1</a>
+<a href="#title2">内容2</a>
+<a href="#title3">内容3</a>
+
+...
+
+<a name="title1">内容1...</a>
+<a name="title2">内容2...</a>
+<a name="title3">内容3...</a>
+<!--或者-->
+<div id="title1">内容1...</a>
+<div id="title2">内容2...</a>
+<div id="title3">内容3...</a>
+```
+这又和本节内容有什么关系呢？vue-router官方说，vue-router默认hash模式，hash是什么呢？我来介绍一下：
+
+hash属性是一个可读可写的字符串，该字符串是URL的锚部分（从#号开始的部分），#代表网页中的一个位置，其右面的字符就是该位置的标识符（说的就是锚点），例如：
+```
+http://www.blog.com/index.html#title1
+```
+就代表网页index.html的title1位置，浏览器读取这个URL后会自动将title1位置滚动至可视区域
+
+#是用来指导浏览器动作的，对服务器端完全无用，所以，HTTP请求中不包括#，比如访问下面的网址：
+```
+http://www.blog.com/index.html#title1
+```
+浏览器实际发出的请求是这样的：
+```
+GET /index.html HTTP/1.1
+Host: www.example.com
+```
+可以看到只请求了index.html，根本没有#title1这部分
+
+所以，在URL中，第一个#后面出现的任何字符，都会被浏览器解读为位置标识符（锚点），这些字符都不会被发送到服务器端，而且改变URL中#后面的部分，只相当于改变了锚点，浏览器只会滚动到相应位置，不会重新加载网页，比如：
+```
+http://www.blog.com/index.html#title1
+到
+http://www.blog.com/index.html#title2
+```
+这种锚点的改变，完全由浏览器控制，而不会重新向服务器请求index.html这个页面
+
+现在我们再回到vue-router官方文档这里，它提到了，vue-router默认hash模式（#后面跟字符串）使用hash来模拟一个完整的URL，于是当URL改变时，页面不会重新加载，如果不想要这种方式展示，还可以用路由的history模式
+```js
+const router = new VueRouter({
+  mode: 'history',
+  routes
+})
+```
+这样，路由就变化了:
+```
+http://localhost:4000/#/task-detail/10000216
+变成了
+http://localhost:4000/task-detail/10000217
+```
+但是这种模式也需要后端的支持，因为我们的应用是个单页客户端应用，只有一个index.html页面，当路由变化时，如果采用hash模式，从路由：
+```
+http://localhost:4000/#/task-detail/10000217
+变到
+http://localhost:4000/#/about
+```
+时，不会重新请求页面，至始至终只有一个index.html页面，路由的变化，也可以看成是锚点的改变，相当于浏览器从#/task-detail这个锚点到/about这个锚点，但是如果采用history模式，从路由：
+```
+http://localhost:4000/task-detail/10000217
+变成了
+http://localhost:4000/about
+```
+这个时候浏览器就会认为是需要向服务器请求task-detail.html和about.html这两个html的，但是服务器上根本没有这两个html，就会报404文件未找到错误，所以这个时候就需要后端哥们的支持，未匹配到html页面的时候，就返回index.html这个页面，具体后端怎么配置，可以参考官方文档
+
+- 导航守卫
+
+1. 全局前置守卫
+
+写在router/index.js里面：
+```js
+// 从本地session拿token看是否已经登录，登录了直接跳转到首页，没有登录，看看当前路由是否在白名单那里，不在直接跳转到登录页登录
+router.beforeEach((to, from, next) => {
+    // const isLogin = !!sessionStorage.getItem('accessToken');
+    const isLogin = true
+
+    if (isLogin) {
+        if (to.name === 'login') {
+            next({
+                name: 'home'
+            });
+        } else {
+            next()
+        }
+    } else {
+        if (whitelist.indexOf(to.name) !== -1) {
+            next()
+        } else {
+            next({
+                name: 'login'
+            })
+        }
+    }
+});
+// next()方法一定要加，不然不能跳转
+```
+
+2. 全局后置钩子
+
+和前置守卫不同的是，后置钩子不会接受next函数，也不会改变导航本身：
+```
+let app;
+router.afterEach((to, from) => {
+    app = document.querySelector('.app-content-inner')
+    app && app.scrollTo(0, 0)
+})
+```
+
+3. 路由独享的守卫
+
+```js
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    beforeEnter: (to, from, next) => {
+      if (from.name === 'Home') {
+        console.log('从home页跳转过来')
+      } else {
+        console.log('不是从home页跳转来的')
+      }
+      next()
+    }
+  },
+```
+
+4. 组件内守卫
+
+`beforeRouteEnter`
+
+我曾经做过的项目遇到一个问题：
+
+有一个创建任务的页面，路由为：（http://localhost:8082/#/web-task/task-create），分别可以从两个页面：监测任务列表（http://localhost:8082/#/web-task/web-list）和监测任务管理（http://localhost:8082/#/web-task/task-list）跳转过来，需求是，从哪个页面跳转过来的，当任务创建完毕还回到哪个页面
+
+这个需求就可以用组件内守卫来实现
+```js
+beforeRouteEnter (to, from, next) {
+    console.log(to) // 当前路由对象
+    console.log(from) // 上个路由对象
+    console.log(this) // undefined
+    next()
+}
+```
+但是我发现在里面拿不到this这个vue实例，解释原因是因为：走这一步的时候，当前组件还没有渲染完成，vue实例还未创建完成，那怎么在`beforeRouteEnter`内按到vue实例呢？
+
+解决方法就是给next函数传一个回调函数，完美解决这个问题
+```js
+beforeRouteEnter (to, from, next) {
+  next(vm => {
+    if (from.name === 'web_list') {
+      vm.from_router = '/web-task/web-list'
+    } else if (from.name === 'task_list') {
+      vm.from_router = '/web-task/task-list'
+    }
+  })
+}
+```
+`beforeRouteLeave`
+
+关于这个的用法，比如用户在当前页面进行编辑操作，还没有保存就要跳转到其它页面，那么你就可以在这个钩子函数里面提醒用户，编辑还未完成，是否取消编辑，这里提示一下：在这个方法里可以直接用this
+```vue
+<script>
+export default {
+    props: {
+        taskId: {
+            type: [String, Number],
+            default: ''
+        }
+    },
+    data () {
+        return {
+            
+        }
+    },
+    methods: {
+        
+    },
+    beforeRouteLeave (to, from, next) {
+        const leave = confirm('确定离开吗？')
+        if (leave) {
+            next()
+        } else {
+            next(false); // 不会跳转
+        }
+        // next(vm => {
+        //     console.log(vm) // vue实例
+        // })
+    },
+    beforeRouteUpdate (to, from, next) {
+        console.log('组件被复用')
+        next()
+    }
+}
+</script>
+```
+`beforeRouteUpdate`
+```js
+// 在当前路由改变，但是该组件被复用时调用
+// 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+// 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+// 可以访问组件实例 `this`
+beforeRouteUpdate (to, from, next) {
+  console.log('组件被复用')
+  next()
+}
+```
+
+完整的导航（路由）解析流程：
+```js
+/*
+1. 导航被触发
+2. 在失活的组件（即将离开的页面组件）里调用离开守卫 beforeRouteLeave
+3. 调用全局的前置守卫 beforeEach
+4. 在复用的组件里调用 beforeRouterUpdate
+5. 调用路由独享的守卫 beforeEnter
+6. 解析异步路由组件
+7. 在被激活的组件（即将进入的的页面组件）里调用 beforeRouterEnter
+8. 调用全局的解析守卫 beforeResolve
+9. 导航被确认
+10. 调用全局的后置钩子 afterEach
+11. 触发DOM更新
+*/
+```
+
+- 路由元信息
+
+```js
+{
+  path: '/',
+  name: 'Home',
+  component: Home,
+  meta: {
+    title: '首页',
+    requiresAuth: ['admin', 'user']
+  }
+},
+```
+这里的meta就是元信息，可以在这里给每个路由对象配一个title或者打一个标志，用来区别哪些用户可以访问这个路由
+
+也可以利用前置守卫和路由元信息，修改`window.document.title`的值
+
+首先找到咱们在第二节新建的src/lib/util.js，当时说了这个文件用来存放和业务相关的方法，接下来咱们就新建一个和业务有关联的方法
+```js
+// util.js
+export const setTitle = (title) => {
+  window.document.title = title ? title + '-拨测管理平台' : '拨测管理平台'
+}
+```
+然后在src/router/index.js里面引入，并且在前置守卫里增加一行代码
+```js
+// router/index.js
+import {setTitle} from '@/lib/util'
+
+router.beforeEach((to, from, next) => {
+  to.meta && setTitle(to.meta.title)
+})
+```
+- 路由切换过渡效果
+
+路由切换的时候，在`<router-view/>`里面加载页面，我们可以利用`<transition>`组件给它添加一些过渡效果
+```vue
+<transition>
+  <router-view></router-view>
+</transition>
+```
+如果是多个视图，需要用`<transition-group>`包裹
+```vue
+<transition-group>
+  <router-view></router-view>
+  <router-view name="phone"></router-view>
+</transition-group>
+```
+我来写一个过渡效果的例子：
+```vue
+<transition name="router">
+  <router-view/>
+</transition>
+
+<style lang="less">
+// 进入效果
+.router-enter {
+  opacity: 0;
+}
+.router-enter-active {
+  transition: opacity 1s ease;
+}
+.router-enter-to {
+  opacity: 1;
+}
+// 离开效果
+.router-leave {
+  opacity: 1;
+}
+.router-leave-active {
+  transition: opacity 1s ease;
+}
+.router-leave-to {
+  opacity: 0;
+}
+</style>
+```
+
+## 五、vue状态管理vuex
+
+### 1. state用法
+
+#### 1.1 设置/获取state里的值
+
+```js
+const state = {
+    menuType: 1
+}
+```
+组件里获取：
+```js
+this.$store.state.menuType
+```
+#### 1.2 设置/获取模块里state里的值
+
+见项目里`src\store\module\user.js`
+
+组件里获取：
+```js
+this.$store.state.user.userName // 无论命名空间是否开启都要加模块名
+```
+
+#### 1.3 利用vuex的辅助函数`mapSate`来取值
+
+```html
+<script>
+export default {
+    computed: {
+        ...mapState({
+          userName: state => state.user.userName // 获取模块里开启了命名空间的参数
+        }),
+        ...mapState([
+            'menuType', // 获取全局state里的参数
+            'info' // 获取模块里没有开启命名空间的参数
+        ]),
+    },
+}
+</script>
+```
+
+### 2. getter用法
+
+类似于vue里的computed属性，写法见：`src\store\getter.js`
+
+在组件里获取：
+```js
+this.$store.getters.menuType
+```
+
+写在模块里的getters获取：
+
+见`src\store\module\info.js`
+
+在组件里获取：
+```js
+this.$store.getters.getInfo
+```
+
+如果模块开启了命名空间：
+
+```js
+// src\store\module\user.js
+export default {
+    namespaced: true, // 开启命名空间
+    state,
+    getters,
+    mutations,
+    actions
+}
+```
+此时获取模块里的值需要这样写：
+
+```js
+this.$store.getters['user/getUserName']
+```
+
+也可利用辅助函数`mapGetters`来获取值：
+
+```js
+<script>
+export defaut {
+computed: {
+    ...mapGetters([
+      'menuType',
+      'getInfo' // 获取模块里没有开启命名空间的参数
+    ]),
+    ...mapGetters({
+      getUserName: 'user/getUserName', // 获取模块里开启了命名空间的参数
+    })
+  },
+}
+</script>
+```
+
+### 3. mutation用法

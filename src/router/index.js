@@ -85,7 +85,12 @@ const routes = [
           {
             path: 'phone', // 子路由需要前面加'/'，只有副路由才有
             name: 'phone',
-            component: () => import('@/views/module/product/phone.vue')
+            components: { // 命名视图设置
+              default: () => import('@/views/module/product/phone.vue'),
+              apple: () => import('@/views/module/product/apple.vue'),
+              xiaomi: () => import('@/views/module/product/xiaomi.vue'),
+              huawei: () => import('@/views/module/product/huawei.vue')
+            }
           },
           {
             path: 'computer', // 子路由需要前面加'/'，只有副路由才有
