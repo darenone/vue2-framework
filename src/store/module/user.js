@@ -1,12 +1,16 @@
 const state = {
-  userName: '张三'
+  userName: '卿卿日常-尹峥（白敬亭）'
 }
 const getters = {
   getUserName: state => {
     return 'hello，' + state.userName + '！'
   }
 }
-const mutations = {}
+const mutations = {
+  SET_USER_NAME(state, params) {
+    state.userName = params
+  }
+}
 const actions = {}
 
 export default {

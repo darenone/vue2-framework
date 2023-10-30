@@ -701,10 +701,10 @@ export defaut {
 computed: {
     ...mapGetters([
       'menuType',
-      'getInfo' // 获取模块里没有开启命名空间的参数
+      'getInfo' // 获取写在模块里没有开启命名空间的参数
     ]),
     ...mapGetters({
-      getUserName: 'user/getUserName', // 获取模块里开启了命名空间的参数
+      getUserName: 'user/getUserName', // 获取写在模块里开启了命名空间的参数
     })
   },
 }
@@ -712,3 +712,79 @@ computed: {
 ```
 
 ### 3. mutation用法
+
+以上讲解获取vuex里的值，如果想修改vuex里的值，就需要通过commit提交一个mutation来修改
+
+```js
+// src\store\mutations.js
+const mutations = {
+    SET_MENU_TYPE (state, params) {
+        state.menuType = params
+    }
+}
+
+export default mutations
+```
+
+然后在组件里调用这个mutation：
+
+`src\views\module\product\apple.vue`
+
+```html
+<script>
+  export default {
+    data() {
+      return {
+        num: 1
+      }
+    },
+    methods: {
+      setMenuType() {
+        // 调用全局mutation
+        this.$store.commit('SET_MENU_TYPE', this.num++)
+      },
+      setInfo() {
+        // 调用写在模块里的mutation
+        this.$store.commit('SET_INFO', { name: '田耕纪-连蔓儿-田曦薇' })
+      },
+      setUserName() {
+        // 调用开启了命名空间的模块里的mutation
+        this.$store.commit('user/SET_USER_NAME', '卿卿日常-李薇-田曦薇')
+      }
+    }
+  }
+</script>
+```
+
+也可利用辅助函数`mapMutations`来设置值：
+
+```html
+<script>
+  import { mapMutations } from 'vuex'
+  export default {
+    data() {
+      return {
+        num: 1
+      }
+    },
+    methods: {
+      ...mapMutations([
+        'SET_MENU_TYPE', // 调用全局mutation
+        'SET_INFO' // 调用写在模块里的mutation
+      ]),
+      ...mapMutations('user', [
+            'SET_USER_NAME' // 调用开启了命名空间的模块里的mutation
+        ]),
+    setMenuType() {
+      this.SET_MENU_TYPE(this.num++)
+    },
+    setInfo() {
+      this.SET_INFO({ name: '田耕纪-连蔓儿-田曦薇' })
+    },
+    setUserName() {
+      this.SET_USER_NAME('卿卿日常-李薇-田曦薇')
+    }
+    }
+  }
+</script>
+```
