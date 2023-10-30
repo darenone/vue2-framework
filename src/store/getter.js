@@ -6,7 +6,8 @@ const getters = {
       return '网页拨测'
     }
   },
-  getMenuType2: state => state.menuType
+  getMenuType2: state => state.menuType,
+  menuList: state => state.menuList
 }
 
 export default getters

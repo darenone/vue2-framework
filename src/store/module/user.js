@@ -1,3 +1,5 @@
+import { getUserName } from '@/api/app'
+
 const state = {
   userName: '卿卿日常-尹峥（白敬亭）'
 }
@@ -11,7 +13,16 @@ const mutations = {
     state.userName = params
   }
 }
-const actions = {}
+const actions = {
+  async upDateUserName({ commit }) {
+    try {
+      const { data: { name }} = await getUserName()
+      commit('SET_USER_NAME', name)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
 export default {
   namespaced: true, // 命名空间默认不开启

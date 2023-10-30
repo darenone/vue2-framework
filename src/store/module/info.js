@@ -1,3 +1,5 @@
+import { getInfo } from '@/api/app'
+
 export default {
   state: {
     info: {
@@ -13,6 +15,13 @@ export default {
     }
   },
   actions: {
-
+    async upDateInfo({ commit }) {
+      try {
+        const { data } = await getInfo()
+        commit('SET_INFO', data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 }
