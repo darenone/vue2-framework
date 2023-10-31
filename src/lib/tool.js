@@ -179,6 +179,115 @@ const deepClone = obj => {
   return objClone
 }
 
+/**
+ * 保留2位小数（补零）
+ * @param {Number/String} value 需要处理的数字或字符串数字
+ * @returns 返回带有2位小数的字符串数字
+ 调用示例：
+ * import { toFixed2 } from '@/lib/tool'
+ * toFixed2(2) => 2.00
+ */
+const toFixed2 = (value) => {
+  if ((!value && value !== 0) || value === 'null') return null
+  if (typeof value === 'number') {
+    return handleNumber(value)
+  } else if (typeof value === 'string' && isNumber(value)) {
+    return handleNumber(value)
+  } else {
+    return value
+  }
+}
+// 判读是否为字符串数字
+function isNumber(val) {
+  var regPos = /^\d+(\.\d+)?$/ // 非负浮点数
+  var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/ // 负浮点数
+  if (regPos.test(val) || regNeg.test(val)) {
+    return true
+  } else {
+    return false
+  }
+}
+// 处理成2位小数
+function handleNumber(value) {
+  var f = parseFloat(value)
+  f = Math.round(value * 100) / 100
+  var s = f.toString()
+  var rs = s.indexOf('.')
+  if (rs < 0) {
+    rs = s.length
+    s += '.'
+  }
+  while (s.length <= rs + 2) {
+    s += '0'
+  }
+  return s
+}
+
+/**
+ * @desc 函数防抖
+ * 原理：当持续触发一个事件时，在n秒内，事件没有再次触发，此时才会执行回调，如果n秒内，又触发了事件，就重新计时
+ * @param {Function} func 需要防抖处理的函数
+ * @param {Number} delay 防抖的时间限制
+ * @returns 无返回值
+ 调用示例：
+ * import { debounce } from '@/lib/tool'
+ * methods: {
+    debounceClick: debounce(function(id) {
+      console.log(id)
+    })
+  }
+ */
+const debounce = (func, delay = 2000) => {
+  let timer
+  let context, args
+  return function() {
+    context = this // 记录this，防止在回调函数中丢失
+    args = arguments // 存储函数参数
+    timer ? clearTimeout(timer) : null // 如果定时器存在，则清除定时器
+    const callNow = !timer // 标识是否立即执行
+    timer = setTimeout(() => {
+      timer = null
+    }, delay)
+    // callNow为true则立即执行函数
+    callNow ? func.apply(context, args) : null
+  }
+}
+
+/**
+ * @desc 函数节流
+ * 原理：当频繁触发一个事件，每隔一段儿时间，只会执行一次
+ * @param {Function} func 需要节流处理的函数
+ * @param {Number} limit 节流的时间限制
+ * @returns 无返回值
+ * 调用示例：
+import { throttle } from '@/lib/tool'
+methods： {
+  addText: throttle(function(data, mouseStatus) {
+    this.textMarker.remove()
+  }),
+  addMouseOverAndOut() {
+    throttle(() => {
+      this.addText(null, 'LEAVE')
+    })
+  }
+}
+ */
+const throttle = (func, limit = 2000) => {
+  // 上次执行时间
+  let previous = 0
+  return function() {
+    // 当前时间
+    const now = Date.now()
+    const context = this
+    const args = arguments
+    // 若上次时间-上次执行时间大于时间限制
+    if (now - previous > limit) {
+      func.apply(context, args)
+      previous = now
+    }
+  }
+}
+
 export {
   handleEmpty,
   buildTree,
@@ -186,5 +295,8 @@ export {
   formatDate,
   downloadFile,
   getParentsById,
-  deepClone
+  deepClone,
+  toFixed2,
+  debounce,
+  throttle
 }
