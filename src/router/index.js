@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Layout from '@/views/main/Layout'
+// import Layout from '@/views/main/Layout'
 import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
@@ -32,45 +32,9 @@ const routes = [
     }]
   },
   {
-    path: '',
-    redirect: '/index',
-    component: Layout,
-    children: [
-      {
-        path: '/index',
-        name: 'HOME',
-        component: () => import('@/views/module/home/')
-      },
-      {
-        path: '/message',
-        name: 'MENU_MESSAGE_MANAGER',
-        component: () => import('@/views/module/system/message/index.vue')
-      }
-    ]
-  },
-  {
-    path: '/compatible',
-    name: 'compatible',
-    meta: { title: '兼容' },
-    component: resolve => require(['@/errorPage/browser_check.vue'], resolve)
-  },
-  {
-    path: '/notLogin',
-    name: 'notLogin',
-    meta: { title: '未登录或超时' },
-    component: resolve => require(['@/errorPage/extra_401_option.vue'], resolve)
-  },
-  {
-    path: '/notFound',
-    name: '404',
-    meta: { title: '页面不存在' },
-    component: resolve => require(['@/errorPage/extra_404_option.vue'], resolve)
-  },
-  {
-    path: '/abnormal',
-    name: 'abnormal',
-    meta: { title: '服务器异常' },
-    component: resolve => require(['@/errorPage/extra_500_option.vue'], resolve)
+    path: '/prop',
+    name: 'prop',
+    component: () => import('@/views/module/prop/father')
   },
   {
     path: '/product',
@@ -100,6 +64,30 @@ const routes = [
         ]
       }
     ]
+  },
+  {
+    path: '/compatible',
+    name: 'compatible',
+    meta: { title: '兼容' },
+    component: resolve => require(['@/errorPage/browser_check.vue'], resolve)
+  },
+  {
+    path: '/notLogin',
+    name: 'notLogin',
+    meta: { title: '未登录或超时' },
+    component: resolve => require(['@/errorPage/extra_401_option.vue'], resolve)
+  },
+  {
+    path: '/notFound',
+    name: '404',
+    meta: { title: '页面不存在' },
+    component: resolve => require(['@/errorPage/extra_404_option.vue'], resolve)
+  },
+  {
+    path: '/abnormal',
+    name: 'abnormal',
+    meta: { title: '服务器异常' },
+    component: resolve => require(['@/errorPage/extra_500_option.vue'], resolve)
   }
 ]
 

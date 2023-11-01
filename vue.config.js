@@ -25,8 +25,8 @@ module.exports = defineConfig({
   // 跨域配置
   devServer: {
     /* 自动打开浏览器 */
-    // open: true,
-    // hot: true, // vue cli3.0 关闭热更新
+    open: true,
+    hot: true, // vue cli3.0 关闭热更新
     // liveReload: false, // webpack liveReload关闭
     /* 设置为0.0.0.0则所有的地址均能访问 */
     // host: '0.0.0.0',
