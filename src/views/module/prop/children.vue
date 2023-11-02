@@ -9,6 +9,9 @@
     <grandson-vue v-bind="$attrs" v-on="$listeners" />
     <div>{{ name3 }}</div>
     <div>{{ name4 }}</div>
+    <div>
+      <button @click="getParentName">通过$parent获取父组件里的值</button>
+    </div>
   </div>
 </template>
 <script>
@@ -25,12 +28,15 @@
     },
     data() {
       return {
-
+        name: '竹记饭庄'
       }
     },
     methods: {
       sendData() {
         this.$emit('childToFatherData', '<<赘婿>>郭麒麟-宋轶')
+      },
+      getParentName() {
+        alert(this.$parent.name1)
       }
     }
   }

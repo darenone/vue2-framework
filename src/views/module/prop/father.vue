@@ -4,6 +4,7 @@
     <h4>父组件</h4>
     {{ name }}
     <children-item
+      ref="childrenItem"
       :user-list="userList"
       :name1="name1"
       :name2="name2"
@@ -13,6 +14,12 @@
     <brother1-item />
     <brother2-item />
     <button @click="changeName">provide通知所有子组件</button>
+    <div>
+      <button @click="getChildrenItem">通过$refs获取子组件的值</button>
+    </div>
+    <div>
+      <button @click="getChildrenItem2">通过$children获取子组件的值</button>
+    </div>
   </div>
 </template>
 <script>
@@ -49,6 +56,12 @@
       },
       changeName() {
         this.name = '赘婿学院'
+      },
+      getChildrenItem() {
+        alert(this.$refs.childrenItem.name)
+      },
+      getChildrenItem2() {
+        alert(this.$children[0].name)
       }
     }
   }

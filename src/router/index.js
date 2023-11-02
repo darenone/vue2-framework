@@ -34,11 +34,17 @@ const routes = [
   {
     path: '/prop',
     name: 'prop',
+    meta: {
+      title: '组件之间传值'
+    },
     component: () => import('@/views/module/prop/father')
   },
   {
     path: '/product',
     name: 'product',
+    meta: {
+      title: '嵌套路由'
+    },
     component: () => import('@/views/module/product/index.vue'), // 必须携带<router-view/>
     children: [
       {
