@@ -15,7 +15,7 @@
     <brother2-item />
     <button @click="changeName">provide通知所有子组件</button>
     <div>
-      <button @click="getChildrenItem">通过$refs获取子组件的值</button>
+      <el-button type="primary" @click="getChildrenItem">通过$refs获取子组件的值</el-button>
     </div>
     <div>
       <button @click="getChildrenItem2">通过$children获取子组件的值</button>
