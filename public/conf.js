@@ -3,8 +3,8 @@ window.__config__ = {
   // 基础配置
   sysId: 'AFS_OEN', // 系统标识
   sysName: {
-    'zh-CN': '光交组网系统',
-    'en-US': 'Optical Network System'
+    'zh-CN': 'vue2基础框架',
+    'en-US': 'vue2 base framework'
   },
   // 系统版本
   systemVersion: 'V 2.6.18.1',
@@ -24,7 +24,7 @@ window.__config__ = {
   },
   // 后端调试环境配置
   devConf: {
-    baseUrl: 'http://8.142.0.149/services',
+    baseUrl: 'http://192.168.55.221/services',
     resUrl: 'http://192.168.55.221/res',
     // 接口服务配置
     services: {
@@ -39,12 +39,12 @@ window.__config__ = {
       pem: '/pem'
     },
     mqtt: {
-      service: 'mqtt://8.142.0.149/services/message'
+      service: 'mqtt://192.168.55.221/services/message'
     }
   },
   // 前端调试环境配置
   testConf: {
-    baseUrl: 'http://8.142.0.149/services'
+    baseUrl: 'http://192.168.55.221/services'
   },
   // 构建环境配置
   prodConf: {

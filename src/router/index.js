@@ -72,6 +72,14 @@ const routes = [
     ]
   },
   {
+    path: '/axios',
+    name: 'axios',
+    meta: {
+      title: '封装axios'
+    },
+    component: () => import('@/views/module/axios/')
+  },
+  {
     path: '/compatible',
     name: 'compatible',
     meta: { title: '兼容' },

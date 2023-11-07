@@ -1,43 +1,45 @@
 /** ======================================== 配置加载模块 ======================================== */
 
-import Crypto from 'crypto-js';
+import Crypto from 'crypto-js'
 
 /** 环境变量 */
-const env = process.env.NODE_ENV;
+const env = process.env.NODE_ENV
 
 /** 系统配置 */
-const config = window.__config__ || {};
+const config = window.__config__ || {}
+console.log('当前环境：' + env)
+console.log(config)
 
 // 根据环境变量加载系统配置
-if (env == 'development' && config.devConf) {
-  valueObject(config, config.devConf);
-  config.afsVideoUrl = `${config.baseUrl.replace('/services', '')}${config.afsVideoUrl}`;
-} else if (env == 'test' && config.testConf) {
-  valueObject(config, config.testConf);
-  config.afsVideoUrl = `${config.baseUrl.replace('/services', '')}${config.afsVideoUrl}`;
-} else if (env == 'production' && config.prodConf) {
-  valueObject(config, config.prodConf);
+if (env === 'development' && config.devConf) {
+  valueObject(config, config.devConf)
+  config.afsVideoUrl = `${config.baseUrl.replace('/services', '')}${config.afsVideoUrl}`
+} else if (env === 'test' && config.testConf) {
+  valueObject(config, config.testConf)
+  config.afsVideoUrl = `${config.baseUrl.replace('/services', '')}${config.afsVideoUrl}`
+} else if (env === 'production' && config.prodConf) {
+  valueObject(config, config.prodConf)
   config.wsBaseUrl = `${location.protocol.replace('http', 'ws')}${location.host}${
     config.baseUrl || ''
-  }`;
-  config.afsVideoUrl = `${location.protocol}//${location.host}${config.afsVideoUrl}`;
+  }`
+  config.afsVideoUrl = `${location.protocol}//${location.host}${config.afsVideoUrl}`
 }
 // 配置Websocket地址
 if (!config.wsBaseUrl) {
-  config.wsBaseUrl = config.baseUrl.replace('http', 'ws');
+  config.wsBaseUrl = config.baseUrl.replace('http', 'ws')
 }
 // 配置MQTT连接信息
 if (config.mqtt) {
   if (config.mqtt.service && !config.mqtt.service.includes('//')) {
     if (config.baseUrl.includes('//')) {
-      config.mqtt.service = `${config.baseUrl.replace('http', 'mqtt')}${config.mqtt.service}`;
+      config.mqtt.service = `${config.baseUrl.replace('http', 'mqtt')}${config.mqtt.service}`
     } else {
-      config.mqtt.service = `mqtt://${location.host}${config.baseUrl || ''}${config.mqtt.service}`;
+      config.mqtt.service = `mqtt://${location.host}${config.baseUrl || ''}${config.mqtt.service}`
     }
   }
   if (config.mqtt.password) {
-    let pwd = Crypto.enc.Base64.parse(config.mqtt.password);
-    config.mqtt.password = pwd.toString(Crypto.enc.Utf8);
+    const pwd = Crypto.enc.Base64.parse(config.mqtt.password)
+    config.mqtt.password = pwd.toString(Crypto.enc.Utf8)
   }
 }
 
@@ -49,18 +51,18 @@ if (config.mqtt) {
  */
 function valueObject(target, source) {
   if (!target || !source) {
-    return;
+    return
   }
   for (const [k, v] of Object.entries(source)) {
     if (v != null && typeof v === 'object' && Object.keys(v).length) {
       if (!target[k]) {
-        target[k] = {};
+        target[k] = {}
       }
-      valueObject(target[k], v);
+      valueObject(target[k], v)
     } else {
-      target[k] = v;
+      target[k] = v
     }
   }
 }
 
-export default config;
+export default config

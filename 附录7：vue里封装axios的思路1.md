@@ -97,7 +97,8 @@ npm run test
 npm run testBJ
 npm run build
 ```
-修改`vue.config.js`文件
+修改`vue.config.js`，配置跨域
+
 ```js {2,19-24}
 const path = require('path');
 const config = require('./src/config.js');
@@ -126,7 +127,9 @@ module.exports = {
     }
 }
 ```
+
 新建`src/$http.js`：
+
 ```js
 import qs from 'qs'
 import axios from 'axios'
@@ -287,7 +290,9 @@ function install(Vue, options) {
 }
 export default install;
 ```
+
 在`main.js`里引入`$http.js`
+
 ```js {6,10}
 import Vue from 'vue'
 import App from './App.vue'

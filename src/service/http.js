@@ -1,8 +1,9 @@
 import qs from 'qs'
-import axios from 'axios'
+import axios from './axios'
 // import { Message, LoadingBar } from 'view-design'
 
-const SERVER_URL = '/api/'
+// const SERVER_URL = '/api/'
+const SERVER_URL = ''
 const locat = window.location
 
 // 处理全局错误
@@ -91,7 +92,7 @@ function oFail(error) {
 }
 
 // 封装axios
-axios.defaults.headers.common['token'] = '2c357265966f4901a64cda046c4301f2' // 请求头添加token
+axios.defaults.headers.common['token'] = 'b8eb3322337c4522a43fdf21badc25f5' // 请求头添加token
 const $http = {
   // post请求，参数为字符串
   post: function(url, params) {
@@ -131,6 +132,7 @@ const $http = {
     })
   },
   get: function(url, params) {
+    console.log(url, qs.stringify(params))
     return new Promise(function(resolve, reject) {
       axios.get(SERVER_URL + url, qs.stringify(params || {})).then(function(resp) {
         oSuccess(resp, resolve, reject)

@@ -2,9 +2,9 @@ import axios from 'axios'
 import ElementUI from 'element-ui'
 import config from '@/config'
 import router from '@/router'
-import i18n from '@/i18n'
+// import i18n from '@/i18n'
 import vueInstance from '@/main.js'
-import addOperateLog from '@/service/log'
+// import addOperateLog from '@/service/log'
 import qs from 'qs'
 // axios默认配置
 
@@ -30,8 +30,10 @@ const delEmptyValue = data => {
 // HTTPrequest拦截
 axios.interceptors.request.use(
   request => {
+    console.log(request)
     if (request.method === 'get' && request.params) {
       request.params = delEmptyValue(request.params)
+      console.log(delEmptyValue(request.params))
       request.paramsSerializer = params => {
         return qs.stringify(params, { indices: false })
       }
@@ -41,7 +43,7 @@ axios.interceptors.request.use(
       const url = (request.baseURL || '') + request.url
       resultKeepSet.add(url)
     }
-    request.headers.token = localStorage.getItem('token')
+    request.headers.token = localStorage.getItem('token') || 'b8eb3322337c4522a43fdf21badc25f5'
     // console.log(request)
     request.headers.sysid = config.sysId
     const lang = localStorage.getItem('lang')
@@ -71,39 +73,34 @@ axios.interceptors.response.use(
     }
     // console.log(response)
     // 如果HTTP响应状态为异常，就进行错误提示
-    const token = localStorage.getItem('token')
+    // const token = localStorage.getItem('token')
     if (Number(response.status) !== 200) {
       ElementUI.Message.closeAll()
       vueInstance.$debounce(() => {
         ElementUI.Message({
           showClose: true,
           type: 'error',
-          message: (token
-            ? vueInstance.$utils.handleServiceI18n(response.statusText.toUpperCase()) : response.statusText) || i18n.t('UNKNOWN_ERROR')
+          message: '未知错误'
         })
       })
-      addOperateLog(response, false)
+      // addOperateLog(response, false)
       return Promise.reject(
         new Error(
-          (token
-            ? vueInstance.$utils.handleServiceI18n(response.statusText.toUpperCase()) : response.statusText) || i18n.t('UNKNOWN_ERROR')
-        )
-      )
+          '未知错误'
+        ))
     }
     const data = response.data
     if (!data || data.code === undefined) {
       if (response.config.params && response.config.params.operateResult || response.config.data && response.config.data.operateResult) {
-        addOperateLog(response, true)
+        // addOperateLog(response, true)
         return data
       }
-      addOperateLog(response, false)
+      // addOperateLog(response, false)
       return data
     }
     // 如果业务响应结果代码为异常，就进行错误提示
     const code = Number(data.code)
     if (code !== 0) {
-      const message = (token
-        ? vueInstance.$utils.handleServiceI18n(data.message.toUpperCase()) : data.message) || i18n.t('UNKNOWN_ERROR')
       if (code === 2 || code === 3) {
         if (window.location.href.indexOf('/login') === -1) {
           router.push('/login')
@@ -117,24 +114,24 @@ axios.interceptors.response.use(
         ElementUI.Message({
           showClose: true,
           type: 'error',
-          message: message
+          message: '未知错误'
         })
       }
-      addOperateLog(response, false)
-      return Promise.reject(new Error(message))
+      // addOperateLog(response, false)
+      return Promise.reject(new Error('未知错误'))
     }
     if (code === 0 && !data.data) {
-      addOperateLog(response, false)
+      // addOperateLog(response, false)
       return null // 判断code =0 但data为false的情况
     }
     // 如果当前URL设置了要维持返回原样的结果，就直接返回
     const url = response.config.url
     if (resultKeepSet.has(url)) {
       resultKeepSet.delete(url)
-      addOperateLog(response, true)
+      // addOperateLog(response, true)
       return data
     }
-    addOperateLog(response, true)
+    // addOperateLog(response, true)
     return data.data
   },
   error => {

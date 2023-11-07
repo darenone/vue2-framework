@@ -10,8 +10,10 @@ Vue.config.productionTip = false
 Vue.prototype.$bus = Bus // 使用总线
 Vue.use($http)
 
-new Vue({
+const vue = new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
+
+export default vue
