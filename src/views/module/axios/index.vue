@@ -74,8 +74,12 @@
     },
     methods: {
       async getAfsInfo() {
-        const afsInfo = await AfsInfoApi.find({ deviceId: '2023091802' })
-        console.log(afsInfo)
+        try {
+          const afsInfo = await AfsInfoApi.find({ deviceId: '2023091802', deviceName: 'afs' })
+          console.log('afsInfo', afsInfo)
+        } catch (error) {
+          console.log(error)
+        }
       }
     }
   }

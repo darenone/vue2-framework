@@ -3,11 +3,65 @@ import ElementUI from 'element-ui'
 import config from '@/config'
 import router from '@/router'
 // import i18n from '@/i18n'
-import vueInstance from '@/main.js'
 // import addOperateLog from '@/service/log'
 import qs from 'qs'
-// axios默认配置
 
+// 处理全局错误
+const locat = window.location
+const GLOBAL_ERROR_MAP = {
+  '0': {
+    msg: '数据加载异常，请刷新重试'
+  },
+  '-1': {
+    msg: '程序异常',
+    process: function() {
+      window.location.href = locat.origin + locat.pathname + '#/login'
+    }
+  },
+  '-2': {
+    msg: '没有该地址',
+    process: function() {
+      window.location.href = locat.origin + locat.pathname + '#/login'
+    }
+  },
+  '401': {
+    msg: '你还没有登录，请登录后再操作',
+    process: function() {
+      window.location.href = locat.origin + locat.pathname + '#/notLogin'
+    }
+  },
+  '404': {
+    msg: '你访问的接口不存在',
+    process: function() {
+      window.location.href = locat.origin + locat.pathname + '#/notFound'
+    }
+  },
+  '500': {
+    msg: '服务器错误',
+    process: function() {
+      window.location.href = locat.origin + locat.pathname + '#/abnormal'
+    }
+  },
+  '504': {
+    msg: '服务器错误',
+    process: function() {
+      window.location.href = locat.origin + locat.pathname + '#/abnormal'
+    }
+  }
+}
+
+// 消息框去重
+let latestTime = ''
+function isShowPrompt() {
+  let flag = false
+  if (!latestTime || new Date() - latestTime > 2000) {
+    latestTime = new Date()
+    flag = true
+  }
+  return flag
+}
+
+// axios默认配置
 if (config && config.baseUrl) {
   axios.defaults.baseURL = config.baseUrl
 }
@@ -30,10 +84,8 @@ const delEmptyValue = data => {
 // HTTPrequest拦截
 axios.interceptors.request.use(
   request => {
-    console.log(request)
     if (request.method === 'get' && request.params) {
       request.params = delEmptyValue(request.params)
-      console.log(delEmptyValue(request.params))
       request.paramsSerializer = params => {
         return qs.stringify(params, { indices: false })
       }
@@ -43,8 +95,7 @@ axios.interceptors.request.use(
       const url = (request.baseURL || '') + request.url
       resultKeepSet.add(url)
     }
-    request.headers.token = localStorage.getItem('token') || 'b8eb3322337c4522a43fdf21badc25f5'
-    // console.log(request)
+    request.headers.token = localStorage.getItem('token') || 'c71ac35a7d8241d5a9af59160512241e'
     request.headers.sysid = config.sysId
     const lang = localStorage.getItem('lang')
     if (lang) {
@@ -67,27 +118,25 @@ const whiteList = [
 // HTTPresponse拦截
 axios.interceptors.response.use(
   response => {
+    console.log(response)
     if (loading) {
       loading.close()
       loading = null
     }
-    // console.log(response)
     // 如果HTTP响应状态为异常，就进行错误提示
     // const token = localStorage.getItem('token')
     if (Number(response.status) !== 200) {
       ElementUI.Message.closeAll()
-      vueInstance.$debounce(() => {
+      if (isShowPrompt()) {
         ElementUI.Message({
           showClose: true,
           type: 'error',
-          message: '未知错误'
+          message: GLOBAL_ERROR_MAP[response.status].msg
         })
-      })
+      }
       // addOperateLog(response, false)
-      return Promise.reject(
-        new Error(
-          '未知错误'
-        ))
+      GLOBAL_ERROR_MAP[response.status].process()
+      return Promise.reject(new Error(GLOBAL_ERROR_MAP[response.status].msg))
     }
     const data = response.data
     if (!data || data.code === undefined) {
