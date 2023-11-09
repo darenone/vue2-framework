@@ -42,11 +42,11 @@ const $http = {
       })
     })
   },
-  get: function(url, params = {}) {
+  get: function(url, params) {
     console.log(url, qs.stringify(params))
     return new Promise(function(resolve, reject) {
       // axios.get(`${SERVER_URL + url}?${qs.stringify(params)}`).then(function(resp) {
-      axios.get(SERVER_URL + url, { params: params }).then(function(resp) {
+      axios.get(SERVER_URL + url, params).then(function(resp) {
         resolve(resp)
       }).catch(function(error) {
         reject(error)

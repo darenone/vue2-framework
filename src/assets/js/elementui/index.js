@@ -5,11 +5,11 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import Vue from 'vue'
 import ElementUI from 'element-ui'
-// import ElementLocale from 'element-ui/lib/locale'
-// import ElementZh from 'element-ui/lib/locale/lang/zh-CN'
-// import ElementEn from 'element-ui/lib/locale/lang/en'
-// import i18n from '@/i18n'
-import vueInstance from '@/main.js'
+import ElementLocale from 'element-ui/lib/locale'
+import ElementZh from 'element-ui/lib/locale/lang/zh-CN'
+import ElementEn from 'element-ui/lib/locale/lang/en'
+import i18n from '@/i18n'
+import vm from '@/main.js'
 
 // 设置message弹窗关闭按钮
 const messages = ['success', 'warning', 'info', 'error']
@@ -38,9 +38,9 @@ Vue.use(ElementUI, {
 })
 
 // i18n融合ElementUI国际化
-// i18n.mergeLocaleMessage('zh-CN', ElementZh)
-// i18n.mergeLocaleMessage('en-US', ElementEn)
-// ElementLocale.i18n((key, value) => i18n.t(key, value))
+i18n.mergeLocaleMessage('zh-CN', ElementZh)
+i18n.mergeLocaleMessage('en-US', ElementEn)
+ElementLocale.i18n((key, value) => i18n.t(key, value))
 
 /** 弹窗拖拽配置 */
 const elDragDialog = {
@@ -161,7 +161,7 @@ const elDragDialog = {
         dragDom.querySelector('.el-dialog__body').style.height = reduceHeight
         hasSetBodyHight = false
       }
-      vueInstance.$bus.$emit('dragDialogChange')
+      vm.$bus.$emit('dragDialogChange')
     }
     // 点击放大缩小效果
     maxMin.onclick = setMaxMin

@@ -8,6 +8,8 @@ window.__config__ = {
   },
   // 系统版本
   systemVersion: 'V 2.6.18.1',
+  // 视频地址
+  afsVideoUrl: '/res/video/dsfv.mp4',
   // 接口服务配置
   services: {
     authen: '/authen',
@@ -62,8 +64,8 @@ window.__config__ = {
   },
   // 系统版权--更改时需要同步更改英文和阿拉伯语【直接用百度翻译】
   copyright: {
-    'zh-CN': 'Copyright © 北京瑞祺皓迪技术股份有限公司, All Rights Reserved.',
-    'en-US': 'Copyright © Beijing Ruiqi Haodi Technology Co., Ltd, All Rights Reserved.'
+    'zh-CN': 'Copyright © 成都XX技术股份有限公司, All Rights Reserved.',
+    'en-US': 'Copyright © Chendu XX Technology Co., Ltd, All Rights Reserved.'
   },
   defaultAccount: ['user_jf', 'user_gl', 'user_wh', 'user_sc']
 }

@@ -99,7 +99,7 @@ export default class {
    * @return 请求对象
    */
   static find(params) {
-    return vm.$http.get(`${this.basePath()}/find`, params)
+    return vm.$http.get(`${this.basePath()}/find`, { params })
     //        return axios.get(`${this.basePath()}/find`, {params, resultKeep: true});
   }
 }

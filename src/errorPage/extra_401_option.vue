@@ -27,7 +27,7 @@
       }
     },
     created: function() {
-      // this.getCode();
+      this.getCode()
     },
     methods: {
       getCode() {

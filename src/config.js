@@ -8,7 +8,7 @@ const env = process.env.NODE_ENV
 /** 系统配置 */
 const config = window.__config__ || {}
 console.log('当前环境：' + env)
-console.log(config)
+console.log('全局配置：', config)
 
 // 根据环境变量加载系统配置
 if (env === 'development' && config.devConf) {

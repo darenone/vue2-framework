@@ -1,7 +1,7 @@
 import axios from 'axios'
 import ElementUI from 'element-ui'
 import config from '@/config'
-import router from '@/router'
+// import router from '@/router'
 // import i18n from '@/i18n'
 // import addOperateLog from '@/service/log'
 import qs from 'qs'
@@ -152,7 +152,13 @@ axios.interceptors.response.use(
     if (code !== 0) {
       if (code === 2 || code === 3) {
         if (window.location.href.indexOf('/login') === -1) {
-          router.push('/login')
+          ElementUI.Message({
+            showClose: true,
+            type: 'error',
+            message: GLOBAL_ERROR_MAP['401'].msg
+          })
+          GLOBAL_ERROR_MAP['401'].process()
+          // router.push('/login')
         }
         return false
       } else {

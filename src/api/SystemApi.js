@@ -1,6 +1,6 @@
 import axios from 'axios'
 import FuncApi from '@/api/system/FuncApi'
-import DictApi from '@/api/system/DictApi'
+// import DictApi from '@/api/system/DictApi'
 import config from '@/config'
 
 /**
@@ -94,6 +94,6 @@ export default class {
      * @return 请求对象
      */
   static dict() {
-    return DictApi.tree()
+    // return DictApi.tree()
   }
 }
