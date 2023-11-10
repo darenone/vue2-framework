@@ -57,6 +57,8 @@ const elDragDialog = {
     let nowMarginTop = 0
     // 获取弹框头部（这部分可双击全屏）
     const dialogHeaderEl = el.querySelector('.el-dialog__header')
+    // 获取底部元素
+    const dialogFooterEl = el.querySelector('.el-dialog__footer')
     let hasSetBodyHight = false
     // 弹窗
     const dragDom = el.querySelector('.el-dialog')
@@ -134,7 +136,7 @@ const elDragDialog = {
         dialogHeaderEl.style.cursor = 'initial'
         dialogHeaderEl.onmousedown = null
         if (!hasSetBodyHight) {
-          const dialogFooterEl = el.querySelector('.el-dialog__footer')
+          // const dialogFooterEl = el.querySelector('.el-dialog__footer')
           const footerHeight = dialogFooterEl ? dialogFooterEl.offsetHeight : 0
           const maxHeight = `calc(100% - ${dialogHeaderEl.offsetHeight + footerHeight}px)`
           dragDom.querySelector('.el-dialog__body').style.maxHeight = maxHeight
@@ -195,7 +197,7 @@ const elDragDialog = {
         dragDom.style.width = x > minWidth ? `${x}px` : `${minWidth}px`
         dragDom.style.height = y > minHeight ? `${y}px` : `${minHeight}px`
         if (!hasSetBodyHight) {
-          const dialogFooterEl = el.querySelector('.el-dialog__footer')
+          // const dialogFooterEl = el.querySelector('.el-dialog__footer')
           const footerHeight = dialogFooterEl ? dialogFooterEl.offsetHeight : 0
           const stretchHeight = `calc(100% - ${dialogHeaderEl.offsetHeight + footerHeight}px)`
           dragDom.querySelector('.el-dialog__body').style.maxHeight = stretchHeight
