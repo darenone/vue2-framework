@@ -80,6 +80,11 @@ const routes = [
     component: () => import('@/views/module/axios/')
   },
   {
+    path: '/menu',
+    name: 'menu',
+    component: () => import('../views/module/menu')
+  },
+  {
     path: '/compatible',
     name: 'compatible',
     meta: { title: '兼容' },

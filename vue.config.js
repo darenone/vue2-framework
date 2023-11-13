@@ -1,5 +1,5 @@
 const { defineConfig } = require('@vue/cli-service')
-import config = require('./src/config')
+// const config = require('./src/config.js')
 /* 如果当前是生产环境production
 如果项目部署到域名（www.baidu.com）根目录下，直接'/' : '/',
 如果需要部署到（www.baidu.com/iview-admin）目录下，直接'/iview-admin/' : '/'
@@ -34,8 +34,8 @@ module.exports = defineConfig({
     // port: 4000,
     proxy: {
       '/api': {
-        // target: 'http://localhost:3000', // 测试环境
-        target: config.baseUrl,
+        target: 'http://localhost:3000', // 测试环境
+        // target: config.baseUrl,
         changeOrigin: true
       }
     }
