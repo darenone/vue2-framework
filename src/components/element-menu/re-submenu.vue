@@ -1,0 +1,60 @@
+<template>
+  <section>
+    <el-submenu :index="index">
+      <template slot="title">
+        <i :class="[parent.icon, 'pr-10']" />
+        <span slot="title">{{ parent.title }}</span>
+      </template>
+      <template v-for="(item, i) in parent.children">
+        <el-menu-item
+          v-if="!item.children"
+          :key="item.name + i"
+          :index="item.path"
+          :route="{ name: item.name }"
+        >
+          <i :class="[item.icon, 'pr-10']" />
+          <span slot="title">{{ item.title }}</span>
+        </el-menu-item>
+        <e-resubmenu
+          v-else
+          :key="item.name + i"
+          :parent="item"
+          :index="item.name + i"
+        />
+      </template>
+    </el-submenu>
+  </section>
+</template>
+<script>
+  export default {
+    name: 'EResubmenu',
+    props: {
+      parent: {
+        type: Object,
+        default: () => {}
+      },
+      index: [String, Number]
+    },
+    mounted() {
+      console.log('hello')
+    }
+  }
+</script>
+<style lang="scss" scoped>
+::v-deep .el-submenu > .el-submenu__title .el-submenu__icon-arrow {
+  position: static;
+  margin-top: 1px;
+  margin-left: 5px;
+}
+// el-submenu标签外再套一层div，防止菜单折叠后hover报错Maximum call stack size exceeded，但是样式需要调整一下
+// .el-menu--collapse > div > .el-submenu > .el-submenu__title span {
+//   width: 0;
+//   height: 0;
+//   overflow: hidden;
+//   visibility: hidden;
+//   display: inline-block;
+// }
+// .el-menu--collapse > div > .el-submenu > .el-submenu__title .el-submenu__icon-arrow {
+//   display: none;
+// }
+</style>

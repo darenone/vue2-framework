@@ -7,7 +7,8 @@ const getters = {
     }
   },
   getMenuType2: state => state.menuType,
-  menuList: state => state.menuList
+  menuList: state => state.menuList,
+  getLayout: state => state.layout
 }
 
 export default getters

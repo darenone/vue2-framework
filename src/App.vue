@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <nav>
+    <!-- <nav>
       <router-link to="/">{{ $t('HOME') }}</router-link> |
       <router-link to="/about">{{ $t('ABOUT') }}</router-link>
       <el-button type="primary" @click="langSwitch($i18n.locale === 'zh-CN' ? 'en-US' : 'zh-CN')">切换语言</el-button>
-    </nav>
+    </nav> -->
     <router-view />
   </div>
 </template>

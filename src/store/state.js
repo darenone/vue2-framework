@@ -1,7 +1,8 @@
 const state = {
   menuType: 1,
   menuList: [],
-  currentNav: ''
+  currentNav: '',
+  layout: 'top'
 }
 
 export default state

@@ -10,7 +10,9 @@
         :key="`menu_item_${index}_${i}`"
         :u-id="`menu_${item.title}_${i}`"
         :style="{'padding-left': `${item.level * 20}px`}"
-      >{{ item.title }}</a-menu-item>
+      >
+        <router-link :to="item.path">{{ item.title }}</router-link>
+      </a-menu-item>
       <re-submenu
         v-else
         :key="`menu_item_${index}_${i}`"

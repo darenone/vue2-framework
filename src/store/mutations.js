@@ -7,6 +7,9 @@ const mutations = {
   },
   SET_CURRENT_NAV: (state, params) => {
     state.currentNav = params
+  },
+  SET_LAYOUT: (state, data) => {
+    state.layout = data
   }
 }
 
