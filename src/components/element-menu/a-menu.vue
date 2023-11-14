@@ -44,6 +44,7 @@
       }
     },
     mounted() {
+      console.log(this.$router.options.routes)
       this.navList = this.loopFun(this.$router.options.routes[1].children, 0, '')
       console.log(this.navList)
     },

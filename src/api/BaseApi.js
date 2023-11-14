@@ -88,7 +88,7 @@ export default class {
    * @return 请求对象
    */
   static page(params) {
-    return axios.get(`${this.basePath()}/page`, { params })
+    return vm.$http.get(`${this.basePath()}/page`, { params })
     //        return axios.get(`${this.basePath()}/page`, {params, resultKeep: true});
   }
 

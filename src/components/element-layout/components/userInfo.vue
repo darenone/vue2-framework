@@ -10,7 +10,7 @@
       <el-submenu index="user" popper-class="user-menu">
         <template #title>
           <div>
-            <el-avatar size="small" src="../../assets/img/default_avatar.png" />
+            <el-avatar size="small" :src="require('@/assets/img/default_avatar.png')" />
             <span class="user-name"> admin </span>
           </div>
         </template>

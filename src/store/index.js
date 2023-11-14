@@ -4,7 +4,7 @@ import state from './state'
 import getters from './getter'
 import mutations from './mutations'
 import actions from './actions'
-import saveLocal from './plugin/saveLocal'
+// import saveLocal from './plugin/saveLocal'
 
 Vue.use(Vuex)
 
@@ -20,6 +20,6 @@ export default new Vuex.Store({
   getters,
   mutations,
   actions,
-  modules: modules,
-  plugins: [saveLocal]
+  modules: modules
+  // plugins: [saveLocal]
 })

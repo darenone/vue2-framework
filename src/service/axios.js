@@ -95,7 +95,7 @@ axios.interceptors.request.use(
       const url = (request.baseURL || '') + request.url
       resultKeepSet.add(url)
     }
-    request.headers.token = localStorage.getItem('token') || 'c71ac35a7d8241d5a9af59160512241e'
+    request.headers.token = localStorage.getItem('token') || 'd21fe9b5fda442f5bfc575137cc3c83b'
     request.headers.sysid = config.sysId
     const lang = localStorage.getItem('lang')
     if (lang) {
