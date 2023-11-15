@@ -1,13 +1,21 @@
 <template>
   <div>
     <el-row :gutter="10">
-      <el-col :span="12">
+      <el-col :span="24">
         <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>afs模块接口</span>
-          </div>
           <el-collapse v-model="activeNames" style="text-align: left;">
             <el-collapse-item name="1">
+              <template slot="title">
+                获取系统用户信息（get请求）
+              </template>
+              <el-button type="primary" @click="upDateInfo">发送get请求</el-button>
+              <div><strong>接口：</strong>http://192.168.55.117/services/authen/info</div>
+              <div><strong>返回结果：</strong></div>
+              <div>真实姓名：{{ getUser.realName }}</div>
+            </el-collapse-item>
+          </el-collapse>
+          <el-collapse v-model="activeNames" style="text-align: left;">
+            <el-collapse-item name="2">
               <template slot="title">
                 获取光配机详情（get请求）
               </template>
@@ -18,7 +26,7 @@
             </el-collapse-item>
           </el-collapse>
           <el-collapse v-model="activeNames" style="text-align: left;">
-            <el-collapse-item name="2">
+            <el-collapse-item name="3">
               <template slot="title">
                 获取光配机列表分页（get请求）
               </template>
@@ -59,7 +67,7 @@
             </el-collapse-item>
           </el-collapse>
           <el-collapse v-model="activeNames" style="text-align: left;">
-            <el-collapse-item name="3">
+            <el-collapse-item name="4">
               <template slot="title">
                 获取光配机运行状态统计（post请求）
               </template>
@@ -71,43 +79,11 @@
           </el-collapse>
         </el-card>
       </el-col>
-      <el-col :span="12">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>oen模块接口</span>
-            <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
-          </div>
-          <div v-for="o in 4" :key="o" class="text item">
-            {{ '列表内容 ' + o }}
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>pem模块接口</span>
-            <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
-          </div>
-          <div v-for="o in 4" :key="o" class="text item">
-            {{ '列表内容 ' + o }}
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>system模块接口</span>
-            <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
-          </div>
-          <div v-for="o in 4" :key="o" class="text item">
-            {{ '列表内容 ' + o }}
-          </div>
-        </el-card>
-      </el-col>
     </el-row>
   </div>
 </template>
 <script>
+  import { mapGetters, mapActions } from 'vuex'
   import AfsInfoApi from '@/api/afs/AfsInfoApi'
   export default {
     data() {
@@ -121,7 +97,11 @@
         }
       }
     },
+    computed: {
+      ...mapGetters(['getUser'])
+    },
     methods: {
+      ...mapActions(['upDateInfo']),
       async getAfsInfo() {
         try {
           const afsInfo = await AfsInfoApi.find({ deviceId: '2023091802', deviceName: 'afs' })

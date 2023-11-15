@@ -122,7 +122,7 @@ const routes = [
   }
 ]
 
-const router = new VueRouter({
+const createRouter = (routes) => new VueRouter({
   routes
 })
 
@@ -130,6 +130,7 @@ const router = new VueRouter({
 const whitelist = ['login', 'error401', 'error500', 'notFound', 'compatible', 'notLogin', '404', 'abnormal']
 
 let app
+const router = createRouter(routes)
 router.beforeEach((to, from, next) => {
   // const isLogin = !!sessionStorage.getItem('accessToken');
   const isLogin = true
@@ -157,5 +158,10 @@ router.afterEach((to, from, next) => {
   app = document.querySelector('.app-content-inner')
   app && app.scrollTo(0, 0)
 })
+
+export const resetRouter = () => {
+  const newRouter = createRouter(routes)
+  router.matcher = newRouter.matcher
+}
 
 export default router
