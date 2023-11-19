@@ -1,4 +1,5 @@
 import SystemApi from '@/api/SystemApi'
+import config from '@/config'
 
 export default {
   state: {
@@ -21,10 +22,16 @@ export default {
     }
   },
   actions: {
-    async upDateInfo({ commit }) {
+    async upDateInfo({ dispatch, commit }) {
       try {
         const data = await SystemApi.info()
         commit('SET_INFO', data)
+        if (data) {
+          dispatch('loadMenu', {
+            sysId: config.sysId,
+            roleIds: data.roles
+          })
+        }
       } catch (error) {
         console.log(error)
       }

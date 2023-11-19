@@ -23,10 +23,14 @@
       this.loadLanData() // 加载中英文
     },
     mounted() {
+      console.log('先加载App.vue')
       console.log(this.$i18n.locale)
+      this.$nextTick(() => {
+        this.upDateInfo()
+      })
     },
     methods: {
-      ...mapActions(['loadLanData']),
+      ...mapActions(['loadLanData', 'upDateInfo']),
       langSwitch(lang) {
         this.$i18n.locale = lang
         this.$store.commit('SETLOCALE', lang)

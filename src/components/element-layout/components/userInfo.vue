@@ -72,6 +72,9 @@
     computed: {
     ...mapGetters(['getLayout'])
     },
+    mounted() {
+      console.log('hello')
+    },
     methods: {
     ...mapMutations(['SET_LAYOUT', 'SET_TABTYPE'])
     }

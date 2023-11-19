@@ -8,24 +8,25 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '',
     name: 'home',
     component: eleLayout,
+    redirect: '/index',
     children: [
       {
-        path: '',
+        path: '/index',
         name: 'HomeView',
         component: HomeView
       }
     ]
   },
   {
-    path: '/about',
+    path: '',
     name: 'about',
     component: eleLayout,
     children: [
       {
-        path: '',
+        path: '/about',
         name: 'about',
         component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
       }

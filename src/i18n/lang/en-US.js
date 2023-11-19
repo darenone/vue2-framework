@@ -1,4 +1,24 @@
 export default {
   HOME: 'home',
-  ABOUT: 'about'
+  ABOUT: 'about',
+  MENU_NETWORK_BUSINESS: 'networking services',
+  MENU_BUSINESS_MANAGER: 'business management',
+  MENU_BACKUP_MANAGER: 'standby Channel',
+  MENU_LINK_MANAGER: 'link debugging',
+  MENU_LINK_DETECT: 'manual detection',
+  MENU_ROUTINE_TEST: 'routine testing',
+  MENU_INFO_QUERY: 'query statistics',
+  MENU_ALARM_RECORD: 'active alarm',
+  MENU_DEVICE_STATE: 'device status',
+  MENU_CONFIG_MANAGER: 'resource configuration',
+  MENU_REGION_MANAGER: 'region management',
+  MENU_NODE_MANAGER: 'node Management',
+  MENU_SYSTEM_MANAGER: 'system management',
+  MENU_ORG_MANAGER: 'organizational management',
+  MENU_USER_MANAGER: 'user management',
+  MENU_ROLE_MANAGER: 'role management',
+  MENU_DEV_MANAGE: 'developer management',
+  MENU_FUNCTION_MANAGER: 'functional management',
+  MENU_DICT_MANAGER: 'dictionary managed',
+  MENU_I18N_MANAGER: 'international management'
 }

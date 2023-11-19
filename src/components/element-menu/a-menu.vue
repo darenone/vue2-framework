@@ -10,26 +10,28 @@
       text-color="#FFFFFF"
       active-text-color="#fff"
     >
-      <template v-for="(item, index) in navList">
+      <template v-for="(item) in getMenu">
         <el-menu-item
           v-if="!item.children"
-          :key="item.name + index"
+          :key="item.funcId"
           :index="item.path"
+          :route="{ name: item.name }"
         >
           <i :class="item.icon" class="pr-10" />
-          <span slot="title">{{ item.title }}</span>
+          <span slot="title">{{ $t(item.enName) }}</span>
         </el-menu-item>
         <e-resubmenu
           v-else
-          :key="item.name + index"
+          :key="item.funcId"
           :parent="item"
-          :index="item.name + index"
+          :index="item.funcId"
         />
       </template>
     </el-menu>
   </section>
 </template>
 <script>
+  import { mapGetters } from 'vuex'
   import eResubmenu from '_c/element-menu/re-submenu.vue'
   export default {
     components: { eResubmenu },
@@ -43,10 +45,19 @@
         isCollapse: true
       }
     },
+    computed: {
+      ...mapGetters(['getMenu'])
+    },
+    watch: {
+      getMenu: {
+        handler(newVal, oldVal) {
+          console.log(newVal)
+        },
+        deep: true
+      }
+    },
     mounted() {
-      console.log(this.$router.options.routes)
-      this.navList = this.loopFun(this.$router.options.routes[1].children, 0, '')
-      console.log(this.navList)
+      // this.navList = this.loopFun(this.$router.options.routes[1].children, 0, '')
     },
     methods: {
       loopFun(list, index, path) {

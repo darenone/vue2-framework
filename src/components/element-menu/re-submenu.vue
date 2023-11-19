@@ -3,23 +3,23 @@
     <el-submenu :index="index">
       <template slot="title">
         <i :class="[parent.icon, 'pr-10']" />
-        <span slot="title">{{ parent.title }}</span>
+        <span slot="title">{{ $t(parent.enName) }}</span>
       </template>
-      <template v-for="(item, i) in parent.children">
+      <template v-for="(item) in parent.children">
         <el-menu-item
           v-if="!item.children"
-          :key="item.name + i"
+          :key="item.funcId"
           :index="item.path"
           :route="{ name: item.name }"
         >
           <i :class="[item.icon, 'pr-10']" />
-          <span slot="title">{{ item.title }}</span>
+          <span slot="title">{{ $t(item.enName) }}</span>
         </el-menu-item>
         <e-resubmenu
           v-else
-          :key="item.name + i"
+          :key="item.funcId"
           :parent="item"
-          :index="item.name + i"
+          :index="funcId"
         />
       </template>
     </el-submenu>

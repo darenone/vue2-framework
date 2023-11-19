@@ -79,7 +79,7 @@
   import { mapGetters } from 'vuex'
   import BetterScroll from 'better-scroll'
   import userInfo from './userInfo.vue'
-  import eMenu from './../../element-menu/a-menu.vue'
+  import eMenu from '_c/element-menu/a-menu.vue'
   export default {
     components: {
       userInfo,

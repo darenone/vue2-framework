@@ -118,7 +118,7 @@ const whiteList = [
 // HTTPresponse拦截
 axios.interceptors.response.use(
   response => {
-    console.log(response)
+    // console.log(response)
     if (loading) {
       loading.close()
       loading = null

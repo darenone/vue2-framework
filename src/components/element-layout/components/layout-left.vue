@@ -29,7 +29,7 @@
 </template>
 <script>
   import userInfo from './userInfo.vue'
-  import eMenu from './../../element-menu/a-menu.vue'
+  import eMenu from '_c/element-menu/a-menu.vue'
   export default {
     components: {
       userInfo,
@@ -48,6 +48,9 @@
       mainLogo() {
         return this.collapsed ? 'main-logo-collapsed' : 'main-logo-uncollapsed'
       }
+    },
+    mounted() {
+      console.log('菜单')
     },
     methods: {
       handleCollapsed() {

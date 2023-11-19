@@ -76,25 +76,28 @@ export default {
       })
     }
   },
-  setMenu: (state, menu) => { // 设置菜单项
-    state.menu = menu.filter(i => i.name !== 'HOME') // 不显示首页菜单
-    // 判断权限 移除tabs
-    const tabs = localStorage.oenActivedTabs
-    if (tabs) {
-      const navs = JSON.parse(tabs)
-      const menuName = ['HOME']
-      const menuFn = (children) => {
-        children.forEach(item => {
-          menuName.push(item.name)
-          if (item.children && item.children.length) {
-            menuFn(item.children)
-          }
-        })
+  mutations: {
+    setMenu: (state, menu) => { // 设置菜单项
+      state.menu = menu.filter(i => i.name !== 'HOME') // 不显示首页菜单
+      console.log('菜单列表', state.menu)
+      // 判断权限 移除tabs
+      const tabs = localStorage.oenActivedTabs
+      if (tabs) {
+        const navs = JSON.parse(tabs)
+        const menuName = ['HOME']
+        const menuFn = (children) => {
+          children.forEach(item => {
+            menuName.push(item.name)
+            if (item.children && item.children.length) {
+              menuFn(item.children)
+            }
+          })
+        }
+        menuFn(menu)
+        state.activedTabs = navs.filter(item => menuName.includes(item.name))
+      } else {
+        state.navMenuDefaultActive = state.activedTabs[0]['name']
       }
-      menuFn(menu)
-      state.activedTabs = navs.filter(item => menuName.includes(item.name))
-    } else {
-      state.navMenuDefaultActive = state.activedTabs[0]['name']
     }
   }
 }

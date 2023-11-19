@@ -1,0 +1,314 @@
+$redTheme: (
+  /**主要颜色*/ mainColor: #D04324,
+  //页面整体背景颜色
+  bgColor: #f2f2f2,
+  //普通字体颜色
+  textColor: #333,
+  //特殊字体主题颜色
+  textFontColor: #D04324,
+  // 边框阴影颜色
+  boxshadow: #fff,
+  // 边框颜色
+  borderColor: #DCDCDC,
+  // 补充背景颜色
+  bgOtherColor:#f5f4f4,
+  //四个角颜色
+  angleColor: #D04324,
+  //首页四个角颜色
+  homoeangleColor: #D04324,
+  // 最大box边框颜色
+  bigBorderColor: rgba(76, 4, 4, 0.16),
+  //disabled背景颜色
+  disabledBgColor: #f5f5f5,
+  //首页背景颜色
+  homeBgColor: rgba(76, 4, 4, 0.03),
+  //首页box背景颜色
+  homeBoxBgColor: #fff,
+  //菜单字体颜色
+  menuFontColor:#FFD4CE,
+  menuFontColorActive:#fff,
+  //footer图片
+  footerBg: '~@/assets/img/red_footer.png',
+  // 菜单首页按钮背景
+  menuHomeBtnBg:'~@/assets/img/home/home_red_dft.png',
+  menuHomeBtnBgActive:'~@/assets/img/home/home_red_on.png',
+  // 菜单设备管理按钮背景
+  menuDeviceBtnBg:'~@/assets/img/home/xt_red_dft.png',
+  menuDeviceBtnBgActive:'~@/assets/img/home/xt_red_on.png',
+  //暂无数据颜色
+  nodataText:#AAA8A8,
+
+  /*首页card边框样式*/ homeBorderColor: rgba(76, 4, 4, 0.16),
+  // 边框阴影颜色
+  homeBoxshadow: #fff,
+
+  /**输入框 下拉框颜色*/ // 边框颜色
+  inputBorderColor: #dcdcdc,
+  //hover边框颜色
+  inputHoverBorderColor: #D04324,
+  //下拉框 输入框背景
+  inputBgColor: #fff,
+  //下拉框 输入框字体颜色
+  inputActiveFontColor: #444,
+  //多选背景颜色
+  multiBgColor: #f5f5f5,
+  //多选字体颜色
+  multiFontColor: #333,
+  // placeholder样式
+  placeholderColor:#666,
+  selectedbg:#F8F1F0,
+
+  /**form表单*/ //label颜色
+  formLabelColor: #333,
+  //统一字体颜色
+  unifiedFontColor: #333,
+  //统一边框颜色
+  unifiedBorderColor: #dcdcdc,
+
+  /**table配置颜色*/ tableBg: #f9e8e8,
+  // 边框颜色
+  tableBorderColor: #999999,
+  // 右固定阴影边框颜色
+  tableFixedBorderColor: rgba(153, 153, 153, 0.3),
+  // 表格th字体颜色
+  tableTextThColor: #333,
+  // 表格th背景颜色
+  tableBgThColor: transparent,
+  // 表格行tr字体颜色
+  tableTextTrColor: #3c4353,
+  // 表格行背景颜色
+  tableBgTrColor: #fff,
+  tableBgTrColorOdd: #fff,
+  // 表格操作字体颜色
+  tableBtnColor: #D04324,
+  // 表格操作字体hover颜色
+  tableBtnHoverFontColor: #330000,
+  // 表格tr鼠标hover颜色
+  tableHoverColor: rgba(76, 4, 4, 0.1),
+
+  /**tabs配置颜色*/ 
+  // tab选中背景颜色
+  tabsActiveBgColor: #D04324,
+  tabsNavActiveBgColor: linear-gradient(180deg, rgba(225, 101, 82, 0.00) 0%, #E16552 100%),
+  // tab未选中背景颜色
+  tabsBgColor: #e6edfd,
+  // tab选中字体颜色
+  tabsActiveFontColor: #fff,
+  //顶部tabs未选中颜色
+  tabsNavFontColor: #FFD4CE,
+  // tab未选中字体颜色
+  tabsFontColor: #D04324,
+  // tab边框颜色
+  tabBorderColor: #A33327,
+
+  /*面包导航样式*/ breadcrumbFontColor: #FFD4CE,
+
+  /**顶部header配置颜色*/ // header背景
+  headerRightBgImg: '../img/scale/red_header_right.png',
+  headerCenterBgImg: '../img/scale/red_header_center.png',
+  headerLeftBgImg: '../img/scale/red_header_left.png',
+  //菜单下拉背景
+  menuDownBg: #5e0707,
+  //下拉选中背景
+  menuDownActiveBgColor: #D04324,
+  //下拉选中字体颜色
+  menuDownActiveFontColor: #fff,
+  // tabs切换背景
+  tabnavbgColor: #A33327,
+
+  /**按钮配色*/ // 按钮字体颜色
+  btnFontColor: #fff,
+  //取消按钮字体颜色
+  btnCanleFontColor: #D04324,
+  //弹窗里操作特殊按钮字体颜色
+  btnTcFontColor: #D04324,
+  //取消按钮背景颜色
+  btnCanleBgColor1: #fff,
+  btnCanleBgColor2: #fff,
+  // 普通按钮背景颜色
+  btnBgColor: #D04324,
+  // 按钮渐变背景
+  btnBgColor1: rgba(208, 67, 36, 0.9),
+  btnBgColor2: rgba(208, 67, 36, 0.9),
+  btnBgColor3: rgba(208, 67, 36, 0.9),
+  // 按钮边框颜色
+  btnBorderColor: #D04324,
+
+  /**分页样式颜色*/ //当前选中颜色
+  pageActiveBgColor: #D04324,
+  //当前未选中颜色
+  pageBgColor: #f5f5f5,
+  // 当前选中字体颜色
+  pageActiveFontColor: #fff,
+  // 当前未选中字体颜色
+  pageFontColor: #444,
+  //边框颜色
+  pageBorderColor: #999,
+  // 其他文字颜色
+  pageTextColor: #444,
+
+  /**弹窗样式*/ // 背景颜色
+  dialogBgColor: #fff,
+  // 边框阴影
+  dialogShadow: #fff,
+  // 边框颜色
+  dialogBorderColor: #999,
+  // 主要字体颜色
+  dialogTextColor: #333,
+
+  // 备用通道详情collapse样式
+  // 字体颜色
+  collapseHeaderFontColor: #333,
+  //背景
+  collapseHeaderBgColor: #fff,
+  //边框颜色
+  collapseBorderColor: #999,
+
+  // 拓扑node和连线颜色
+  topoColor: #409eff,
+  // 拓扑DAMAGE状态颜色
+  topoDamage: red,
+  // 拓扑高亮颜色
+  topoHighLight: #E69318,
+  // 业务拓扑右边弹窗样式
+  topoBizListTitle:linear-gradient(to right, #A33327 0%, #fff 100%),
+  topoBg:#fff,
+  topoBorderColor:#eee,
+  topoDropdownBtn:#666,
+  topoFontColor:#333,
+  topoPropBtn:#A33327,
+  topoDesFontColor:#444,
+  topoMoreFontColor:#C2C2C2,
+  topoDeactiveBgColor: linear-gradient(180deg, #4ED4FF 0%, #156AE9 50.8%, #DE6D61 100%),
+  // 图例
+  legendBgColor:#fff,
+  legendBoxShadow:0px 0px 10px 0px #ddd,
+  legendBorderColor:#fff,
+  legendFontColor:#333,
+
+  alwaysHighLight: #4dc86f,
+  //首页 样式
+  //业务统计颜色
+  //legend字体颜色
+  businessLegendFontColor: #333,
+  //y轴颜色
+  businessyAxis: rgba(140, 30, 41, 0.3),
+  //y轴横线颜色
+  businessSplitLine: rgba(140, 30, 41, 0.1),
+  //x轴颜色
+  businessAxisLine: rgba(140, 30, 41, 0.1),
+  //y轴字体颜色
+  businessAxisLabelColor: #333,
+  //x轴字体颜色
+  businessxAxisLabelColor: #333,
+  //总业务数渐变色
+  businessTotalColor1: #f9cd69,
+  businessTotalColor2: #ae7f17,
+  //新增业务数渐变色
+  businessNewColor1: #0f6e82,
+  businessNewColor2: #3ab4cf,
+
+  // 资源统计
+  //legend字体颜色
+  resourceLegendFontColor: #333,
+  //legend Hover字体颜色
+  resourceLegendHoverFontColor: #333,
+  //业务通道数
+  resourceMainColor: #2451ff,
+  //备用通道数
+  resourceBackupColor: #25bd97,
+  //空闲通道数
+  resourceIdleColor: #b35aff,
+  //故障通道数
+  resourceDamageColor: #edcc31,
+  //光缆资源总数
+  resourceGlColor: #056abd,
+
+  //区域告警统计
+  // legend字体颜色
+  alarmLegendFontColor: #333,
+  // category字体颜色
+  alarmCategoryFontColor: #333,
+  //一级告警颜色渐变
+  alarmLevOneColor1: #f9cd69,
+  alarmLevOneColor2: #ae7f17,
+  //二级告警颜色渐变
+  alarmLevTwoColor1: #d53130,
+  alarmLevTwoColor2: #fc7f7f,
+  //三级告警颜色渐变
+  alarmLevThreeColor1: #0f6e82,
+  alarmLevThreeColor2: #3ab4cf,
+  //四级告警颜色渐变
+  alarmLevFourColor1: #1274f2,
+  alarmLevFourColor2: #0151b7,
+
+  // 检测记录颜色 图形颜色
+  dataZoombackgroundColor: rgba(140, 30, 41, 0.5),
+  dataZoomfillerColor: rgba(140, 30, 41, 0.2),
+  dataZoomborderColor: rgba(140, 30, 41, 0.9),
+  axisPointerColor1: rgba(140, 30, 41, 0),
+  axisPointerColor2: rgba(140, 30, 41, 1),
+  colorListColor1: rgba(140, 30, 41, 0.9),
+  colorListColor2: rgba(216, 172, 69, 0.9),
+  colorListColor3: rgba(179, 90, 255, 0.9),
+  colorListColor4: rgba(10, 119, 50, 0.9),
+  /**大屏主题颜色*/ screenBgColor: #f5f5f5,
+  screenWhiteBg: #fff,
+  screenBoxShadow: #4c0404,
+  screenBoxBorderColorApla: rgba(174, 55, 55, 0.25),
+  screenBoxBorderColor: #4c0404,
+  screenWhiteColor: #4c0404,
+  screenMapBgImg: '../img/scale/mapbg.png',
+
+  // loading动画颜色
+  loadingColor: #D04324,
+  processColor: #e70c0c,
+  processBorderColor: #D04324,
+  homeStatistics: #D04324,
+
+  bizNormal: #339933,
+  bizDoing: #ff7f00,
+  bizFault: #cc3333,
+  bizRecommend: #00aeff,
+  dividerColor: #dbdbdb,
+
+  stepNumColor: #fff,
+  stepTextColor: #474747,
+  stepBgColor: #c5c5c5,
+  stepBorderColor: #ececec,
+  stepLineColor: #c5c5c5,
+  stepActiveNumColor: #fff,
+  stepActiveTextColor: #D04324,
+  stepActiveBgColor: #D04324,
+  stepActiveBorderColor: #DA5639,
+  stepActiveLineColor: #D04324,
+
+  popoverBg: #fff,
+
+  homeGridTitle: #A33327,
+  homeGridTitleBg: '~@/assets/img/home/title-bg-red.png',
+  homeGridbg: rgba(255, 255, 255, 0.95),
+  homeGridborder: rgba(255, 255, 255, 0.9),
+  homeAxisText: rgba(102, 102, 102, 0.8),
+  homeAxisSplitLine: rgba(170, 170, 170, 0.2),
+  homeTooltipBg: rgba(255, 255, 255, 0.9),
+  homeTooltipBorderColor: transparent,
+  homeTooltipTextColor: rgba(102, 102, 102, 1),
+  homeTooltipShadow: rgba(0, 0, 0, 0.15),
+  homeSelectBorder: transparent,
+  homeSelectBg: rgba(237, 237, 237, 1),
+  homeSelectColor: rgba(102, 102, 102, 1),
+  homeAlarmBg: rgba(255, 255, 255, 0.7),
+  homeRangeBg: rgba(237, 237, 237, 1),
+  homeRangeColor: rgba(102, 102, 102, 0.5),
+
+  // gis和拓扑光缆，站点详情颜色
+  gisTitleColor: #777777,
+  gisValueColor: #000000,
+
+  topBtnDeactive: #F6E1DD,
+  topBtnDeactiveColor: #D04324,
+  topBtnBorder: #F6E1DD,
+  topBtnActiveBorder: #D04324,
+  topBtnShadow: transparent,
+);
