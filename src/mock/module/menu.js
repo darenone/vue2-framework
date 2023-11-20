@@ -8,6 +8,7 @@ export default [
     parentId: '20220309143206',
     path: '/index',
     sysId: 'AFS_OEN',
+    icon: 'el-icon-eleme',
     children: null
   },
   {
@@ -19,6 +20,7 @@ export default [
     parentId: '20220309143206',
     path: '',
     sysId: 'AFS_OEN',
+    icon: 'el-icon-eleme',
     children: [
       {
         funcName: '业务管理',
@@ -29,6 +31,7 @@ export default [
         parentId: '20220309143456',
         path: '/business/manager',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       },
       {
@@ -40,6 +43,7 @@ export default [
         parentId: '20220309143456',
         path: '/business/backup',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       }
     ]
@@ -53,6 +57,7 @@ export default [
     parentId: '20220309143206',
     path: '',
     sysId: 'AFS_OEN',
+    icon: 'el-icon-eleme',
     children: [
       {
         funcName: '手动检测',
@@ -63,6 +68,7 @@ export default [
         parentId: '20220309143342',
         path: '/link/detect',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       },
       {
@@ -74,6 +80,7 @@ export default [
         parentId: '20220309143342',
         path: '/link/routine',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       }
     ]
@@ -87,6 +94,7 @@ export default [
     parentId: '20220309143206',
     path: '',
     sysId: 'AFS_OEN',
+    icon: 'el-icon-eleme',
     children: [
       {
         funcName: '活动告警',
@@ -97,6 +105,7 @@ export default [
         parentId: '20220309143538',
         path: '/info/alarm',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       },
       {
@@ -108,6 +117,7 @@ export default [
         parentId: '20220309143538',
         path: '/info/device',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       }
     ]
@@ -121,6 +131,7 @@ export default [
     parentId: '20220309143206',
     path: '',
     sysId: 'AFS_OEN',
+    icon: 'el-icon-eleme',
     children: [
       {
         funcName: '区域管理',
@@ -131,6 +142,7 @@ export default [
         parentId: '20220309143306',
         path: '/conf/region',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       },
       {
@@ -142,6 +154,7 @@ export default [
         parentId: '20220309143306',
         path: '/conf/node',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       }
     ]
@@ -155,6 +168,7 @@ export default [
     parentId: '20220309143206',
     path: '',
     sysId: 'AFS_OEN',
+    icon: 'el-icon-eleme',
     children: [
       {
         funcName: '机构管理',
@@ -165,6 +179,7 @@ export default [
         parentId: '20220309143618',
         path: '/system/org',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       },
       {
@@ -176,6 +191,7 @@ export default [
         parentId: '20220309143618',
         path: '/system/user',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       },
       {
@@ -187,6 +203,7 @@ export default [
         parentId: '20220309143618',
         path: '/system/role',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       }
     ]
@@ -200,6 +217,7 @@ export default [
     parentId: '20220309143206',
     path: '',
     sysId: 'AFS_OEN',
+    icon: 'el-icon-eleme',
     children: [
       {
         funcName: '功能管理',
@@ -210,6 +228,7 @@ export default [
         parentId: '20220629142528',
         path: '/system/func',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       },
       {
@@ -221,6 +240,7 @@ export default [
         parentId: '20220629142528',
         path: '/system/dict',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       },
       {
@@ -232,6 +252,7 @@ export default [
         parentId: '20220629142528',
         path: '/system/i18n',
         sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
         children: null
       }
     ]

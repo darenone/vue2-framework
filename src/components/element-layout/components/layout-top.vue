@@ -339,6 +339,7 @@
     }
     > .el-menu {
       height: 60px;
+      text-align: center;
       .el-submenu__title i {
         color: #fff;
       }

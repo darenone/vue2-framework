@@ -19,7 +19,9 @@
           style="font-size: 32px; cursor: pointer"
           @click="handleCollapsed"
         />
-        <userInfo />
+        <div class="userinfo flex align-center justify-between pb-10" style="min-width: 120px">
+          <userInfo />
+        </div>
       </el-header>
       <el-main>
         <router-view />
@@ -73,5 +75,23 @@
   .main-logo-collapsed {
     background-position: 0 center;
   }
+}
+.el-header {
+  background-color: #242f42;
+  color: #ffffff;
+  line-height: 60px;
+  padding: 0;
+  overflow: hidden;
+}
+.el-main {
+  flex-basis: 0px;
+  padding:0;
+  overflow: hidden;
+  height: calc(100vh - 78px);
+  display: flex;
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100%;
 }
 </style>

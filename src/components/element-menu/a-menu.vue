@@ -1,5 +1,5 @@
 <template>
-  <section class="el-menu-wrapper">
+  <section class="el-menu-wrapper w-100 h-100">
     <slot />
     <el-menu
       router
@@ -9,6 +9,8 @@
       background-color="#030F30"
       text-color="#FFFFFF"
       active-text-color="#fff"
+      :default-active="$route.path"
+      menu-trigger="click"
     >
       <template v-for="(item) in getMenu">
         <el-menu-item

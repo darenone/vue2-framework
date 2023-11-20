@@ -1,27 +1,30 @@
 <template>
-  <el-submenu :index="index">
-    <template slot="title">
-      <i :class="[parent.icon, 'pr-10']" />
-      <span slot="title">{{ $t(parent.enName) }}</span>
-    </template>
-    <template v-for="(item) in parent.children">
-      <el-menu-item
-        v-if="!item.children"
-        :key="item.funcId"
-        :index="item.path"
-        :route="{ name: item.name }"
-      >
-        <i :class="[item.icon, 'pr-10']" />
-        <span slot="title">{{ $t(item.enName) }}</span>
-      </el-menu-item>
-      <e-resubmenu
-        v-else
-        :key="item.funcId"
-        :parent="item"
-        :index="funcId"
-      />
-    </template>
-  </el-submenu>
+  <!-- 不加这个div导致递归的时候报错 Maximum call stack size exceeded-->
+  <div>
+    <el-submenu :index="index" popper-append-to-body:true>
+      <template slot="title">
+        <i :class="[parent.icon, 'pr-10']" />
+        <span slot="title">{{ $t(parent.enName) }}</span>
+      </template>
+      <template v-for="(item) in parent.children">
+        <el-menu-item
+          v-if="!item.children"
+          :key="item.funcId"
+          :index="item.path"
+          :route="{ name: item.name }"
+        >
+          <i :class="[item.icon, 'pr-10']" />
+          <span slot="title">{{ $t(item.enName) }}</span>
+        </el-menu-item>
+        <e-resubmenu
+          v-else
+          :key="item.funcId"
+          :parent="item"
+          :index="item.funcId"
+        />
+      </template>
+    </el-submenu>
+  </div>
 </template>
 <script>
   export default {
