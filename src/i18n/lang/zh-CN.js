@@ -20,5 +20,6 @@ export default {
   MENU_DEV_MANAGE: '开发者管理',
   MENU_FUNCTION_MANAGER: '功能管理',
   MENU_DICT_MANAGER: '字典管理',
-  MENU_I18N_MANAGER: '国际化管理'
+  MENU_I18N_MANAGER: '国际化管理',
+  MENU_DEVICE_MANAGER: '设备管理系统'
 }

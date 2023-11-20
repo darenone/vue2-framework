@@ -1,4 +1,3 @@
-@import "./mixin.module";
 .el-main,
 .home-box {
   @include themeify {
@@ -10,13 +9,6 @@
 // .el-select 样式
 .el-select {
   width: 100%;
-}
-
-.el-select .el-tag__close.el-icon-close {
-  @include themeify {
-    background-color: themed("selectedbg");
-    color: themed("inputActiveFontColor");
-  }
 }
 
 .el-select-dropdown,
@@ -39,21 +31,19 @@
 
 .el-select-dropdown__item.selected,
 .el-select-dropdown__item.is-disabled:hover {
-  font-weight: normal;
   @include themeify {
     color: themed("textColor");
     background-color: themd('mainColor');
   }
 }
 
-.el-select-dropdown__item,
-.el-cascader__suggestion-item {
+.el-select-dropdown__item {
   @include themeify {
     color: themed("textColor");
   }
 
   &.hover,&:hover {
-    @include background_color("selectedbg");
+    @include background_color("mainColor");
     @include font_color("inputActiveFontColor");
   }
 }
@@ -80,17 +70,14 @@
 
 .el-tag.el-tag--info {
   @include themeify {
-    background-color: themed("selectedbg");
+    background-color: themed("mainColor");
     color: themed("inputActiveFontColor");
     border-color: lighten(themed("inputBorderColor"), 10%);
   }
 }
 
 .el-select-dropdown.is-multiple .el-select-dropdown__item.selected{
-  @include themeify {
-    color: themed("textColor");
-    background-color: themed("selectedbg");
-  }
+  @include background_color("mainColor");
 }
 
 .el-popper[x-placement^=bottom] .popper__arrow,
@@ -127,34 +114,17 @@
 }
 
 /*input*/
-input::-webkit-input-placeholder,   
-textarea::-webkit-input-placeholder,
-.vue-treeselect__placeholder,
-.placeholder {   
-  @include font_color("placeholderColor");
-} 
-input:-moz-placeholder,   
-textarea:-moz-placeholder {   
-  @include font_color("placeholderColor");
-}   
-  
-input:-ms-input-placeholder,   
-textarea:-ms-input-placeholder {   
-  @include font_color("placeholderColor");
-}
-
 .el-textarea .el-input__count {
   @include themeify {
     color: themed('textColor');
-    background: themed("bgColor");
+    background: themed("inputBgColor");
   }
 }
 
 .el-input__inner,
-.el-textarea__inner,
-.select-holder {
+.el-textarea__inner,.select-holder {
   @include themeify {
-    color: themed("inputActiveFontColor");
+    color: themed("textColor");
     background: themed("inputBgColor");
     border: 1px solid themed("inputBorderColor");
   }
@@ -169,7 +139,7 @@ textarea:-ms-input-placeholder {
 
 .el-input.is-disabled .el-input__inner {
   @include themeify {
-    color: themed("inputActiveFontColor");
+    color: themed("textColor");
     background: themed("disabledBgColor");
     border: 1px solid themed("inputBorderColor");
   }
@@ -177,7 +147,7 @@ textarea:-ms-input-placeholder {
 
 .el-textarea.is-disabled .el-textarea__inner {
   @include themeify {
-    color: themed("inputActiveFontColor");
+    color: themed("textColor");
     background: themed("bgColor");
     border: 1px solid themed("borderColor");
   }
@@ -203,7 +173,7 @@ textarea:-ms-input-placeholder {
 .el-input-number__decrease:hover,
 .el-input-number__increase:hover {
   @include themeify {
-    color: themed("inputActiveFontColor");
+    color: themed("textColor");
   }
 }
 
@@ -241,7 +211,7 @@ textarea:-ms-input-placeholder {
 .el-input-group__append,
 .el-input-group__prepend {
   @include themeify {
-    background: linear-gradient(themed("btnBgColor1"), themed("btnBgColor2"), themed("btnBgColor1"));
+    background: themed("btnBgColor");
     border: 1px solid transparent;
     color: themed("btnFontColor");
     border-left: 0;
@@ -319,7 +289,7 @@ textarea:-ms-input-placeholder {
 .el-date-table.is-week-mode .el-date-table__row.current div,
 .el-date-table.is-week-mode .el-date-table__row:hover div {
   @include themeify {
-    background: themed("mainColor");
+    background: lighten(themed("mainColor"), 10%);
   }
 }
 
@@ -484,6 +454,28 @@ textarea:-ms-input-placeholder {
     color: themed("tableTextTrColor");
     border-color: themed("tableBorderColor");
   }
+  .el-checkbox__input.is-disabled:not(.is-checked) .el-checkbox__inner {
+    @include themeify {
+      background: themed("bgColor");
+      border: 1px solid themed("borderColor");
+    }
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+      display: block;
+      position: absolute;
+      top: 5px;
+      left: -1px;
+      height: 0;
+      width: 13px;
+      transform: rotate(45deg);
+      cursor: pointer;
+      @include themeify {
+        background: themed("borderColor");
+      }
+    }
+  }
 }
 
 .el-table--border::after,
@@ -626,7 +618,7 @@ textarea:-ms-input-placeholder {
 .el-dialog .el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
   @include themeify {
     background-color: themed("mainColor");
-    border-color: themed("dialogBorderColor");
+    border-color: themed("mainColor");
   }
 }
 
@@ -680,8 +672,6 @@ textarea:-ms-input-placeholder {
 }
 
 .el-button {
-  height: 28px;
-  line-height: 12px;
   @include themeify {
     border-color: themed("borderColor");
   }
@@ -880,35 +870,35 @@ textarea:-ms-input-placeholder {
 .el-tree-node__content:hover {
   @include themeify {
     color: themed("inputActiveFontColor");
-    background: themed("selectedbg");
+    background: themed("mainColor");
   }
 }
 
 .el-tree-node__children .is-current> :first-child {
   @include themeify {
-    background: themed("tabsActiveBgColor");
+    background: themed("tableBg");
   }
 }
 
 // vue-treeselect  树选择
-.vue-treeselect__control {
+.el-main .vue-treeselect__control {
   @include themeify {
     color: themed("textColor");
     background: themed("inputBgColor");
-    border: 1px solid themed("inputBorderColor") !important;
+    border: 1px solid themed("inputBorderColor");
   }
 }
 
-.vue-treeselect--focused:not(.vue-treeselect--open) .vue-treeselect__control,
-.vue-treeselect:not(.vue-treeselect--focused) .vue-treeselect__control:hover {
+.el-main .vue-treeselect--focused:not(.vue-treeselect--open) .vue-treeselect__control,
+.el-main .vue-treeselect:not(.vue-treeselect--focused) .vue-treeselect__control:hover {
   @include themeify {
     border-color: lighten(themed("mainColor"), 10%);
   }
 }
 
-.vue-treeselect__single-value {
+.el-main .vue-treeselect__single-value {
   @include themeify {
-    color: themed('inputActiveFontColor') !important;
+    color: themed('textColor');
   }
 }
 
@@ -917,21 +907,16 @@ textarea:-ms-input-placeholder {
     border-top-color: themed("borderColor");
   }
 }
-.vue-treeselect__input {
+
+.el-main .vue-treeselect__value-remove {
   @include themeify {
-    color: themed('textColor');
+    color: themed("textColor");
   }
 }
 
-.vue-treeselect__value-remove {
+.el-main .vue-treeselect__multi-value-item {
   @include themeify {
-    color: themed("inputActiveFontColor");
-  }
-}
-
-.vue-treeselect__multi-value-item {
-  @include themeify {
-    color: themed("inputActiveFontColor");
+    color: themed("multiFontColor");
     background: themed("multiBgColor");
   }
 }
@@ -960,7 +945,7 @@ textarea:-ms-input-placeholder {
 
   .vue-treeselect__option--highlight {
     @include themeify {
-      background: themed("selectedbg");
+      background: themed("mainColor");
       color: themed("inputActiveFontColor");
     }
 
@@ -983,13 +968,13 @@ textarea:-ms-input-placeholder {
 .vue-treeselect--single .vue-treeselect__option--selected,
 .vue-treeselect--single .vue-treeselect__option--selected:hover {
   @include themeify {
-    background: themed("selectedbg");
+    background: themed("mainColor");
     color: themed("inputActiveFontColor");
   }
 }
 
 .vue-treeselect__value-remove {
-  @include font_color("inputActiveFontColor");
+  @include font_color("textColor");
   @include border_color_0()
 }
 
@@ -1026,10 +1011,48 @@ textarea:-ms-input-placeholder {
   @include font_color("menuDownActiveFontColor")
 }
 
+.el-menu--horizontal > .el-submenu .el-submenu__title,
+.el-menu--horizontal > .el-menu-item,
+.el-menu--horizontal > .el-submenu .el-submenu__title i{
+  background-color: transparent !important;
+  font-size: 16px;
+  @include font_color('menuFontColor');
+}
+.el-menu--horizontal > .el-submenu .el-submenu__title{
+  padding: 0;
+  margin:0 20px;
+}
+.el-menu--horizontal>.el-submenu.is-active .el-submenu__title,
+.el-menu--horizontal>.el-submenu.is-active .el-submenu__title i{
+  @include font_color('menuFontColorActive');
+}
+.el-menu.el-menu--horizontal {
+  border-bottom: 0;
+  background-color: transparent !important;
+  flex: 1;
+  display: flex;
+}
+.el-menu--horizontal .el-menu .el-menu-item,
+.el-menu--horizontal .el-menu .el-submenu__title,
+.el-menu .el-menu-item i {
+  color: #fff;
+}
+.el-menu--horizontal .el-menu-item:not(.is-disabled):focus,
+.el-menu--horizontal .el-menu-item:not(.is-disabled):hover {
+  color: #fff;
+}
+
 // tabs
-.el-tabs__item.is-active {
+.el-tabs__item.is-active,
+.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active,
+.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active:not(.is-disabled):hover {
   @include themeify {
-    color: themed("textColor");
+    color: themed("tabsActiveFontColor");
+  }
+}
+.el-tabs--border-card>.el-tabs__header .el-tabs__item:not(.is-disabled):hover{
+  @include themeify {
+    color: themed("tabsFontColor");
   }
 }
 
@@ -1041,7 +1064,7 @@ textarea:-ms-input-placeholder {
 
 .el-tabs__item:hover {
   @include themeify {
-    color: lighten(themed("textColor"), 10%);
+    color: themed("tabsActiveFontColor");
   }
 }
 
@@ -1101,7 +1124,6 @@ textarea:-ms-input-placeholder {
 // 面包屑
 .breadcrumb-nav {
   @include background_color("tabnavbgColor");
-  @include border_color("tabBorderColor");
 }
 
 .el-breadcrumb__inner a,
@@ -1194,7 +1216,7 @@ textarea:-ms-input-placeholder {
 .el-popover {
   @include themeify {
     color: themed("textColor");
-    background: themed("popoverBg");
+    background: themed("tableBg");
     border-color: themed("borderColor");
   }
 }
@@ -1202,6 +1224,7 @@ textarea:-ms-input-placeholder {
 .text-color {
   @include font_color("textColor");
 }
+
 .el-loading-spinner .path{
   @include themeify {
     stroke:themed("loadingColor");
@@ -1225,8 +1248,7 @@ textarea:-ms-input-placeholder {
 
 // 下拉菜单
 .el-dropdown-menu__item:focus, 
-.el-dropdown-menu__item:not(.is-disabled):hover,
-.el-cascader__suggestion-item:focus {
+.el-dropdown-menu__item:not(.is-disabled):hover {
   @include themeify {
     color: themed("textColor");
     background: themed("mainColor");
@@ -1245,29 +1267,6 @@ textarea:-ms-input-placeholder {
   }
 }
 
-.echarts-tooltip-box {
-  @include font_color("homeTooltipTextColor");
-
-  @include themeify {
-    box-shadow: 0px 0px 10px 0px themed('homeTooltipShadow') !important;
-  }
-}
-
-.highcharts-root {
-  font-family: Avenir, Helvetica, Arial, sans-serif !important;
-}
-
-.highcharts-tooltip-box {
-  padding: 10px 10px 5px 10px;
-  font-size: 14px;
-  line-height: 20px;
-  border-radius: 4px;
-  @include themeify {
-    background: themed('homeTooltipBg');
-    border: 1px solid themed('homeTooltipBorderColor');
-    box-shadow: 0px 0px 10px 0px themed('homeTooltipShadow') !important;
-  }
-}
 
 //其他补充样式
 .borderStyle{
@@ -1278,5 +1277,15 @@ textarea:-ms-input-placeholder {
 .bgColorStyle{
   @include themeify {
     background-color: themed('bgOtherColor');
+  }
+}
+
+// 全局loading样式
+.el-loading-mask {
+  .el-icon-loading, .el-loading-text {
+    @include themeify {
+      font-size: 14px;
+      color: themed('textColor');
+    }
   }
 }

@@ -37,7 +37,10 @@
     components: { eResubmenu },
     props: {
       collapsed: Boolean,
-      mode: String
+      mode: {
+        type: String,
+        default: 'horizontal'
+      }
     },
     data() {
       return {
@@ -92,3 +95,6 @@
     }
   }
 </script>
+<style lang="scss" scoped>
+@import '@/assets/css/mixin.module.scss';
+</style>

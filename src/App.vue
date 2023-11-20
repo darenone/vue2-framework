@@ -9,27 +9,37 @@
   </div>
 </template>
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapGetters, mapMutations, mapActions } from 'vuex'
   import { setTitle } from '@/lib/util'
   export default {
     data() {
       return {}
     },
     computed: {
-      ...mapGetters(['getLocale', 'getInfo'])
+      ...mapGetters(['getLocale', 'getInfo', 'getThemeList'])
     },
     created() {
       setTitle(this.$config.sysName['zh-CN'], this.$config.systemVersion)
       this.loadLanData() // 加载中英文
+      // 设置主题
+      const theme = localStorage.currentTheme || ''
+      if (theme && this.getThemeList.includes(theme)) {
+        this.SET_THEME(theme)
+        document.body.setAttribute('data-theme', theme)
+      } else {
+        localStorage.currentTheme = 'dark-theme'
+        this.SET_THEME('dark-theme')
+        document.body.setAttribute('data-theme', 'dark-theme')
+      }
     },
     mounted() {
-      console.log('先加载App.vue')
       console.log(this.$i18n.locale)
       this.$nextTick(() => {
         this.upDateInfo()
       })
     },
     methods: {
+      ...mapMutations(['SET_THEME']),
       ...mapActions(['loadLanData', 'upDateInfo']),
       langSwitch(lang) {
         this.$i18n.locale = lang

@@ -1,29 +1,27 @@
 <template>
-  <section>
-    <el-submenu :index="index">
-      <template slot="title">
-        <i :class="[parent.icon, 'pr-10']" />
-        <span slot="title">{{ $t(parent.enName) }}</span>
-      </template>
-      <template v-for="(item) in parent.children">
-        <el-menu-item
-          v-if="!item.children"
-          :key="item.funcId"
-          :index="item.path"
-          :route="{ name: item.name }"
-        >
-          <i :class="[item.icon, 'pr-10']" />
-          <span slot="title">{{ $t(item.enName) }}</span>
-        </el-menu-item>
-        <e-resubmenu
-          v-else
-          :key="item.funcId"
-          :parent="item"
-          :index="funcId"
-        />
-      </template>
-    </el-submenu>
-  </section>
+  <el-submenu :index="index">
+    <template slot="title">
+      <i :class="[parent.icon, 'pr-10']" />
+      <span slot="title">{{ $t(parent.enName) }}</span>
+    </template>
+    <template v-for="(item) in parent.children">
+      <el-menu-item
+        v-if="!item.children"
+        :key="item.funcId"
+        :index="item.path"
+        :route="{ name: item.name }"
+      >
+        <i :class="[item.icon, 'pr-10']" />
+        <span slot="title">{{ $t(item.enName) }}</span>
+      </el-menu-item>
+      <e-resubmenu
+        v-else
+        :key="item.funcId"
+        :parent="item"
+        :index="funcId"
+      />
+    </template>
+  </el-submenu>
 </template>
 <script>
   export default {
@@ -41,6 +39,7 @@
   }
 </script>
 <style lang="scss" scoped>
+@import '@/assets/css/mixin.module.scss';
 ::v-deep .el-submenu > .el-submenu__title .el-submenu__icon-arrow {
   position: static;
   margin-top: 1px;

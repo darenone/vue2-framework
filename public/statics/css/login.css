@@ -1,0 +1,115 @@
+#login-wrapper {
+  background: url('../images/login/bg-1440x810.png') 0 repeat;
+}
+/* 左上角logo样式 */
+#login-wrapper .sysLogo {
+  width: 200px;
+  height: 40px;
+  background: url('../images/logo/logo-167x38.png') 0 no-repeat;
+  background-size: auto;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+/* 主页logo */
+.main-header .sysLogo {
+  background: url('../images/logo/logo-167x38.png') 0 no-repeat;
+  background-size:auto 100%;
+  height: 40px;
+}
+@media screen and (max-width: 2000px) {
+  .main-header .sysLogo {
+    background-size:100%;
+ }
+}
+/* 中间系统名字样式 */
+#login-wrapper .sysName {
+  font-size:40px;
+  color: #FFFFFF;
+  text-align: center;
+  display: block;
+  font-family: Source Han Sans CN;
+  font-weight:bold;
+  text-shadow:0px 0.2rem 0.15rem rgba(46,78,165,0.27);
+}
+/* 地图背景样式 */
+#login-wrapper .bgMap {
+  padding-top:5%;
+  height: 95%;
+  width:60%;
+  margin-left:5%;
+  background: url('../images/login/map-941x504.png') 0 no-repeat;
+  background-size: contain;
+}
+/* 登录框样式 */
+#login-wrapper .box-card {
+  text-align: center;
+  width: 400px;
+  margin-right:10%;
+  min-width:398px;
+  position: absolute;
+  top:50%;
+  right: 0;
+  z-index: 2;
+  transform: translateY(-70%);
+  background: #FFFFFF;
+}
+/* 登录框样式 - 登录系统字体*/
+#login-wrapper .box-card .login-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #1890ff;
+}
+/* 登录框样式 - 输入框图标*/
+#login-wrapper .box-card .el-input--mini .el-input__icon {
+  font-size:20px;
+}
+/* 登录框样式 - 输入框*/
+#login-wrapper .box-card .el-input__inner {
+  height: 50px;
+  line-height: 48px;
+  color:#454545;
+  font-size:16px;
+  background: rgba(0,0,0, .1);
+}
+/* 登录框样式 - 复选框*/
+#login-wrapper .box-card .el-checkbox__inner {
+  background:#fff;
+  border-color:#409eff;
+  color:#409eff;
+}
+/* 登录框样式 - 复选框选中*/
+#login-wrapper .box-card .el-checkbox__input.is-checked .el-checkbox__inner {
+  background:#409eff;
+  border-color:#409eff;
+}
+#login-wrapper .box-card .el-checkbox,
+#login-wrapper .box-card .el-checkbox__input.is-checked+.el-checkbox__label,
+#login-wrapper .box-card .el-button--text,
+#login-wrapper .box-card .el-button.el-button--text:hover {
+  color:#409eff;
+  font-weight: bold;
+}
+/* 登录框样式 - 登录按钮*/
+#login-wrapper .box-card .el-button--primary {
+  background: #1890ff;
+  color: #fff;
+}
+#login-wrapper .login-btn {
+  text-align: center;
+}
+#login-wrapper .login-btn button {
+  width: 100%;
+  height: 40px;
+}
+/* 版权 */
+#login-wrapper .footer-copy{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  color:#fff;
+  font-size:18px;
+  text-align: center;
+}

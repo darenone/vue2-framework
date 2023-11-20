@@ -10,15 +10,27 @@ export default {
       roles: [],
       auths: [],
       apis: []
-    }
+    },
+    themeList: [// 主题列表
+      'dark-theme',
+      'red-theme',
+      'green-theme',
+      'blue-theme'
+    ],
+    currentTheme: null // 当前主题
   },
   getters: {
     getInfo: state => state.info, // 获取登录信息
-    getUser: state => state.info.user // 获取用户信息
+    getUser: state => state.info.user, // 获取用户信息
+    getThemeList: state => state.themeList,
+    getTheme: state => state.currentTheme // 获取当前主题
   },
   mutations: {
     SET_INFO(state, params) {
       state.info = params
+    },
+    SET_THEME(state, theme) {
+      state.currentTheme = theme
     }
   },
   actions: {
