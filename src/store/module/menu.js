@@ -81,9 +81,9 @@ export default {
       state.menu = menu.filter(i => i.name !== 'HOME') // 不显示首页菜单
       console.log('菜单列表', state.menu)
       // 判断权限 移除tabs
-      const tabs = localStorage.oenActivedTabs
-      if (tabs) {
-        const navs = JSON.parse(tabs)
+      console.log(state.activedTabs)
+      if (state.activedTabs.length > 1) {
+        const navs = state.activedTabs
         const menuName = ['HOME']
         const menuFn = (children) => {
           children.forEach(item => {

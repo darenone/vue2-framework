@@ -16,19 +16,12 @@ const routes = [
     children: [
       {
         path: '/index',
-        name: 'HomeView',
+        name: 'HOME',
         component: HomeView
-      }
-    ]
-  },
-  {
-    path: '',
-    name: 'about',
-    component: eleLayout,
-    children: [
+      },
       {
         path: '/about',
-        name: 'about',
+        name: 'ABOUT',
         component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
       }
     ]
@@ -159,25 +152,18 @@ router.beforeEach((to, from, next) => {
 // 添加tabs
 router.beforeEach((to, from, next) => {
   // console.log(to, from)
-  const CUR_ROUTENAME = localStorage.getItem('OEN_CUR_ROUTENAME')
-  console.log('CUR_ROUTENAME-------', CUR_ROUTENAME)
-  if (CUR_ROUTENAME) {
-    localStorage.removeItem('OEN_CUR_ROUTENAME')
-    next({ path: CUR_ROUTENAME })
+  if (to.name === 'ERROR404') {
+    next()
   } else {
-    if (to.name === 'ERROR404') {
-      next()
-    } else {
-      if (to.name && to.path) {
-        const item = {
-          label: to.name,
-          name: to.name,
-          path: to.path
-        }
-        store.commit('ADD_ACTIVED_TABS', item)
+    if (to.name && to.path) {
+      const item = {
+        label: to.name,
+        name: to.name,
+        path: to.path
       }
-      next()
+      store.commit('ADD_ACTIVED_TABS', item)
     }
+    next()
   }
 })
 

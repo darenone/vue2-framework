@@ -10,7 +10,6 @@
       text-color="#FFFFFF"
       active-text-color="#fff"
       :default-active="$route.path"
-      menu-trigger="click"
     >
       <template v-for="(item) in getMenu">
         <el-menu-item
