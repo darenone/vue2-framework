@@ -98,6 +98,21 @@ export default {
       } else {
         state.navMenuDefaultActive = state.activedTabs[0]['name']
       }
+    },
+    SET_TABTYPE: (state, tab) => (state.tabsType = tab), // 导航模式
+    DEL_TABS: (state, index) => { // 删除tab
+      state.activedTabs.splice(index, 1)
+    },
+    ADD_ACTIVED_TABS: (state, item) => {
+      if (router.currentRoute.path !== item.path) {
+        const itemIndex = state.activedTabs.findIndex((obj) => obj.name === item.name || obj.label === item.label)
+        if (itemIndex < 0) {
+          state.activedTabs.push(item)
+        }
+        state.navMenuDefaultActive = item.name
+      } else {
+        state.navMenuDefaultActive = item.name
+      }
     }
   }
 }

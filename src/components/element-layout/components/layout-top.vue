@@ -39,37 +39,7 @@
         </div>
       </el-header>
       <el-main>
-        <div>
-          <template v-if="getTabType == 'breadcrumb-nav'">
-            <el-breadcrumb
-              class="breadcrumb-nav flex align-center pl-20 pr-20"
-              separator-class="el-icon-arrow-right"
-            >
-              <el-breadcrumb-item :to="{ name: 'HOME' }">首页</el-breadcrumb-item>
-              <el-breadcrumb-item v-if="$route.meta && $route.meta.parent">{{
-                $route.meta.parent
-              }}</el-breadcrumb-item>
-              <el-breadcrumb-item v-if="$route.name && $route.name != 'HOME'">{{
-                $route.name
-              }}</el-breadcrumb-item>
-            </el-breadcrumb>
-          </template>
-          <template v-if="getTabType == 'tab-nav'">
-            <el-tabs
-              v-model="editableTabsValue"
-              class="tabs-nav"
-              type="card"
-            >
-              <el-tab-pane
-                v-for="item in getActivedTabs"
-                :key="item.name"
-                :closable="item.name != 'HOME'"
-                :label="item.name"
-                :name="item.name"
-              />
-            </el-tabs>
-          </template>
-        </div>
+        <eNav />
         <div class="pl-10 pr-10 pb-10 pt-10 flex-1" :class="curRoute ==='HOME'?'home-box':'content-box'">
           <keep-alive include="Home">
             <router-view />
@@ -85,10 +55,12 @@
   import BetterScroll from 'better-scroll'
   import userInfo from './userInfo.vue'
   import eMenu from '_c/element-menu/a-menu.vue'
+  import eNav from '_c/element-nav/'
   export default {
     components: {
       userInfo,
-      eMenu
+      eMenu,
+      eNav
     },
     data() {
       return {
@@ -197,11 +169,6 @@
   background-position: center bottom;
   background-size: 100%;
 }
-
-.breadcrumb-nav{
-  border:1px solid transparent;
-  height: 41px;
-}
 .home-box {
   height: 1px;
   flex:1;
@@ -211,11 +178,6 @@
   @include themeify {
     background-color: themed("homeBgColor");
   }
-}
-.tabs-nav {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  user-select: none;
 }
 .content-box {
   width: calc(100% - 20px);

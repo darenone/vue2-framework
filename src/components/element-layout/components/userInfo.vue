@@ -34,9 +34,9 @@
           popper-class="user-menu"
         >
           <template #title>导航模式</template>
-          <el-menu-item @click="SET_TABTYPE('')">默认隐藏</el-menu-item>
-          <el-menu-item @click="SET_TABTYPE('breadcrumb-nav')">面包屑导航</el-menu-item>
-          <el-menu-item @click="SET_TABTYPE('tab-nav')">TAB导航</el-menu-item>
+          <el-menu-item @click="setNav('hide-nav')">默认隐藏</el-menu-item>
+          <el-menu-item @click="setNav('breadcrumb-nav')">面包屑导航</el-menu-item>
+          <el-menu-item @click="setNav('tab-nav')">TAB导航</el-menu-item>
         </el-submenu>
         <el-submenu
           index="lang"
@@ -87,6 +87,11 @@
         localStorage.currentTheme = themeName
         this.SET_THEME(themeName)
         document.body.setAttribute('data-theme', themeName)
+      },
+      setNav(tabType, tabName) {
+        // 设置导航模式
+        this.SET_TABTYPE(tabType)
+        localStorage.currentNavtype = tabType
       }
     }
   }

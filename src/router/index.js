@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 // import layout from '@/components/layout/index'
 import eleLayout from '@/components/element-layout/index.vue'
 import HomeView from '../views/HomeView.vue'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -151,6 +152,31 @@ router.beforeEach((to, from, next) => {
       next({
         name: 'login'
       })
+    }
+  }
+})
+
+// 添加tabs
+router.beforeEach((to, from, next) => {
+  // console.log(to, from)
+  const CUR_ROUTENAME = localStorage.getItem('OEN_CUR_ROUTENAME')
+  console.log('CUR_ROUTENAME-------', CUR_ROUTENAME)
+  if (CUR_ROUTENAME) {
+    localStorage.removeItem('OEN_CUR_ROUTENAME')
+    next({ path: CUR_ROUTENAME })
+  } else {
+    if (to.name === 'ERROR404') {
+      next()
+    } else {
+      if (to.name && to.path) {
+        const item = {
+          label: to.name,
+          name: to.name,
+          path: to.path
+        }
+        store.commit('ADD_ACTIVED_TABS', item)
+      }
+      next()
     }
   }
 })
