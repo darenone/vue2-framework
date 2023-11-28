@@ -199,6 +199,132 @@ module.exports = {
 
 ## 二、第二种配置
 
+> 本项目采用第二种配置
+
+没有配置前：
+
+`package.json`
+
+```json
+{
+  "name": "vue2-framework",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "set NODE_ENV=development&&vue-cli-service serve",
+    "test": "set NODE_ENV=test&&vue-cli-service serve",
+    "testBJ": "set NODE_ENV=testBJ&&vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "better-scroll": "^2.4.2",
+    "core-js": "^3.8.3",
+    "crypto-js": "^4.1.1",
+    "echarts": "^5.4.3",
+    "element-ui": "^2.15.14",
+    "font-awesome": "^4.7.0",
+    "vue": "^2.6.14",
+    "vue-i18n": "^8.24.4",
+    "vue-router": "^3.5.1",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "babel-eslint": "^7.2.3",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "mockjs": "^1.1.0",
+    "sass": "^1.32.7",
+    "sass-loader": "^12.0.0",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {},
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
+  },
+  "main": ".eslintrc.js"
+}
+```
+`vue.config.js`
+
+```js
+const { defineConfig } = require('@vue/cli-service')
+// const config = require('./src/config.js')
+/* 如果当前是生产环境production
+如果项目部署到域名（www.baidu.com）根目录下，直接'/' : '/',
+如果需要部署到（www.baidu.com/iview-admin）目录下，直接'/iview-admin/' : '/'
+如果是开发环境，直接'/' : '/' */
+const BASE_URL = process.env.NODE_ENV === 'production' ? '/iview-admin/' : '/'
+/* 引入node的path模块 */
+const path = require('path')
+/* 自定义方法resolve */
+const resolve = dir => {
+  return path.join(__dirname, dir)
+}
+
+module.exports = defineConfig({
+  // lintOnSave: false, // 关闭eslint检查
+  transpileDependencies: true,
+  runtimeCompiler: true,
+  chainWebpack: config => {
+    config.resolve.alias
+      .set('@', resolve('src')) // 用@代替src，在项目里你需要引入文件的时候，只需要@/api,@/config,@/mock...即可
+      .set('_c', resolve('src/components')) // 用_c代替src/components,我们需要引入组件时，只需要_c/HelloWorld.vue即可
+  },
+  // 打包时不生成map文件，这样减少打包的体积，并且加快打包的速度
+  productionSourceMap: false,
+  // 跨域配置
+  devServer: {
+    /* 自动打开浏览器 */
+    open: true,
+    hot: true, // vue cli3.0 关闭热更新
+    // liveReload: false, // webpack liveReload关闭
+    /* 设置为0.0.0.0则所有的地址均能访问 */
+    // host: '0.0.0.0',
+    // port: 4000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000', // 测试环境
+        // target: config.baseUrl,
+        changeOrigin: true
+      }
+    }
+  }
+})
+```
+
 比第一种配置多了一个node-polyfill-webpack-plugin插件，去掉speed-measure-webpack-plugin插件
 
 1. terser-webpack-plugin
