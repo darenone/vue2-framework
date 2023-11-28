@@ -1,0 +1,104 @@
+@import './themes/red-theme.scss';
+@import './themes/dark-theme.scss';
+@import './themes/green-theme.scss';
+@import './themes/blue-theme.scss';
+$themes: (
+  dark-theme: $darkTheme,
+  red-theme: $redTheme,
+  green-theme: $greenTheme,
+  blue-theme: $blueTheme,
+);
+
+@mixin themeify {
+
+  @each $theme-name,
+  $theme-map in $themes {
+    //$theme-name 主题样式类名， $theme-map样式
+    $theme-map: $theme-map  !global; //!global 把局部变量强升为全局变量
+
+    [data-theme=#{$theme-name}] & {
+      //判断html的data-theme的属性值  #{}是sass的插值表达式   & sass嵌套里的父容器标识
+      @content; // @content是混合器插槽，像vue的slot
+    }
+  }
+}
+
+//声明一个根据Key获取颜色的function
+@function themed($key) {
+  @return map-get($theme-map, $key); //从相应主题中拿到相应key对应的值
+}
+
+//获取背景颜色
+@mixin background_color($color) {
+  @include themeify {
+    background: themed($color) !important;
+  }
+}
+
+//获取背景颜色透明
+@mixin background_color_0() {
+  @include themeify {
+    background: transparent !important;
+  }
+}
+
+//获取背景图片
+@mixin background_image($url) {
+  @include themeify {
+    background-image: url(themed($url)) !important;
+  }
+}
+
+//获取字体颜色
+@mixin font_color($color) {
+  @include themeify {
+    color: themed($color) !important;
+  }
+}
+
+// 边框颜色
+@mixin border_color($color) {
+  @include themeify {
+    border-color: themed($color) !important;
+  }
+}
+
+// 上边框颜色透明
+@mixin border_top_color($color) {
+  @include themeify {
+    border-top-color: themed($color) !important;
+  }
+}
+
+// 下边框颜色透明
+@mixin border_bottom_color($color) {
+  @include themeify {
+    border-bottom-color: themed($color) !important;
+  }
+}
+
+// 边框颜色透明
+@mixin border_color_0() {
+  @include themeify {
+    border-color: transparent !important;
+  }
+}
+
+
+// 边框颜色阴影
+@mixin box-shadow($color) {
+  @include themeify {
+    box-shadow: themed($color) 0px 0px 10px 5px inset;
+  }
+}
+
+
+:export {
+  @each $key1,$value1 in $themes {
+    #{$key1}: {
+      @each $key,$value in $value1 {
+        #{unquote($key)}: $value;
+      }
+    }
+  }
+}

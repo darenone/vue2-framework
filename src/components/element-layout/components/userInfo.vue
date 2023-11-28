@@ -1,16 +1,20 @@
 <template>
-  <div class="userinfo flex justify-end">
+  <div>
     <el-menu
+      ref="topNavMenu"
       background-color="#030F30"
       text-color="#FFFFFF"
       active-text-color="#fff"
       mode="horizontal"
       unique-opened
+      :default-active="$route.path"
+      router
+      class="flex justify-end"
     >
       <el-submenu index="user" popper-class="user-menu">
         <template #title>
           <div>
-            <el-avatar size="small" src="../../assets/img/default_avatar.png" />
+            <el-avatar size="small" :src="require('@/assets/img/default_avatar.png')" />
             <span class="user-name"> admin </span>
           </div>
         </template>
@@ -30,9 +34,9 @@
           popper-class="user-menu"
         >
           <template #title>导航模式</template>
-          <el-menu-item @click="SET_TABTYPE('')">默认隐藏</el-menu-item>
-          <el-menu-item @click="SET_TABTYPE('breadcrumb-nav')">面包屑导航</el-menu-item>
-          <el-menu-item @click="SET_TABTYPE('tab-nav')">TAB导航</el-menu-item>
+          <el-menu-item @click="setNav('hide-nav')">默认隐藏</el-menu-item>
+          <el-menu-item @click="setNav('breadcrumb-nav')">面包屑导航</el-menu-item>
+          <el-menu-item @click="setNav('tab-nav')">TAB导航</el-menu-item>
         </el-submenu>
         <el-submenu
           index="lang"
@@ -49,10 +53,10 @@
           popper-class="user-menu"
         >
           <template #title>主题颜色</template>
-          <el-menu-item>默认主题</el-menu-item>
-          <el-menu-item>绿色主题</el-menu-item>
-          <el-menu-item>蓝色主题</el-menu-item>
-          <el-menu-item>红色主题</el-menu-item>
+          <el-menu-item @click="setThemeFn('dark-theme')">默认主题</el-menu-item>
+          <el-menu-item @click="setThemeFn('green-theme')">绿色主题</el-menu-item>
+          <el-menu-item @click="setThemeFn('blue-theme')">蓝色主题</el-menu-item>
+          <el-menu-item @click="setThemeFn('red-theme')">红色主题</el-menu-item>
         </el-submenu>
       </el-submenu>
     </el-menu>
@@ -72,34 +76,39 @@
     computed: {
     ...mapGetters(['getLayout'])
     },
+    mounted() {
+      console.log('hello')
+    },
     methods: {
-    ...mapMutations(['SET_LAYOUT', 'SET_TABTYPE'])
+      ...mapMutations(['SET_LAYOUT', 'SET_TABTYPE', 'SET_THEME']),
+      setThemeFn(themeName) {
+        themeName = themeName.toLowerCase().replace('_', '-')
+        // console.log(themeName)
+        localStorage.currentTheme = themeName
+        this.SET_THEME(themeName)
+        document.body.setAttribute('data-theme', themeName)
+      },
+      setNav(tabType, tabName) {
+        // 设置导航模式
+        this.SET_TABTYPE(tabType)
+        localStorage.currentNavtype = tabType
+      }
     }
   }
 </script>
 <style lang="scss" scoped>
-::v-deep .el-menu--horizontal > .el-submenu .el-submenu__title,
-.el-menu--horizontal > .el-menu-item {
-  border-color: transparent;
-  background-color: transparent;
-  color: #fff;
-  font-size: 18px;
+.user-name {
+  margin-left: 5px;
+  display: inline-block;
+  max-width: 120px;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
-.userinfo {
-  height: 100%;
-  float: right;
-  .user-menu {
-    float: right;
-    margin-right: 20px;
-    width: auto;
-  }
-  .user-name {
-    margin-left: 5px;
-    display: inline-block;
-    max-width: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+
+.license-expires {
+  position: absolute;
+  color: red;
+  top: 25px;
+  font-size: 10px;
 }
 </style>

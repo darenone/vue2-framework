@@ -16,11 +16,13 @@
     computed: {
     ...mapGetters(['getLayout'])
     },
-    mounted() {
-      console.log(this.$store.state)
-    },
     data() {
       return {}
+    },
+    mounted() {
+      console.log('宗强')
+    },
+    methods: {
     }
   }
 </script>

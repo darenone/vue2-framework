@@ -266,8 +266,9 @@ methods： {
     this.textMarker.remove()
   }),
   addMouseOverAndOut() {
+    const _this = this
     throttle(() => {
-      this.addText(null, 'LEAVE')
+      _this.addText(null, 'LEAVE')
     })
   }
 }

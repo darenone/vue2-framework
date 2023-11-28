@@ -2,6 +2,7 @@ import axios from 'axios'
 import FuncApi from '@/api/system/FuncApi'
 // import DictApi from '@/api/system/DictApi'
 import config from '@/config'
+import vm from '../main.js'
 
 /**
  * 系统接口
@@ -51,6 +52,7 @@ export default class {
      * @return 请求对象
      */
   static info() {
+    console.log(vm)
     return axios.get(`${this.basePath()}/info`)
   }
 

@@ -7,6 +7,10 @@ import $http from './service/http'
 import config from '@/config'
 import i18n from '@/i18n'
 import '@/assets/js/elementui'
+import '@/assets/css/index.scss'
+if (process.env.NODE_ENV !== 'production') {
+  require('./mock/index') // 只有在开发环境才引入mock
+}
 
 Vue.config.productionTip = false
 Vue.prototype.$bus = Bus // 使用总线

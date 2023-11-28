@@ -8,7 +8,8 @@ const getters = {
   },
   getMenuType2: state => state.menuType,
   menuList: state => state.menuList,
-  getLayout: state => state.layout
+  getLayout: state => state.layout,
+  getTabType: state => state.tabType
 }
 
 export default getters

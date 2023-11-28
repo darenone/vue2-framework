@@ -3,30 +3,25 @@ import VueRouter from 'vue-router'
 // import layout from '@/components/layout/index'
 import eleLayout from '@/components/element-layout/index.vue'
 import HomeView from '../views/HomeView.vue'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '',
     name: 'home',
     component: eleLayout,
+    redirect: '/index',
     children: [
       {
-        path: '',
-        name: 'HomeView',
+        path: '/index',
+        name: 'HOME',
         component: HomeView
-      }
-    ]
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: eleLayout,
-    children: [
+      },
       {
-        path: '',
-        name: 'about',
+        path: '/about',
+        name: 'ABOUT',
         component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
       }
     ]
@@ -122,7 +117,7 @@ const routes = [
   }
 ]
 
-const router = new VueRouter({
+const createRouter = (routes) => new VueRouter({
   routes
 })
 
@@ -130,6 +125,7 @@ const router = new VueRouter({
 const whitelist = ['login', 'error401', 'error500', 'notFound', 'compatible', 'notLogin', '404', 'abnormal']
 
 let app
+const router = createRouter(routes)
 router.beforeEach((to, from, next) => {
   // const isLogin = !!sessionStorage.getItem('accessToken');
   const isLogin = true
@@ -153,9 +149,32 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+// 添加tabs
+router.beforeEach((to, from, next) => {
+  // console.log(to, from)
+  if (to.name === 'ERROR404') {
+    next()
+  } else {
+    if (to.name && to.path) {
+      const item = {
+        label: to.name,
+        name: to.name,
+        path: to.path
+      }
+      store.commit('ADD_ACTIVED_TABS', item)
+    }
+    next()
+  }
+})
+
 router.afterEach((to, from, next) => {
   app = document.querySelector('.app-content-inner')
   app && app.scrollTo(0, 0)
 })
+
+export const resetRouter = () => {
+  const newRouter = createRouter(routes)
+  router.matcher = newRouter.matcher
+}
 
 export default router
