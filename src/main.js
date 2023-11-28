@@ -6,6 +6,7 @@ import Bus from './bus/index' // 引入总线
 import $http from './service/http'
 import config from '@/config'
 import i18n from '@/i18n'
+import '@/lib/flexible'
 import '@/assets/js/elementui'
 import '@/assets/css/index.scss'
 if (process.env.NODE_ENV !== 'production') {

@@ -2,7 +2,7 @@
 <template>
   <el-container class="w-100 h-100">
     <div class="wrapper">
-      <el-header height="78px">
+      <el-header class="headerHeight">
         <div class="main-header flex align-center">
           <div class="logo flex align-center" style="min-width: 200px" @click="$router.push('/')">
             <div class="sysLogo flex-1" style="margin-right:30px;" />
@@ -151,10 +151,11 @@
 
 <style lang="scss" scoped>
 @import '@/assets/css/mixin.module.scss';
-.el-header {
+.headerHeight {
   background-color: #242f42;
   color: #ffffff;
-  line-height: 60px;
+  line-height: 78px;
+  height:78px !important;
   padding: 0;
   overflow: hidden;
 }

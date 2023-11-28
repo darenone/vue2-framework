@@ -466,11 +466,11 @@ a {
 }
 
 .topo-change-btn {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 7px 15px;
   height: 28px;
-  line-height: 12px;
-  text-align: center;
   font-size: 14px;
   color: #fff;
   border-radius: 4px;
@@ -516,4 +516,19 @@ a {
   height: 58px;
   line-height: 58px;
   border-bottom-width: 4px !important;
+}
+.el-dropdown-menu__item,
+.el-menu-item {
+  font-size: 14px;
+}
+.el-menu--horizontal .el-menu .el-menu-item,
+.el-menu--horizontal .el-menu .el-submenu__title{
+  height:36px;
+  line-height: 36px;
+}
+
+.el-input--mini .el-input__inner{
+  height:28px !important;
+  line-height: 28px;
+  font-size:12px;
 }
