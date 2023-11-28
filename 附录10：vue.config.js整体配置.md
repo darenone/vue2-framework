@@ -325,10 +325,20 @@ module.exports = defineConfig({
 })
 ```
 
-比第一种配置多了一个node-polyfill-webpack-plugin插件，去掉speed-measure-webpack-plugin插件
+比第一种配置多了一个`node-polyfill-webpack-plugin`插件，去掉`speed-measure-webpack-plugin`插件
 
-1. terser-webpack-plugin
-2. compression-webpack-plugin
-3. node-polyfill-webpack-plugin（webpack5移除了nodejs核心模块polyfill自动引入，所以这里需要手动引入）
-4. thread-loader（多进程打包，加快打包速度，如果项目打包迟迟不能成功，可以引入此插件来加快速度，另外安装）
+1. `terser-webpack-plugin`
+2. `compression-webpack-plugin`
+3. `node-polyfill-webpack-plugin`（webpack5移除了nodejs核心模块polyfill自动引入，所以这里需要手动引入）
+4. `thread-loader`（多进程打包，加快打包速度，如果项目打包迟迟不能成功，可以引入此插件来加快速度，另外安装）
+
+```
+npm install compression-webpack-plugin@6.1.1 -D
+npm install node-polyfill-webpack-plugin@2.0.1 -D
+npm install thread-loader@3.0.4 -D
+```
+
+然后配置`vue.confi.js`，具体见文件：[vue.config.js](vue.config.js)，打包完后的效果如图：
+
+![资料\图片\第二种配置方式打包后的结果.png](资料\图片\第二种配置方式打包后的结果.png)
 

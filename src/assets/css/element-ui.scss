@@ -672,6 +672,9 @@
 }
 
 .el-button {
+  height: 28px;
+  line-height: 12px;
+  font-size:12px;
   @include themeify {
     border-color: themed("borderColor");
   }
