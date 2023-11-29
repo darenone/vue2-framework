@@ -135,3 +135,10 @@
     }
   }
 </script>
+<style lang="scss">
+  #login-wrapper .box-card .el-input__inner {
+    height: 40px !important;
+    line-height: 38px;
+    font-size:14px;
+  }
+</style>

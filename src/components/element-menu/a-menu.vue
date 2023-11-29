@@ -1,5 +1,5 @@
 <template>
-  <section class="el-menu-wrapper w-100 h-100">
+  <section class="flex el-menu-wrapper w-100 h-100">
     <slot />
     <el-menu
       router
@@ -98,4 +98,5 @@
 </script>
 <style lang="scss" scoped>
 @import '@/assets/css/mixin.module.scss';
+
 </style>

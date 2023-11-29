@@ -1,7 +1,7 @@
 <template>
   <!-- 不加这个div导致递归的时候报错 Maximum call stack size exceeded-->
   <div>
-    <el-submenu :index="index" popper-append-to-body:true>
+    <el-submenu :index="index" popper-append-to-body:true class="h-100">
       <template slot="title">
         <i :class="[parent.icon, 'pr-10']" />
         <span slot="title">{{ $t(parent.enName) }}</span>

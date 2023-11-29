@@ -58,7 +58,13 @@ a {
   color: black;
   background-color: #fafafa;
 }
-
+.el-table th.operate-cell .cell{
+  width: auto;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .el-table td,
 .el-table th {
   padding: 8px 0;
@@ -67,7 +73,13 @@ a {
 .el-dialog {
   margin: auto;
 }
-
+.el-dialog__header{
+  padding-bottom: 30px;
+}
+.el-dialog .el-table .el-form-item--mini.el-form-item,
+.el-dialog .el-table .el-form-item--small.el-form-item{
+  margin-bottom: 0;
+}
 .el-dialog__body {
   box-sizing: border-box;
   padding: 10px 20px 0 20px !important;
@@ -117,6 +129,7 @@ a {
     height: 40px;
     border: 1px solid #dcdfe6;
     border-radius: 4px;
+    display: block;
   }
 
   .vue-treeselect__value-remove {
@@ -152,13 +165,23 @@ a {
 /* vue-treeselect  mini样式 */
 .size-mini {
   .vue-treeselect__control {
-    height: 28px;
-  }
+      height: 28px !important;
+      min-height: 28px !important;
+      line-height: 28px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+    }
 
-  .vue-treeselect__placeholder {
-    font-size: 12px;
-    line-height: 28px;
-  }
+    .vue-treeselect__value-container,
+    .vue-treeselect__multi-value-item,
+    .vue-treeselect__limit-tip,
+    .vue-treeselect__placeholder {
+      height: 22px !important;
+      min-height: 22px !important;
+      line-height: 22px;
+      font-size: 12px;
+    }
 
   .vue-treeselect__single-value {
     font-size: 12px;
@@ -175,10 +198,10 @@ a {
     font-size: 12px;
   }
 
-  .vue-treeselect__limit-tip {
-    height: 22px;
-    line-height: 1.2;
-  }
+  // .vue-treeselect__limit-tip {
+  //   height: 22px;
+  //   line-height: 1.2;
+  // }
 
   .vue-treeselect--has-value .vue-treeselect__multi-value {
     margin-bottom: 1px;
@@ -186,7 +209,7 @@ a {
 
   .vue-treeselect__multi-value-item-container,
   .vue-treeselect__limit-tip {
-    padding-top: 3px;
+    padding-top: 0px;
   }
 }
 
@@ -512,6 +535,7 @@ a {
   max-width: 50% !important;
 }
 // 菜单自定义样式
+.el-menu--horizontal div > .el-submenu .el-submenu__title,
 .el-menu--horizontal > .el-submenu .el-submenu__title {
   height: 58px;
   line-height: 58px;
@@ -527,8 +551,91 @@ a {
   line-height: 36px;
 }
 
-.el-input--mini .el-input__inner{
-  height:28px !important;
-  line-height: 28px;
-  font-size:12px;
+// 端口样式card
+.el-tabs--border-card{
+  border:0;
+  box-shadow: none;
+}
+.el-tabs--border-card>.el-tabs__content{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// 字体大小修改后适配样式开始
+.el-dialog__body,
+.el-radio-button--mini .el-radio-button__inner,
+.el-tree-node__label,
+.vue-treeselect__limit-tip .vue-treeselect__limit-tip-text,
+.el-cascader-node__label,
+.el-dropdown-link.el-dropdown-selfdefine,
+.el-range-editor--mini .el-range-input,
+.el-textarea__inner,
+.el-tag,
+.el-divider__text {
+  font-size: 12px;
+}
+
+.el-dropdown-menu__item,
+.el-menu-item,
+.el-submenu__title,
+.el-select-dropdown__item ,
+.el-dialog__title{
+  font-size: 14px;
+}
+
+.el-select-dropdown__item {
+  height: 34px;
+  line-height: 34px;
+}
+
+.el-menu--horizontal .el-menu .el-menu-item,
+.el-menu--horizontal .el-menu .el-submenu__title {
+  height: 36px;
+  line-height: 36px;
+}
+
+.el-input--mini .el-input__inner,
+.el-form-item__label,
+.el-message-box__message,
+.el-checkbox__label,
+.el-range-editor--mini.el-input__inner {
+  height: 28px !important;
+  min-height: 28px !important;
+  line-height: 28px !important;
+  font-size: 12px;
+}
+
+.filter-station .el-form-item__label {
+  height: auto !important;
+}
+
+.el-input-number--mini .el-input-number__decrease,
+.el-input-number--mini .el-input-number__increase {
+  height: 26px !important;
+  min-height: 26px !important;
+  line-height: 26px !important;
+  font-size: 12px;
+}
+
+.alarmConfigVoice .el-input-number--mini .el-input-number__decrease,
+.alarmConfigVoice .el-input-number--mini .el-input-number__increase {
+  height: 13px !important;
+  min-height: 13px !important;
+  line-height: 13px !important;
+  font-size: 12px;
+}
+
+.el-table .cell.el-tooltip {
+  white-space: inherit;
+}
+
+// 分页大小不能和上面写在一起，因为这个不受字体大小影响
+.el-pagination button,
+.el-pagination span:not([class*=suffix]),
+.el-pagination .el-input--mini .el-input__inner,
+.flange-port .el-input--mini .el-input__inner {
+  height: 28px !important;
+  min-height: 28px !important;
+  line-height: 28px !important;
+  font-size: 12px;
 }
