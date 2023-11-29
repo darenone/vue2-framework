@@ -84,5 +84,10 @@
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
+  ::v-deep .el-tabs__item{
+    font-size:14px;
+    height:40px;
+    line-height: 40px;
+  }
 }
 </style>
