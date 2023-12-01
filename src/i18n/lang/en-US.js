@@ -21,5 +21,6 @@ export default {
   MENU_FUNCTION_MANAGER: 'functional management',
   MENU_DICT_MANAGER: 'dictionary managed',
   MENU_I18N_MANAGER: 'international management',
-  MENU_DEVICE_MANAGER: 'device management system'
+  MENU_DEVICE_MANAGER: 'device management system',
+  THREE_PRACTICE_1: 'three.js practice'
 }

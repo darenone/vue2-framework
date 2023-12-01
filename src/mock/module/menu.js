@@ -12,11 +12,11 @@ export default [
     children: null
   },
   {
-    funcName: '组网业务',
+    funcName: 'Three.js',
     funcId: '20220309143456',
     funcType: 'DIR',
     display: true,
-    enName: 'MENU_NETWORK_BUSINESS',
+    enName: 'THREE_PRACTICE_1',
     parentId: '20220309143206',
     path: '',
     sysId: 'AFS_OEN',
