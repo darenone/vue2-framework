@@ -22,5 +22,6 @@ export default {
   MENU_DICT_MANAGER: '字典管理',
   MENU_I18N_MANAGER: '国际化管理',
   MENU_DEVICE_MANAGER: '设备管理系统',
-  THREE_PRACTICE_1: 'three.js初识'
+  THREE_PRACTICE_1: 'three.js初识',
+  THREE_PRACTICE: 'three 练习'
 }

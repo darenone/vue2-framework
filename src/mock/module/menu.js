@@ -23,6 +23,18 @@ export default [
     icon: 'el-icon-eleme',
     children: [
       {
+        funcName: 'three练习',
+        funcId: '20220309145128',
+        funcType: 'MENU',
+        display: true,
+        enName: 'THREE_PRACTICE',
+        parentId: '20220309143456',
+        path: '/three/practice',
+        sysId: 'AFS_OEN',
+        icon: 'el-icon-eleme',
+        children: null
+      },
+      {
         funcName: '业务管理',
         funcId: '20220309145127',
         funcType: 'MENU',

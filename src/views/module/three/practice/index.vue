@@ -1,35 +1,3 @@
-# three.js学习
-
-## 一、初始three.js
-
-官网[three.js](https://threejs.org/)，访问比较慢，我们可以把它部署在本地进行访问，git地址[mrdoob/three.js](https://github.com/mrdoob/three.js/)，把源码下载下来以后，到项目根目录`three.js-dev`执行`npm install`，然后再执行`npm run start`即可启动项目
-
-利用`vite`创建各种模板项目，新建一个文件，cmd运行如下命令：
-
-```
-npm init vite@latest
-
-可创建以下模板项目：
-- Vanilla(不用任何框架)
-- Vue
-- React
-- Preact
-- Lit
-- Svelte
-- Others
-```
-
-选择你需要创建的模板项目，安装即可，我的项目时基于vue来开发的，以下代码是基于vue2环境
-
-首先执行以下命令，安装`three`
-
-```
-npm install three@0.153 --save
-```
-
-之后，我们先用three渲染一个立方体
-
-```html
 <template>
   <div class="canvas-container h-100" />
 </template>
@@ -76,8 +44,16 @@ npm install three@0.153 --save
         // 将网格添加到场景中
         scene.add(cube)
 
-        // 渲染
-        renderer.render(scene, camera)
+        // 渲染函数
+        function animate() {
+          requestAnimationFrame(animate)
+          // 旋转
+          cube.rotation.x += 0.01
+          cube.rotation.y += 0.01
+          // 旋转完重新渲染
+          renderer.render(scene, camera)
+        }
+        animate()
       }
     }
   }
@@ -90,25 +66,3 @@ npm install three@0.153 --save
   }
 }
 </style>
-```
-
-效果图如下：
-
-![../图片/three_1.png](../图片/three_1.png)
-
-此时只看到一个2d的正方形，因为我们的相机在z轴正对着它，所以只能看到一个面，如果想让它动起来，需要写一个渲染函数，在渲染函数里调用`requestAnimationFrame(请求动画帧)`方法
-
-它会一帧一帧调用`animate函数`，这一帧播完，下一帧继续调用
-
-```js
-// 渲染函数
-function animate() {
-  requestAnimationFrame(animate)
-  // 旋转
-  cube.rotation.x += 0.01
-  cube.rotation.y += 0.01
-  // 旋转完重新渲染
-  renderer.render(scene, camera)
-}
-animate()
-```
