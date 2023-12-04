@@ -96,9 +96,7 @@ npm install three@0.153 --save
 
 ![../图片/three_1.png](../图片/three_1.png)
 
-此时只看到一个2d的正方形，因为我们的相机在z轴正对着它，所以只能看到一个面，如果想让它动起来，需要写一个渲染函数，在渲染函数里调用`requestAnimationFrame(请求动画帧)`方法
-
-它会一帧一帧调用`animate函数`，这一帧播完，下一帧继续调用
+此时只看到一个2d的正方形，因为我们的相机设置在z轴，正对着它，所以只能看到一个面，如果想让它动起来，需要写一个渲染函数，在渲染函数里调用`requestAnimationFrame(请求动画帧)`方法，它会一帧一帧调用`animate函数`，这一帧播完，下一帧继续调用
 
 ```js
 // 渲染函数
@@ -112,3 +110,22 @@ function animate() {
 }
 animate()
 ```
+
+利用坐标辅助器`AxesHelper`，可以在场景中加入xyz坐标系（蓝色是z轴，红色是x轴，绿色是y轴）
+
+利用轨道控制器`OrbitControls`，可以用鼠标左键旋转立方体，用滑轮控制立方体的远近，用左键移动立方体（其实是控制的摄像机，让摄像机旋转，拉进拉远，摄像机移动）
+
+`OrbitControls`的第二个参数是一个元素，用来指定轨道控制器监听哪个元素的事件
+
+```js
+const controls = new OrbitControls(camera, renderer.domElement)
+```
+
+`renderer.domElement`就是当前canvas画布，相当于监听的是canvas事件，可以换一个元素进行监听，比如监听其父元素`canvas-container`的鼠标滑动，缩放事件，这样写：
+
+```js
+const controls = new OrbitControls(camera, document.getElementsByClassName('canvas-container')[0])
+```
+
+
+
