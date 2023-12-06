@@ -41,12 +41,20 @@
         // 创建几何体
         const geometry = new THREE.BoxGeometry(1, 1, 1)
         // 创建材质
+        const parentMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 })
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-        // 创建网格（创建物体）
+        // 创建网格（也叫创建物体）
+        const parentCube = new THREE.Mesh(geometry, parentMaterial)
         const cube = new THREE.Mesh(geometry, material)
-
-        // 将网格添加到场景中
-        scene.add(cube)
+        cube.position.set(3, 0, 0)
+        cube.scale.set(2, 2, 2)
+        cube.rotation.x = Math.PI / 4
+        parentCube.add(cube)
+        parentCube.position.set(-3, 0, 0)
+        parentCube.scale.set(2, 2, 2)
+        parentCube.rotation.x = Math.PI / 4
+        // 将父元素添加到场景中
+        scene.add(parentCube)
 
         // 添加世界坐标辅助器
         const axesHelper = new THREE.AxesHelper(5)
@@ -56,7 +64,7 @@
         // 设置带阻尼的惯性（鼠标移动后慢慢的结束）
         controls.enableDamping = true // 开启阻尼
         controls.dampingFactor = 0.05 // 阻尼的大小
-        controls.autoRotate = true // 自动旋转
+        controls.autoRotate = false // 自动旋转
 
         // 渲染函数
         function animate() {
