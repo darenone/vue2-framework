@@ -273,6 +273,69 @@ parentCube.rotation.x = Math.PI / 4 // 父元素旋转45度，子元素也会跟
 
 当浏览器窗口大小发生变化，需要更新three.js渲染器的viewport和画布canvas的尺寸，确保场景和对象能够正确显示
 
+响应式代码：
+
+```js
+// 监听窗口变化
+window.addEventListener('resize', () => {
+  const width = document.getElementsByClassName('canvas-container')[0].clientWidth
+  const height = document.getElementsByClassName('canvas-container')[0].clientHeight
+  // 重置渲染器宽高比
+  renderer.setSize(width, height)
+  // 重置相机宽高比
+  camera.aspect = width / height
+  // 更新相机投影矩阵
+  camera.updateProjectionMatrix()
+})
+```
+
+全屏代码：
+
+```js
+fullScreen() {
+  // 设置canvas的父元素全屏
+  document.getElementsByClassName('canvas-container')[0].requestFullscreen()
+},
+exitFullScreen() {
+  // 退出全屏的方法只能在document上面
+  document.exitFullscreen()
+}
+```
+
+## 六、应用lil-GUI调试开发3D效果
+
+可视化的编辑我们的物体
+
+添加gui的方式如下：
+
+```js
+const gui = new GUI()
+gui.domElement.style.position = 'absolute'
+gui.domElement.style.top = '120'
+gui.domElement.style.left = '5'
+gui.add(eventObj, 'Fullscreen').name('全屏')
+gui.add(eventObj, 'ExitFullscreen').name('退出全屏')
+// 控制立方体的位置
+const folder = gui.addFolder('立方体位置')
+folder.add(cube.position, 'x', -5, 5).name('立方体x轴位置').onChange(val => {
+  console.log('立方体x轴位置', val)
+})
+folder.add(cube.position, 'x').min(-10).max(10).step(1).name('立方体x轴位置').onFinishChange(val => {
+  console.log('立方体x轴位置', val)
+})
+folder.add(cube.position, 'y').min(-10).max(10).step(1).name('立方体y轴位置')
+folder.add(cube.position, 'z').min(-10).max(10).step(1).name('立方体z轴位置')
+gui.add(parentMaterial, 'wireframe').name('父元素线框模式')
+const colorParams = {
+  cubeColor: '#ff0000'
+}
+gui.addColor(colorParams, 'cubeColor').name('立方体颜色').onChange(val => {
+  cube.material.color.set(val)
+})
+```
+效果图如下：
+
+![../图片/three_4.png](../图片/three_4.png)
 
 
 

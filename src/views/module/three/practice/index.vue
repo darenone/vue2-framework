@@ -1,14 +1,19 @@
 <template>
-  <div class="canvas-container h-100" />
+  <div class="canvas-container relative h-100">
+    <el-button class="absolute" style="right: 90px;" type="primary" @click="fullScreen">全屏</el-button>
+    <el-button class="absolute" style="right: 5px;" type="primary" @click="exitFullScreen">退出全屏</el-button>
+  </div>
 </template>
 <script>
   import * as THREE from 'three'
   // 导入轨道控制器
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+  // 导入lil.gui
+  import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
   export default {
     data() {
       return {
-
+        renderer: null
       }
     },
     mounted() {
@@ -34,14 +39,16 @@
         camera.position.x = 2
         camera.lookAt(0, 0, 0) // 相机默认看向原点（这个是默认值，不设置也可以）
         // 创建渲染器(负责将物体渲染到canvas画布上)
-        const renderer = new THREE.WebGL1Renderer()
-        renderer.setSize(width, height) // 需要渲染的最终尺寸
-        document.getElementsByClassName('canvas-container')[0].appendChild(renderer.domElement) // 将canvas画布放到body里
+        this.renderer = new THREE.WebGL1Renderer()
+        this.renderer.setSize(width, height) // 需要渲染的最终尺寸
+        document.getElementsByClassName('canvas-container')[0].appendChild(this.renderer.domElement) // 将canvas画布放到body里
 
         // 创建几何体
         const geometry = new THREE.BoxGeometry(1, 1, 1)
         // 创建材质
         const parentMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+        // 设置父元素材质为线框模式
+        parentMaterial.wireframe = true
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
         // 创建网格（也叫创建物体）
         const parentCube = new THREE.Mesh(geometry, parentMaterial)
@@ -60,23 +67,72 @@
         const axesHelper = new THREE.AxesHelper(5)
         scene.add(axesHelper)
         // 添加轨道控制器
-        const controls = new OrbitControls(camera, renderer.domElement)
+        const controls = new OrbitControls(camera, this.renderer.domElement)
         // 设置带阻尼的惯性（鼠标移动后慢慢的结束）
         controls.enableDamping = true // 开启阻尼
         controls.dampingFactor = 0.05 // 阻尼的大小
         controls.autoRotate = false // 自动旋转
 
         // 渲染函数
-        function animate() {
+        const animate = () => {
           controls.update()
           requestAnimationFrame(animate)
           // 旋转
           // cube.rotation.x += 0.01
           // cube.rotation.y += 0.01
           // 旋转完重新渲染
-          renderer.render(scene, camera)
+          this.renderer.render(scene, camera)
         }
         animate()
+        // 监听窗口变化
+        window.addEventListener('resize', () => {
+          const width = document.getElementsByClassName('canvas-container')[0].clientWidth
+          const height = document.getElementsByClassName('canvas-container')[0].clientHeight
+          // 重置渲染器宽高比
+          this.renderer.setSize(width, height)
+          // 重置相机宽高比
+          camera.aspect = width / height
+          // 更新相机投影矩阵
+          camera.updateProjectionMatrix()
+        })
+
+        const eventObj = {
+          Fullscreen: function() {
+            document.getElementsByClassName('canvas-container')[0].requestFullscreen()
+          },
+          ExitFullscreen: function() {
+            document.exitFullscreen()
+          }
+        }
+        const gui = new GUI()
+        gui.domElement.style.position = 'absolute'
+        gui.domElement.style.top = '120'
+        gui.domElement.style.left = '5'
+        gui.add(eventObj, 'Fullscreen').name('全屏')
+        gui.add(eventObj, 'ExitFullscreen').name('退出全屏')
+        // 控制立方体的位置
+        const folder = gui.addFolder('立方体位置')
+        folder.add(cube.position, 'x', -5, 5).name('立方体x轴位置').onChange(val => {
+          console.log('立方体x轴位置', val)
+        })
+        folder.add(cube.position, 'x').min(-10).max(10).step(1).name('立方体x轴位置').onFinishChange(val => {
+          console.log('立方体x轴位置', val)
+        })
+        folder.add(cube.position, 'y').min(-10).max(10).step(1).name('立方体y轴位置')
+        folder.add(cube.position, 'z').min(-10).max(10).step(1).name('立方体z轴位置')
+        gui.add(parentMaterial, 'wireframe').name('父元素线框模式')
+        const colorParams = {
+          cubeColor: '#ff0000'
+        }
+        gui.addColor(colorParams, 'cubeColor').name('立方体颜色').onChange(val => {
+          cube.material.color.set(val)
+        })
+      },
+      fullScreen() {
+        document.getElementsByClassName('canvas-container')[0].requestFullscreen()
+      },
+      exitFullScreen() {
+        document.exitFullscreen()
       }
     }
   }
