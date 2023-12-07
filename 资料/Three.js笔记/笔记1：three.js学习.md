@@ -19,15 +19,15 @@ npm init vite@latest
 - Others
 ```
 
-选择你需要创建的模板项目，安装即可，我的项目时基于vue来开发的，以下代码是基于vue2环境
+选择你需要创建的模板项目，安装即可，我的项目是基于vue来开发的，以下代码都是基于vue2环境
 
-首先执行以下命令，安装`three`
+首先执行以下命令，安装`three.js`
 
 ```
 npm install three@0.153 --save
 ```
 
-之后，我们先用three渲染一个立方体
+之后在页面引入，先用three渲染一个立方体
 
 ```html
 <template>
@@ -49,7 +49,7 @@ npm install three@0.153 --save
         // 1、创建场景
         const scene = new THREE.Scene()
 
-        // 2、创建透视相机（类似于人眼睛看到的，近的大，远的小）在三维空间，xyz，xy和二维空间坐标系一致，z垂直于xy的平面
+        // 2、创建透视相机（类似于人眼睛，近的大，远的小）在三维空间，xyz，xy和二维空间坐标系一致，z垂直于xy的平面
         // 透视相机就在z轴上，默认位置（0,0,0）
         const width = document.getElementsByClassName('canvas-container')[0].clientWidth
         const height = document.getElementsByClassName('canvas-container')[0].clientHeight
@@ -240,6 +240,7 @@ cube.position.set(2, 0, 0)
 
 ```js
 const parentMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+const parentCube = new THREE.Mesh(geometry, parentMaterial)
 cube.position.set(3, 0, 0) // 设置子元素的位置
 parentCube.add(cube) // 将子元素添加到父元素中
 parentCube.position.set(-3, 0, 0) // 设置父元素的位置
@@ -259,7 +260,7 @@ scene.add(parentCube)
 
 ```js
 cube.scale.set(2, 2, 2) // 子元素立方体放大2倍
-parentCube.scale.set(2, 2, 2) // 父元素立方体放大2倍，子元素也会跟着放大
+parentCube.scale.set(2, 2, 2) // 父元素立方体放大2倍，子元素也会跟着放大，加上子元素本身放大2倍，加一起就是4倍
 ```
 
 设置立方体旋转：
@@ -337,7 +338,13 @@ gui.addColor(colorParams, 'cubeColor').name('立方体颜色').onChange(val => {
 
 ![../图片/three_4.png](../图片/three_4.png)
 
+## 七、几何体_顶点_索引_面
 
+在three里面，所有的物体的面都是由三角形构成，创建一个几何体代码：
+
+```js
+const geometry = new THREE.BoxGeometry(1, 1, 1)
+```
 
 
 
