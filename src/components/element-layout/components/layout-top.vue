@@ -41,7 +41,7 @@
       <el-main>
         <eNav />
         <div class="pl-10 pr-10 pb-10 pt-10 flex-1" :class="curRoute ==='HOME'?'home-box':'content-box'">
-          <!-- <keep-alive> -->
+          <!-- <keep-alive include="Home"> -->
           <router-view />
           <!-- </keep-alive> -->
           <div class="border-content" />

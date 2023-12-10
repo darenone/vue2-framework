@@ -44,8 +44,8 @@
           popper-class="user-menu"
         >
           <template #title>语言</template>
-          <el-menu-item>中文</el-menu-item>
-          <el-menu-item>英文</el-menu-item>
+          <el-menu-item @click="langSwitch('zh-CN')">中文</el-menu-item>
+          <el-menu-item @click="langSwitch('en-US')">英文</el-menu-item>
         </el-submenu>
         <el-submenu
           index="themes"
@@ -66,6 +66,7 @@
 <script>
   import { mapGetters, mapMutations } from 'vuex'
   import icon from '_c/icon'
+  import { setTitle } from '@/lib/util'
   export default {
     components: { icon },
     data() {
@@ -92,6 +93,12 @@
         // 设置导航模式
         this.SET_TABTYPE(tabType)
         localStorage.currentNavtype = tabType
+      },
+      langSwitch(lang) {
+        this.$i18n.locale = lang
+        this.$store.commit('SETLOCALE', lang)
+        localStorage.setItem('lang', lang)
+        setTitle(this.$config.sysName[lang], this.$config.systemVersion)
       }
     }
   }
