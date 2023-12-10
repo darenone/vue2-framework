@@ -65,17 +65,16 @@
         const geometry = new THREE.BufferGeometry()
         // 创建顶点数据，一个几何体有32个顶点，顶点是有顺序的(逆时针方向)，每3个为一个顶点，逆时针为正面
         const vertices = new Float32Array([
-          -1.0, -1.0, 0.0, // 一个顶点的xyz坐标
-          1.0, -1.0, 0.0,
-          1.0, 1.0, 0.0,
-
-          1.0, 1.0, 0,
-          -1.0, 1.0, 0,
-          -1.0, -1.0, 0
-
+          -1.0, -1.0, 0.0, 1.0, -1.0, 0.0, 1.0, 1.0, 0.0, -1.0, 1.0, 0
         ])
         // 创建顶点属性
         geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
+        // 创建索引
+        const indices = new Uint16Array([0, 1, 2, 2, 3, 0])
+        // 创建索引属性
+        geometry.setIndex(new THREE.BufferAttribute(indices, 1))
+        geometry.addGroup(0, 3, 0)
+        geometry.addGroup(3, 3, 1)
         console.log('几何体', geometry)
         // 创建材质
         // const parentMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 })
@@ -85,9 +84,13 @@
           color: 0x00ff00,
           side: THREE.DoubleSide // 正反面都可以看到
         })
+        const material1 = new THREE.MeshBasicMaterial({
+          color: 0x00ff11,
+          side: THREE.DoubleSide // 正反面都可以看到
+        })
         // 创建网格（也叫创建物体）
         // const parentCube = new THREE.Mesh(geometry, parentMaterial)
-        const cube = new THREE.Mesh(geometry, material)
+        const cube = new THREE.Mesh(geometry, [material, material1])
         cube.position.set(0, 0, 0)
         // cube.scale.set(2, 2, 2)
         // cube.rotation.x = Math.PI / 4

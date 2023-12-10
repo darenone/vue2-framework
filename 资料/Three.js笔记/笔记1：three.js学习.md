@@ -338,13 +338,75 @@ gui.addColor(colorParams, 'cubeColor').name('立方体颜色').onChange(val => {
 
 ![../图片/three_4.png](../图片/three_4.png)
 
-## 七、几何体_顶点_索引_面
+## 七、几何体_顶点_索引_面（BufferGeometry）
 
-在three里面，所有的物体的面都是由三角形构成，创建一个几何体代码：
+`BufferGeometry`叫缓冲区几何体，这个是最基础的类，所有在three里面创建的类，都继承于此基础类，比如`BoxGeometry`就继承于此类
+
+在three里面，所有物体的面都是由三角形构成，2个三角形构成一个面，1个三角形有3个顶点，一个面有6个顶点（这6个顶点中有2个顶点是2个三角形共用的）所以正方体的面就有4个顶点，6个面，总计24个顶点，每一个顶点坐标由（x,y,z）组成
+
+创建一个几何体代码：
 
 ```js
-const geometry = new THREE.BoxGeometry(1, 1, 1)
+// 创建几何体
+const geometry = new THREE.BufferGeometry()
+// 创建顶点数据（一个几何体有32个顶点，顶点是有顺序的(逆时针方向)，每3个为一个顶点，逆时针为正面）
+        const vertices = new Float32Array([
+          -1.0, -1.0, 0.0, // 一个顶点的xyz坐标
+          1.0, -1.0, 0.0,
+          1.0, 1.0, 0.0,
+
+          1.0, 1.0, 0,
+          -1.0, 1.0, 0,
+          -1.0, -1.0, 0
+        ])
+// 创建顶点属性
+// 3代表，Float32Array参数数组里声明3个数值为一个顶点数据
+geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
+// 创建材质
+const material = new THREE.MeshBasicMaterial({
+  color: 0x00ff00,
+  side: THREE.DoubleSide // 正反面都可以看到
+})
+const cube = new THREE.Mesh(geometry, material)
+this.scene.add(cube)
+// ... 省略的代码和创建立方体代码一直
 ```
+
+效果如下：
+
+![..\图片\画出正方体的一个面.png](..\图片\画出正方体的一个面.png)
+
+
+以上代码里创建一个面，设置了6个点的坐标，但是一个面只有4个顶点，此时就需要利用索引来创建面，代码如下：
+
+```js
+const geometry = new THREE.BufferGeometry()
+// 先把一个面的4个顶点设置出来，顶点0(-1.0, -1.0, 0.0)顶点1(1.0, -1.0, 0.0)顶点2(1.0, 1.0, 0.0)顶点3(-1.0, 1.0, 0)
+const vertices = new Float32Array([
+  -1.0, -1.0, 0.0, 1.0, -1.0, 0.0, 1.0, 1.0, 0.0, -1.0, 1.0, 0
+])
+// 创建顶点属性
+geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
+// 创建索引
+// 逆时针方向，第一个三角形（第0个顶点，第1个顶点，第2个顶点）第二个三角形（第2个顶点，第3个顶点，第0个顶点）
+const indices = new Uint16Array([0, 1, 2, 2, 3, 0])
+// 创建索引属性
+geometry.setIndex(new THREE.BufferAttribute(indices, 1))
+// 创建材质
+const material = new THREE.MeshBasicMaterial({
+  color: 0x00ff00,
+  side: THREE.DoubleSide // 正反面都可以看到
+})
+const cube = new THREE.Mesh(geometry, material)
+this.scene.add(cube)
+// ... 省略的代码和创建立方体代码一直
+```
+
+先把一个立方体在三维空间内的坐标都标记出来，然后利用索引一个个面的设置，就画出了一个立方体，这也是在`three.js`里面渲染一个物体的底层原理
+
+## 八、几何体划分顶点组设置不同材质
+
+
 
 
 
