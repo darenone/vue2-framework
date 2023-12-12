@@ -73,19 +73,23 @@
         const indices = new Uint16Array([0, 1, 2, 2, 3, 0])
         // 创建索引属性
         geometry.setIndex(new THREE.BufferAttribute(indices, 1))
+        // 设置2个顶点组，形成2个材质
+        // addGroup(start, count, materialIndex)
+        // 参数解读：从0索引开始，添加3个顶点，用的第1个材质
         geometry.addGroup(0, 3, 0)
-        geometry.addGroup(3, 3, 1)
+        geometry.addGroup(3, 3, 1) // 从3索引开始，添加3个顶点，用第2个材质
         console.log('几何体', geometry)
         // 创建材质
         // const parentMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 })
         // 设置父元素材质为线框模式
         // parentMaterial.wireframe = true
         const material = new THREE.MeshBasicMaterial({
-          color: 0x00ff00,
+          color: 'red',
           side: THREE.DoubleSide // 正反面都可以看到
+          // wireframe: true
         })
         const material1 = new THREE.MeshBasicMaterial({
-          color: 0x00ff11,
+          color: 0x00ff00,
           side: THREE.DoubleSide // 正反面都可以看到
         })
         // 创建网格（也叫创建物体）

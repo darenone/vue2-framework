@@ -349,16 +349,16 @@ gui.addColor(colorParams, 'cubeColor').name('立方体颜色').onChange(val => {
 ```js
 // 创建几何体
 const geometry = new THREE.BufferGeometry()
-// 创建顶点数据（一个几何体有32个顶点，顶点是有顺序的(逆时针方向)，每3个为一个顶点，逆时针为正面）
-        const vertices = new Float32Array([
-          -1.0, -1.0, 0.0, // 一个顶点的xyz坐标
-          1.0, -1.0, 0.0,
-          1.0, 1.0, 0.0,
+// 创建顶点数据（一个几何体有24个顶点，顶点是有顺序的(逆时针方向)，每3个为一个顶点，逆时针为正面）
+const vertices = new Float32Array([
+  -1.0, -1.0, 0.0, // 一个顶点的xyz坐标
+  1.0, -1.0, 0.0,
+  1.0, 1.0, 0.0,
 
-          1.0, 1.0, 0,
-          -1.0, 1.0, 0,
-          -1.0, -1.0, 0
-        ])
+  1.0, 1.0, 0,
+  -1.0, 1.0, 0,
+  -1.0, -1.0, 0
+])
 // 创建顶点属性
 // 3代表，Float32Array参数数组里声明3个数值为一个顶点数据
 geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
@@ -369,7 +369,7 @@ const material = new THREE.MeshBasicMaterial({
 })
 const cube = new THREE.Mesh(geometry, material)
 this.scene.add(cube)
-// ... 省略的代码和创建立方体代码一直
+// ... 省略的代码和创建立方体代码一致
 ```
 
 效果如下：
@@ -406,6 +406,37 @@ this.scene.add(cube)
 
 ## 八、几何体划分顶点组设置不同材质
 
+接上面的代码：
+
+```js
+const geometry = new THREE.BufferGeometry()
+const vertices = new Float32Array([
+  -1.0, -1.0, 0.0, // 索引0
+  1.0, -1.0, 0.0, // 索引1
+  1.0, 1.0, 0.0, // 索引2
+  -1.0, 1.0, 0 // 索引3
+])
+geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
+const indices = new Uint16Array([0, 1, 2, 2, 3, 0])
+geometry.setIndex(new THREE.BufferAttribute(indices, 1))
+// 设置2个顶点组，形成2个材质
+// addGroup(start, count, materialIndex)
+// 参数解读：从0索引开始，添加3个顶点，用的第1个材质
+geometry.addGroup(0, 3, 0)
+geometry.addGroup(3, 3, 1) // 从3索引开始，添加3个顶点，用第2个材质
+// 创建2个材质
+const material = new THREE.MeshBasicMaterial({
+  color: 'red',
+  side: THREE.DoubleSide // 正反面都可以看到
+  // wireframe: true
+})
+const material1 = new THREE.MeshBasicMaterial({
+  color: 0x00ff00,
+  side: THREE.DoubleSide // 正反面都可以看到
+})
+// 创建立方体
+const cube = new THREE.Mesh(geometry, [material, material1])
+```
 
 
 
