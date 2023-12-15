@@ -1,3 +1,4 @@
+// 设置rem函数
 (function flexible(window, document) {
   var docEl = document.documentElement
   var dpr = window.devicePixelRatio || 1

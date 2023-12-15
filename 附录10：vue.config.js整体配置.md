@@ -199,11 +199,9 @@ module.exports = {
 
 ## 二、第二种配置
 
-> 本项目采用第二种配置
+> 现在项目里的`vue.config.js`就是用的最新的配置
 
-没有配置前：
-
-`package.json`
+没有配置前的`package.json`如下，这个也是利用`vue ui`命令创建项目模板时的原始样子：
 
 ```json
 {
@@ -277,7 +275,7 @@ module.exports = {
   "main": ".eslintrc.js"
 }
 ```
-`vue.config.js`
+`vue.config.js`原始的样子：
 
 ```js
 const { defineConfig } = require('@vue/cli-service')
@@ -325,7 +323,7 @@ module.exports = defineConfig({
 })
 ```
 
-比第一种配置多了一个`node-polyfill-webpack-plugin`插件，去掉`speed-measure-webpack-plugin`插件
+这种配置比第一种配置多了一个`node-polyfill-webpack-plugin`插件，但是去掉`speed-measure-webpack-plugin`插件
 
 1. `terser-webpack-plugin`
 2. `compression-webpack-plugin`
@@ -338,7 +336,6 @@ npm install node-polyfill-webpack-plugin@2.0.1 -D
 npm install thread-loader@3.0.4 -D
 ```
 
-然后配置`vue.confi.js`，具体见文件：[vue.config.js](vue.config.js)，打包完后的效果如图：
+完整的配置见文件：[vue.config.js](vue.config.js)，按照这样的配置，打包完后的效果如图：
 
 ![资料\图片\第二种配置方式打包后的结果.png](资料\图片\第二种配置方式打包后的结果.png)
-
