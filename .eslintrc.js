@@ -24,6 +24,7 @@ module.exports = {
       // 多行时，第一属性前必须使用换行符
       multiline: 'below'
     }],
+    'complexity': ['warn', { 'max': 15 }], // 圈复杂度配置
     'vue/max-attributes-per-line': [2, {
       'singleline': 10,
       'multiline': {
