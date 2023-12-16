@@ -982,17 +982,23 @@
 }
 
 // 顶部导航栏
-.main-header .logo {
-  @include background_image('headerLeftBgImg')
+.main-header {
+  @include background_image('headerBgImg');
+  background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
-.main-header .main-nav {
-  @include background_image('headerCenterBgImg')
-}
+// .main-header .logo {
+//   @include background_image('headerLeftBgImg')
+// }
 
-.main-header .userinfo {
-  @include background_image('headerRightBgImg')
-}
+// .main-header .main-nav {
+//   @include background_image('headerCenterBgImg')
+// }
+
+// .main-header .userinfo {
+//   @include background_image('headerRightBgImg')
+// }
 
 .userinfo .el-menu--horizontal>.el-menu-item.is-active,
 .userinfo .el-menu--horizontal>.el-submenu.is-active .el-submenu__title {

@@ -31,11 +31,15 @@ $darkTheme: (
   //footer图片
   footerBg: '../img/footerbg.png',
   // 菜单首页按钮背景
-  menuHomeBtnBg:'~@/assets/img/home/home_dark_dft.png',
-  menuHomeBtnBgActive:'~@/assets/img/home/home_dark_on.png',
+  // menuHomeBtnBg:'~@/assets/img/home/home_dark_dft.png',
+  menuHomeBtnBg:'~@/assets/img/scale/btn_dark.png',
+  // menuHomeBtnBgActive:'~@/assets/img/home/home_dark_on.png',
+  menuHomeBtnBgActive:'~@/assets/img/scale/btn_dark_on.png',
   // 菜单设备管理按钮背景
-  menuDeviceBtnBg:'~@/assets/img/home/xt_dark_dft.png',
-  menuDeviceBtnBgActive:'~@/assets/img/home/xt_dark_on.png',
+  // menuDeviceBtnBg:'~@/assets/img/home/xt_dark_dft.png',
+  menuDeviceBtnBg:'~@/assets/img/scale/btn_dark.png',
+  // menuDeviceBtnBgActive:'~@/assets/img/home/xt_dark_on.png',
+  menuDeviceBtnBgActive:'~@/assets/img/scale/btn_dark_on.png',
   //暂无数据颜色
   nodataText:#21489B,
 
@@ -106,9 +110,10 @@ $darkTheme: (
   /*面包导航样式*/ breadcrumbFontColor: #56D6FF,
 
   /**顶部header配置颜色*/ // header背景
-  headerRightBgImg: '../img/scale/dark_header_right.png',
-  headerCenterBgImg: '../img/scale/dark_header_center.png',
-  headerLeftBgImg: '../img/scale/dark_header_left.png',
+  // headerRightBgImg: '../img/scale/dark_header_right.png',
+  // headerCenterBgImg: '../img/scale/dark_header_center.png',
+  // headerLeftBgImg: '../img/scale/dark_header_left.png',
+  headerBgImg: '~@/assets/img/scale/dark_header.png',
   //菜单下拉背景
   menuDownBg: #071335,
   //下拉选中背景

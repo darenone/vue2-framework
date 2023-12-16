@@ -5,22 +5,22 @@
       <el-header class="headerHeight">
         <div class="main-header flex align-center">
           <div class="logo flex align-center" style="min-width: 200px" @click="$router.push('/')">
-            <div class="sysLogo flex-1" style="margin-right:30px;" />
-            <span class="home_btn" :class="$route.name === 'HOME'?'homeActive':''">{{ $t('HOME') }}</span>
+            <div class="sysLogo flex-1 flex" />
+            <span class="home_btn" :class="$route.name === 'HOME' ? 'homeActive':''">{{ $t('HOME') }}</span>
           </div>
-          <div class="main-nav flex-1 relative pl-20 pr-20">
+          <div class="main-nav relative pl-20 pr-20">
             <span class="arrow-left absolute">
               <i
                 v-if="!around"
                 class="el-icon-arrow-left arrow"
-                @click="arrowLeft"
+                @click="scrollX('left')"
               />
             </span>
             <span class="arrow-right absolute">
               <i
                 v-if="!around"
                 class="el-icon-arrow-right arrow"
-                @click="arrowRight"
+                @click="scrollX('right')"
               />
             </span>
             <div class="w-100 flex overflow-hidden">
@@ -123,11 +123,18 @@
           this.bs.refresh()
         })
       },
-      arrowLeft() {
-        this.bs.scrollTo(this.bs.minScrollX, 0, 300)
-      },
-      arrowRight() {
-        this.bs.scrollTo(this.bs.maxScrollX, 0, 300)
+      scrollX(side) {
+        const totalWidth = parseInt(this.$refs.topNavMenu.$el.style.width)
+        const item = parseInt(totalWidth / this.getMenu.length)
+        let xNum = 0
+        if (side === 'right') {
+          xNum = this.bs.x - item
+          xNum = xNum < this.bs.maxScrollX ? this.bs.maxScrollX : xNum
+        } else {
+          xNum = this.bs.x + item
+          xNum = xNum > 0 ? 0 : xNum
+        }
+        this.bs.scrollTo(xNum, 0, 300)
       },
       getScale() {
         clearTimeout(this.Timer)
@@ -203,19 +210,24 @@
     width: 20%;
     height: 100%;
     padding:0 2% 10px 15px;
-    background-image: url('../../../assets/img/scale/blue_header_left.png');
+    // background-image: url('../../../assets/img/scale/blue_header_left.png');
     background-size: 100% 100%;
     cursor: pointer;
+    .sysLogo{
+      background-size: 70%;
+      height: 100%;
+    }
   }
   .home_btn,
   .device_btn{
     width:133px;
     height:35px;
     line-height: 35px;
+    font-size:14px;
     text-align: center;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: contain;
     @include themeify {
       color:themed('menuFontColor');
     }
@@ -225,7 +237,6 @@
       background-image: url(themed('menuHomeBtnBg'));
     }
     &.homeActive{
-      color:#fff;
       @include themeify {
         background-image: url(themed('menuHomeBtnBgActive'));
       }
@@ -239,10 +250,10 @@
     }
   }
   .userinfo {
-    width: 20%;
+    width: 18%;
     height: 100%;
     float: right;
-    background-image: url('../../../assets/img/scale/blue_header_right.png');
+    // background-image: url('../../../assets/img/scale/blue_header_right.png');
     background-size: 100% 100%;
     .el-avatar{
       @include themeify {
@@ -280,7 +291,7 @@
   .main-nav {
     flex: 1;
     height: 100%;
-    background-image: url('../../../assets/img/scale/blue_header_center.png');
+    // background-image: url('../../../assets/img/scale/blue_header_center.png');
     background-size: 100% 100%;
     overflow: hidden;
     display: flex;
@@ -300,7 +311,7 @@
     .arrow-right{
       right:0;
     }
-    > .el-menu {
+    >.el-menu {
       height: 60px;
       text-align: center;
       .el-submenu__title i {

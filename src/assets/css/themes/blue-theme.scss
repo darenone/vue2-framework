@@ -30,11 +30,15 @@ $blueTheme: (
   //footer图片
   footerBg: '../img/blue_footer.png',
   // 菜单首页按钮背景
-  menuHomeBtnBg:'~@/assets/img/home/home_bleu_dft.png',
-  menuHomeBtnBgActive:'~@/assets/img/home/home_blue_on.png',
+  // menuHomeBtnBg:'~@/assets/img/home/home_bleu_dft.png',
+  menuHomeBtnBg:'~@/assets/img/scale/btn_blue.png',
+  // menuHomeBtnBgActive:'~@/assets/img/home/home_blue_on.png',
+  menuHomeBtnBgActive:'~@/assets/img/scale/btn_blue_on.png',
   // 菜单设备管理按钮背景
-  menuDeviceBtnBg:'~@/assets/img/home/xt_bleu_dft.png',
-  menuDeviceBtnBgActive:'~@/assets/img/home/xt_bleu_on.png',
+  // menuDeviceBtnBg:'~@/assets/img/home/xt_bleu_dft.png',
+  menuDeviceBtnBg:'~@/assets/img/scale/btn_blue.png',
+  // menuDeviceBtnBgActive:'~@/assets/img/home/xt_bleu_on.png',
+  menuDeviceBtnBgActive:'~@/assets/img/scale/btn_blue_on.png',
   //暂无数据颜色
   nodataText:#AAA8A8,
 
@@ -104,9 +108,10 @@ $blueTheme: (
   /*面包导航样式*/ breadcrumbFontColor: #C5EAFF,
 
   /**顶部header配置颜色*/ // header背景
-  headerRightBgImg: '../img/scale/blue_header_right.png',
-  headerCenterBgImg: '../img/scale/blue_header_center.png',
-  headerLeftBgImg: '../img/scale/blue_header_left.png',
+  // headerRightBgImg: '../img/scale/blue_header_right.png',
+  // headerCenterBgImg: '../img/scale/blue_header_center.png',
+  // headerLeftBgImg: '../img/scale/blue_header_left.png',
+  headerBgImg: '~@/assets/img/scale/blue_header.png',
   //菜单下拉背景
   menuDownBg: #124680,
   //下拉选中背景
