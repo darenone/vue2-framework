@@ -30,11 +30,11 @@ $greenTheme: (
   //footer图片
   footerBg: '../img/green_footer.png',
   // 菜单首页按钮背景
-  menuHomeBtnBg:'~@/assets/img/home/home_green_dft.png',
-  menuHomeBtnBgActive:'~@/assets/img/home/home_green_on.png',
+  menuHomeBtnBg:'~@/assets/img/scale/btn_green.png',
+  menuHomeBtnBgActive:'~@/assets/img/scale/btn_green_on.png',
   // 菜单设备管理按钮背景
-  menuDeviceBtnBg:'~@/assets/img/home/xt_green_dft.png',
-  menuDeviceBtnBgActive:'~@/assets/img/home/xt_green_on.png',
+  menuDeviceBtnBg:'~@/assets/img/scale/btn_green.png',
+  menuDeviceBtnBgActive:'~@/assets/img/scale/btn_green_on.png',
   //暂无数据颜色
   nodataText:#AAA8A8,
 
@@ -104,9 +104,10 @@ $greenTheme: (
   /*面包导航样式*/ breadcrumbFontColor: #B5F7E7,
 
   /**顶部header配置颜色*/ // header背景
-  headerRightBgImg: '../img/scale/green_header_right.png',
-  headerCenterBgImg: '../img/scale/green_header_center.png',
-  headerLeftBgImg: '../img/scale/green_header_left.png',
+  // headerRightBgImg: '../img/scale/green_header_right.png',
+  // headerCenterBgImg: '../img/scale/green_header_center.png',
+  // headerLeftBgImg: '../img/scale/green_header_left.png',
+  headerBgImg: '~@/assets/img/scale/green_header.png',
   //菜单下拉背景
   menuDownBg: #009687,
   //下拉选中背景

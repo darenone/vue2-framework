@@ -2,7 +2,7 @@
 
 位置：File->Preferences->Settings->settings.json
 
-```
+```json
 {
     "[vue]": {
         "editor.defaultFormatter": "octref.vetur"

@@ -1,6 +1,7 @@
+// 设置rem函数
 (function flexible(window, document) {
   var docEl = document.documentElement
-  var dpr = window.devicePixelRatio || 1
+  var dpr = window.devicePixelRatio || 1 // 设备像素比（物理像素/逻辑像素）
 
   // adjust body font size
   function setBodyFontSize() {

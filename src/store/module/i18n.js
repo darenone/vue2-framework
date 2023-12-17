@@ -38,6 +38,7 @@ export default {
           i18n.setLocaleMessage(key, { ...i18n.messages[key], ...modules[key] })
         }
       }
+      // 以下是通过接口获取存在服务器上的国际化数据
       // I18nApi.allMap().then(res => {
       //   commit('SET_LANDATA', res)
       //   // console.log(res)

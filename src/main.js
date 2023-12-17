@@ -7,6 +7,7 @@ import $http from './service/http'
 import config from '@/config'
 import i18n from '@/i18n'
 import '@/lib/flexible'
+import mixin from '@/lib/mixin'
 import '@/assets/js/elementui'
 import '@/assets/css/index.scss'
 if (process.env.NODE_ENV !== 'production') {
@@ -17,7 +18,7 @@ Vue.config.productionTip = false
 Vue.prototype.$bus = Bus // 使用总线
 Vue.prototype.$config = config
 Vue.use($http)
-
+Vue.mixin(mixin)
 const vue = new Vue({
   router,
   store,

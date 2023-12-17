@@ -30,11 +30,11 @@ $redTheme: (
   //footer图片
   footerBg: '~@/assets/img/red_footer.png',
   // 菜单首页按钮背景
-  menuHomeBtnBg:'~@/assets/img/home/home_red_dft.png',
-  menuHomeBtnBgActive:'~@/assets/img/home/home_red_on.png',
+  menuHomeBtnBg:'~@/assets/img/scale/btn_red.png',
+  menuHomeBtnBgActive:'~@/assets/img/scale/btn_red_on.png',
   // 菜单设备管理按钮背景
-  menuDeviceBtnBg:'~@/assets/img/home/xt_red_dft.png',
-  menuDeviceBtnBgActive:'~@/assets/img/home/xt_red_on.png',
+  menuDeviceBtnBg:'~@/assets/img/scale/btn_red.png',
+  menuDeviceBtnBgActive:'~@/assets/img/scale/btn_red_on.png',
   //暂无数据颜色
   nodataText:#AAA8A8,
 
@@ -104,9 +104,10 @@ $redTheme: (
   /*面包导航样式*/ breadcrumbFontColor: #FFD4CE,
 
   /**顶部header配置颜色*/ // header背景
-  headerRightBgImg: '../img/scale/red_header_right.png',
-  headerCenterBgImg: '../img/scale/red_header_center.png',
-  headerLeftBgImg: '../img/scale/red_header_left.png',
+  // headerRightBgImg: '../img/scale/red_header_right.png',
+  // headerCenterBgImg: '../img/scale/red_header_center.png',
+  // headerLeftBgImg: '../img/scale/red_header_left.png',
+  headerBgImg: '~@/assets/img/scale/red_header.png',
   //菜单下拉背景
   menuDownBg: #5e0707,
   //下拉选中背景
