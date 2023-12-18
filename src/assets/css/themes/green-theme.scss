@@ -10,6 +10,7 @@ $greenTheme: (
   boxshadow: #fff,
   // 边框颜色
   borderColor: #DCDCDC,
+  radioBorder: transparent,
   // 补充背景颜色
   bgOtherColor:#f5f4f4,
   //四个角颜色
@@ -88,7 +89,7 @@ $greenTheme: (
 
   /**tabs配置颜色*/ 
   // tab选中背景颜色
-  tabsActiveBgColor: #23B27F,
+  tabsActiveBgColor: #059F87,
   tabsNavActiveBgColor: linear-gradient(180deg, rgba(130, 237, 221, 0.00) 0%, #33E2C2 100%),
   // tab未选中背景颜色
   tabsBgColor: #e6edfd,
@@ -120,12 +121,13 @@ $greenTheme: (
   /**按钮配色*/ // 按钮字体颜色
   btnFontColor: #ccffff,
   //取消按钮字体颜色
-  btnCanleFontColor: #23B27F,
+  btnCanleFontColor: #777777,
   //弹窗里操作特殊按钮字体颜色
   btnTcFontColor: #23B27F,
   //取消按钮背景颜色
   btnCanleBgColor1: #fff,
   btnCanleBgColor2: #fff,
+  btnCanleBdColor:#DCDCDC,
   // 普通按钮背景颜色
   btnBgColor: #23B27F,
   // 按钮渐变背景
@@ -134,6 +136,10 @@ $greenTheme: (
   btnBgColor3: rgba(35, 178, 127, 0.9),
   // 按钮边框颜色
   btnBorderColor: #23B27F,
+  //默认禁用
+  btnClickDisabledColor:#FFFFFF,
+  btnClickDisabledBgColor:#7BD1B2,
+  btnClickDisabledBdColor:#7BD1B2,
 
   /**分页样式颜色*/ //当前选中颜色
   pageActiveBgColor: #23B27F,
@@ -159,9 +165,9 @@ $greenTheme: (
 
   // 备用通道详情collapse样式
   // 字体颜色
-  collapseHeaderFontColor: #333,
+  collapseHeaderFontColor: #fff,
   //背景
-  collapseHeaderBgColor: #fff,
+  collapseHeaderBgColor: linear-gradient(to right, #059F87 0%, #fff 100%),
   //边框颜色
   collapseBorderColor: #999,
 
@@ -291,7 +297,8 @@ $greenTheme: (
   homeGridTitleBg: '~@/assets/img/home/title-bg-green.png',
   homeGridbg: rgba(255, 255, 255, 0.95),
   homeGridborder: rgba(255, 255, 255, 0.9),
-  homeAxisText: rgba(102, 102, 102, 0.5),
+  homeAxisText: #222222,
+  homeAxisLine: #AAAAAA,
   homeAxisSplitLine: rgba(170, 170, 170, 0.2),
   homeTooltipBg: rgba(255, 255, 255, 0.9),
   homeTooltipBorderColor: transparent,
@@ -308,11 +315,13 @@ $greenTheme: (
   gisTitleColor: #777777,
   gisValueColor: #000000,
 
+  topBtnBg: #23B27F,
   topBtnDeactive: #D7ECE5,
   topBtnDeactiveColor: #23B27F,
   topBtnBorder: #D7ECE5,
   topBtnActiveBorder: #23B27F,
   topBtnShadow: transparent,
 
-  // 下拉选择样式
+  // 显示列标签标题背景色
+  columnsConfigureTitleBgColor:#23B27F
 );

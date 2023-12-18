@@ -10,6 +10,7 @@ $blueTheme: (
   boxshadow: #fff,
   // 边框颜色
   borderColor: #DCDCDC,
+  radioBorder: transparent,
   // 补充背景颜色
   bgOtherColor:#f5f4f4,
   //四个角颜色
@@ -30,14 +31,10 @@ $blueTheme: (
   //footer图片
   footerBg: '../img/blue_footer.png',
   // 菜单首页按钮背景
-  // menuHomeBtnBg:'~@/assets/img/home/home_bleu_dft.png',
   menuHomeBtnBg:'~@/assets/img/scale/btn_blue.png',
-  // menuHomeBtnBgActive:'~@/assets/img/home/home_blue_on.png',
   menuHomeBtnBgActive:'~@/assets/img/scale/btn_blue_on.png',
   // 菜单设备管理按钮背景
-  // menuDeviceBtnBg:'~@/assets/img/home/xt_bleu_dft.png',
   menuDeviceBtnBg:'~@/assets/img/scale/btn_blue.png',
-  // menuDeviceBtnBgActive:'~@/assets/img/home/xt_bleu_on.png',
   menuDeviceBtnBgActive:'~@/assets/img/scale/btn_blue_on.png',
   //暂无数据颜色
   nodataText:#AAA8A8,
@@ -92,7 +89,7 @@ $blueTheme: (
 
   /**tabs配置颜色*/ 
   // tab选中背景颜色
-  tabsActiveBgColor: #4588E1,
+  tabsActiveBgColor: #3B71D5,
   tabsNavActiveBgColor: linear-gradient(180deg, rgba(125, 201, 255, 0.00) 0%, #7DC9FF 100%),
   // tab未选中背景颜色
   tabsBgColor: #e6edfd,
@@ -124,12 +121,13 @@ $blueTheme: (
   /**按钮配色*/ // 按钮字体颜色
   btnFontColor: #fff,
   //取消按钮字体颜色
-  btnCanleFontColor: #4588E1,
+  btnCanleFontColor: #777777,
   //弹窗里操作特殊按钮字体颜色
   btnTcFontColor: #4588E1,
   //取消按钮背景颜色
   btnCanleBgColor1: #fff,
   btnCanleBgColor2: #fff,
+  btnCanleBdColor:#DCDCDC,
   // 普通按钮背景颜色
   btnBgColor: #4588E1,
   // 按钮渐变背景
@@ -138,6 +136,10 @@ $blueTheme: (
   btnBgColor3: rgba(69, 136, 225, 0.9),
   // 按钮边框颜色
   btnBorderColor: #4588E1,
+  //默认禁用
+  btnClickDisabledColor:#FFFFFF,
+  btnClickDisabledBgColor:#74B2FA,
+  btnClickDisabledBdColor:#74B2FA,
 
   /**分页样式颜色*/ //当前选中颜色
   pageActiveBgColor: #4588E1,
@@ -163,9 +165,9 @@ $blueTheme: (
 
   // 备用通道详情collapse样式
   // 字体颜色
-  collapseHeaderFontColor: #333,
+  collapseHeaderFontColor: #fff,
   //背景
-  collapseHeaderBgColor: #fff,
+  collapseHeaderBgColor: linear-gradient(to right, #3B71D5 0%, #fff 100%),
   //边框颜色
   collapseBorderColor: #999,
 
@@ -294,12 +296,13 @@ $blueTheme: (
   homeGridTitleBg: '~@/assets/img/home/title-bg-blue.png',
   homeGridbg: rgba(255, 255, 255, 0.95),
   homeGridborder: rgba(255, 255, 255, 0.9),
-  homeAxisText: rgba(102, 102, 102, 0.5),
+  homeAxisText: #222222,
+  homeAxisLine: #AAAAAA,
   homeAxisSplitLine: rgba(170, 170, 170, 0.2),
   homeTooltipBg: rgba(255, 255, 255, 0.9),
   homeTooltipBorderColor: transparent,
   homeTooltipTextColor: rgba(102, 102, 102, 1),
-  homeTooltipShadow: rgba(0, 0, 0, 0.15),
+  homeTooltipShadow: rgba(80, 47, 47, 0.15),
   homeTooltipShadowSide: '',
   homeSelectBorder: transparent,
   homeSelectBg: rgba(237, 237, 237, 1),
@@ -312,9 +315,12 @@ $blueTheme: (
   gisTitleColor: #777777,
   gisValueColor: #000000,
 
+  topBtnBg: #4588E1,
   topBtnDeactive: #CCDFF9,
   topBtnDeactiveColor: #4588E1,
   topBtnBorder: #CCDFF9,
   topBtnActiveBorder: #4588E1,
   topBtnShadow: transparent,
+  // 显示列标签标题背景色
+  columnsConfigureTitleBgColor:#4588E1
 );

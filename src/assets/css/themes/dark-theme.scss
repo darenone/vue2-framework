@@ -11,6 +11,7 @@ $darkTheme: (
   boxshadow: #122f85,
   // 边框颜色
   borderColor: #2E5A87,
+  radioBorder: #2E5A87,
   // 补充背景颜色
   bgOtherColor:#0b1e5b,
   //四个角颜色
@@ -31,14 +32,10 @@ $darkTheme: (
   //footer图片
   footerBg: '../img/footerbg.png',
   // 菜单首页按钮背景
-  // menuHomeBtnBg:'~@/assets/img/home/home_dark_dft.png',
   menuHomeBtnBg:'~@/assets/img/scale/btn_dark.png',
-  // menuHomeBtnBgActive:'~@/assets/img/home/home_dark_on.png',
   menuHomeBtnBgActive:'~@/assets/img/scale/btn_dark_on.png',
   // 菜单设备管理按钮背景
-  // menuDeviceBtnBg:'~@/assets/img/home/xt_dark_dft.png',
   menuDeviceBtnBg:'~@/assets/img/scale/btn_dark.png',
-  // menuDeviceBtnBgActive:'~@/assets/img/home/xt_dark_on.png',
   menuDeviceBtnBgActive:'~@/assets/img/scale/btn_dark_on.png',
   //暂无数据颜色
   nodataText:#21489B,
@@ -126,12 +123,13 @@ $darkTheme: (
   /**按钮配色*/ // 按钮字体颜色
   btnFontColor: #a2e4ff,
   //取消按钮字体颜色
-  btnCanleFontColor: #000,
+  btnCanleFontColor: #43B0FF,
   //弹窗里操作特殊按钮字体颜色
   btnTcFontColor: #a2e4ff,
   //取消按钮背景颜色
-  btnCanleBgColor1: #a1c4fd,
-  btnCanleBgColor2: #c2e9fb,
+  btnCanleBgColor1:linear-gradient(180deg, #152F8A 0%, #06103B 50.8%, #152F8A 100%),
+  btnCanleBgColor2:#C2E9FB,
+  btnCanleBdColor:#3684CD,
   // 普通按钮背景颜色
   btnBgColor: #426ae7,
   // 按钮渐变背景
@@ -140,6 +138,10 @@ $darkTheme: (
   btnBgColor3: #1d48ae,
   // 按钮边框颜色
   btnBorderColor: #2293c2,
+  //默认禁用
+  btnClickDisabledColor:#3374CC,
+  btnClickDisabledBgColor:#09164A,
+  btnClickDisabledBdColor:#1A306A,
 
   /**分页样式颜色*/ //当前选中颜色
   pageActiveBgColor: #122f85,
@@ -167,7 +169,7 @@ $darkTheme: (
   // 字体颜色
   collapseHeaderFontColor: #fff,
   //背景
-  collapseHeaderBgColor: #122f85,
+  collapseHeaderBgColor: linear-gradient(to right, #043B7F 0%, #031531 100%),
   //边框颜色
   collapseBorderColor: #303b5d,
 
@@ -295,9 +297,10 @@ $darkTheme: (
   // 首页统计图样式配置
   homeGridTitle: #DDECF4,
   homeGridTitleBg: '~@/assets/img/home/title-bg-dark.png',
-  homeGridbg: rgba(4, 19, 74, 0.8),
+  homeGridbg: rgba(4, 19, 74, 0.9),
   homeGridborder: #2665AF,
-  homeAxisText: rgba(51, 116, 204, 1),
+  homeAxisText: #EAF5FF,
+  homeAxisLine: #3374CC,
   homeAxisSplitLine: rgba(51, 116, 204, 0.2),
   homeTooltipBg: rgba(9, 29, 99, 0.8),
   homeTooltipBorderColor: rgba(37, 108, 191, 1),
@@ -307,7 +310,7 @@ $darkTheme: (
   homeSelectBorder: rgba(52, 101, 149, 1),
   homeSelectBg: transparent,
   homeSelectColor: rgba(52, 101, 149, 1),
-  homeAlarmBg: rgba(4, 19, 74, 0.7),
+  homeAlarmBg: rgba(4, 19, 74, 0.9),
   homeRangeBg: rgba(52, 101, 149, 0.4),
   homeRangeColor: rgba(51, 116, 204, 1),
 
@@ -315,9 +318,13 @@ $darkTheme: (
   gisTitleColor: #56D6FF,
   gisValueColor: #DDECF4,
 
-  topBtnDeactive: rgba(1, 80, 198, 0.8),
+  topBtnBg: rgba(1, 80, 198, 0.8),
+  topBtnDeactive: #122f85,
   topBtnDeactiveColor: #fff,
-  topBtnBorder: #47EDFA,
-  topBtnActiveBorder: #2293c2,
+  topBtnBorder: #2293c2,
+  topBtnActiveBorder: #47EDFA,
   topBtnShadow: #43FFF4,
+
+  // 显示列标签标题背景色
+  columnsConfigureTitleBgColor:#3684CD
 );                

@@ -49,22 +49,22 @@ export default [
     ]
   },
   {
-    funcName: '链路调测',
+    funcName: 'VUE组件封装',
     funcId: '20220309143342',
     funcType: 'DIR',
     display: true,
-    enName: 'MENU_LINK_MANAGER',
+    enName: 'MENU_VUE_COM',
     parentId: '20220309143206',
     path: '',
     sysId: 'AFS_OEN',
     icon: 'el-icon-eleme',
     children: [
       {
-        funcName: '手动检测',
+        funcName: 'Table封装',
         funcId: '20220309144535',
         funcType: 'MENU',
         display: true,
-        enName: 'MENU_LINK_DETECT',
+        enName: 'MENU_TABLE_COM',
         parentId: '20220309143342',
         path: '/link/detect',
         sysId: 'AFS_OEN',

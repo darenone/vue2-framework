@@ -16,7 +16,7 @@ export default {
       if (callNow) func.apply(context, args)
     },
     // echarts等地方需要动态改变字体大小，传入目标字体大小
-    $resetSize(px) {
+    resetSize(px) {
       const clientWidth = window.innerWidth || document.body.clientWidth // 屏幕尺寸
       if (!clientWidth) { return 0 }
       const fontSize = clientWidth / 1920

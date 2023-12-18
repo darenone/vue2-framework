@@ -10,6 +10,7 @@ $redTheme: (
   boxshadow: #fff,
   // 边框颜色
   borderColor: #DCDCDC,
+  radioBorder: transparent,
   // 补充背景颜色
   bgOtherColor:#f5f4f4,
   //四个角颜色
@@ -88,7 +89,7 @@ $redTheme: (
 
   /**tabs配置颜色*/ 
   // tab选中背景颜色
-  tabsActiveBgColor: #D04324,
+  tabsActiveBgColor: #A33327,
   tabsNavActiveBgColor: linear-gradient(180deg, rgba(225, 101, 82, 0.00) 0%, #E16552 100%),
   // tab未选中背景颜色
   tabsBgColor: #e6edfd,
@@ -120,12 +121,13 @@ $redTheme: (
   /**按钮配色*/ // 按钮字体颜色
   btnFontColor: #fff,
   //取消按钮字体颜色
-  btnCanleFontColor: #D04324,
+  btnCanleFontColor: #777777,
   //弹窗里操作特殊按钮字体颜色
   btnTcFontColor: #D04324,
   //取消按钮背景颜色
   btnCanleBgColor1: #fff,
   btnCanleBgColor2: #fff,
+  btnCanleBdColor:#DCDCDC,
   // 普通按钮背景颜色
   btnBgColor: #D04324,
   // 按钮渐变背景
@@ -134,6 +136,10 @@ $redTheme: (
   btnBgColor3: rgba(208, 67, 36, 0.9),
   // 按钮边框颜色
   btnBorderColor: #D04324,
+  //默认禁用
+  btnClickDisabledColor:#FFFFFF,
+  btnClickDisabledBgColor:#F19682,
+  btnClickDisabledBdColor:#F19682,
 
   /**分页样式颜色*/ //当前选中颜色
   pageActiveBgColor: #D04324,
@@ -159,9 +165,9 @@ $redTheme: (
 
   // 备用通道详情collapse样式
   // 字体颜色
-  collapseHeaderFontColor: #333,
+  collapseHeaderFontColor: #fff,
   //背景
-  collapseHeaderBgColor: #fff,
+  collapseHeaderBgColor:linear-gradient(to right, #A33327 0%, #fff 100%),
   //边框颜色
   collapseBorderColor: #999,
 
@@ -290,7 +296,8 @@ $redTheme: (
   homeGridTitleBg: '~@/assets/img/home/title-bg-red.png',
   homeGridbg: rgba(255, 255, 255, 0.95),
   homeGridborder: rgba(255, 255, 255, 0.9),
-  homeAxisText: rgba(102, 102, 102, 0.8),
+  homeAxisText: #222222,
+  homeAxisLine: #AAAAAA,
   homeAxisSplitLine: rgba(170, 170, 170, 0.2),
   homeTooltipBg: rgba(255, 255, 255, 0.9),
   homeTooltipBorderColor: transparent,
@@ -307,9 +314,13 @@ $redTheme: (
   gisTitleColor: #777777,
   gisValueColor: #000000,
 
+  topBtnBg: #D04324,
   topBtnDeactive: #F6E1DD,
   topBtnDeactiveColor: #D04324,
   topBtnBorder: #F6E1DD,
   topBtnActiveBorder: #D04324,
   topBtnShadow: transparent,
+
+  // 显示列标签标题背景色
+  columnsConfigureTitleBgColor:#D04324
 );
