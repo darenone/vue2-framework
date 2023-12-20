@@ -13,6 +13,10 @@
 9. 最后在页面里调用api：[src\views\module\axios\index.vue](src\views\module\axios\index.vue)
 
 
+get（url传参）
+post(url传参，body传参)
+delete（url传参）
+update（url传参，body传参）
 
 
 

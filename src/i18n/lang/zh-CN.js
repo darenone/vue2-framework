@@ -49,5 +49,19 @@ export default {
   COLUMNS_CONFIGURATION: '显示配置列',
   CANCEL: '取消',
   CONFIRM: '确认',
-  NO_DATA: '暂无数据'
+  NO_DATA: '暂无数据',
+  SERVICE_NAME: '业务名称',
+  BIZ_LEVEL: '业务等级',
+  SERVICE_STATUS: '业务状态',
+  SERVICE_CODE: '业务编码',
+  ANODE: 'A端节点',
+  A_END_NODE_PORT: 'A端节点端口',
+  ZNODE: 'Z端站点',
+  Z_END_NODE_PORT: 'Z端节点端口',
+  IS_RECOVERY_AUTO: '故障后自动恢复',
+  LINK_DETECTION: '恢复前做OTDR检测',
+  BUCKUP_NUM: '别用通道数',
+  CREATION_TIME: '创建时间',
+  OK_YES: '是',
+  OK_NO: '否'
 }

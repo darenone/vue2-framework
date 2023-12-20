@@ -19,6 +19,7 @@
       TableView
     },
     data() {
+      const _this = this
       return {
         pageData: {
           page: 1,
@@ -33,92 +34,111 @@
         },
         tableHeader: [
           {
-            label: 'CABLE_NAME',
-            prop: 'cableName',
-            width: '150',
+            label: 'SERVICE_NAME',
+            prop: 'bizName',
             fixed: 'left',
+            width: 200,
             configType: 'default'
+          },
+          {
+            label: 'BIZ_LEVEL',
+            prop: 'bizLevel',
+            sortable: 'custom',
+            tips: 'BIZ_LEVEL_TIPS',
+            width: 160,
+            configType: 'default',
+            formatter(row) {
+              return row.bizLevel
+            }
+          },
+          {
+            label: 'SERVICE_STATUS',
+            prop: 'bizStatus',
+            width: 120,
+            configType: 'default',
+            formatter(row) {
+              return row.bizStatus
+            }
+          },
+          {
+            label: 'SERVICE_CODE',
+            prop: 'resourceCodeName',
+            width: 200,
+            tips: 'SERVICE_CODE_TIPS',
+            configType: 'extend'
           },
           {
             label: 'A_END_STATION_NAME',
             prop: 'startStationName',
-            width: '150'
+            width: 200
           },
           {
-            label: 'A_END_ROOM_NAME',
-            prop: 'startRoomName',
+            label: 'ANODE',
+            prop: 'startNode.nodeName',
+            width: 200
+          },
+          {
+            label: 'A_END_NODE_PORT',
+            prop: 'startPortbizName',
+            width: 260,
+            formatter(row) {
+              return row.bizChannelList
+                .map(i => (i.startPort ? i.startPort.bizName : ''))
+                .join('/')
+            }
+          },
+          {
+            label: 'Z_END_STATION',
+            prop: 'endStationName',
+            width: 200
+          },
+          {
+            label: 'ZNODE',
+            prop: 'endNode.nodeName',
+            width: 200
+          },
+          {
+            label: 'Z_END_NODE_PORT',
+            prop: 'endPortbizName',
+            width: 260,
+            formatter(row) {
+              return row.bizChannelList
+                .map(i => (i.endPort ? i.endPort.bizName : ''))
+                .join('/')
+            }
+          },
+          {
+            label: 'IS_RECOVERY_AUTO',
+            prop: 'isAutoRestore',
+            width: 150,
+            tips: 'IS_RECOVERY_AUTO_TIPS',
+            formatter(row) {
+              return row.isAutoRestore ? _this.$t('OK_YES') : _this.$t('OK_NO')
+            },
             configType: 'extend'
           },
           {
-            label: 'Z_END_STATION_NAME',
-            prop: 'endStationName'
-          },
-          {
-            label: 'Z_END_ROOM_NAME',
-            prop: 'endRoomName',
+            label: 'LINK_DETECTION',
+            prop: 'isOtdrTest',
+            width: 170,
+            tips: 'LINK_DETECTION_TIPS',
+            formatter(row) {
+              return row.isOtdrTest ? _this.$t('OK_YES') : _this.$t('OK_NO')
+            },
             configType: 'extend'
           },
           {
-            label: 'CABLE_LEVEL',
-            prop: 'cableLevelText'
-          },
-          {
-            label: 'CABLE_TYPE',
-            prop: 'cableTypeText',
-            width: '100'
-          },
-          {
-            label: 'CABLE_SPE',
-            prop: 'cableNormText'
-          },
-          {
-            label: 'FIBER_CORE_TYPE',
-            prop: 'fiberTypeText'
-          },
-          {
-            label: 'RESOURCE_CODE',
-            prop: 'resourceCode',
-            tips: 'RESOURCE_CODE_TIPS',
-            width: '100'
-          },
-          {
-            label: 'VENDOR',
-            prop: 'company',
+            label: 'BUCKUP_NUM',
+            prop: 'backNumber',
+            width: 140,
+            tips: 'BUCKUP_NUM_TIPS',
             configType: 'extend'
           },
           {
-            label: 'BRAND',
-            prop: 'brand',
-            configType: 'extend'
-          },
-          {
-            label: 'CABLE_MODEL',
-            prop: 'model',
-            configType: 'extend'
-          },
-          {
-            label: 'NOMINAL_CAPACITY',
-            prop: 'capacity'
-          },
-          {
-            label: 'NUMBER_CONNECTED',
-            prop: 'connNum',
-            configType: 'extend'
-          },
-          {
-            label: 'NUMBER_TAKEUP',
-            prop: 'occupyNum',
-            configType: 'extend'
-          },
-          {
-            label: 'NUMBER_IDLE',
-            prop: 'idleNum',
-            configType: 'extend'
-          },
-          {
-            label: 'CABLE_LENGTH',
-            prop: 'cableLength',
-            width: '130'
+            label: 'CREATION_TIME',
+            prop: 'createTime',
+            width: 155,
+            sortable: 'custom'
           }
         ],
         tableData: [],
