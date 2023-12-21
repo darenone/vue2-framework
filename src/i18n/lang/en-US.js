@@ -63,5 +63,6 @@ export default {
   BUCKUP_NUM: 'number of backup',
   CREATION_TIME: 'creation Time',
   OK_YES: 'yes',
-  OK_NO: 'no'
+  OK_NO: 'no',
+  QUERY: 'query'
 }

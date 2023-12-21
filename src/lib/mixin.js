@@ -12,7 +12,7 @@ export default {
       const callNow = !this.debounceTimer // 是否立即执行
       this.debounceTimer = setTimeout(() => {
         this.debounceTimer = null
-      }, 1000)
+      }, 900)
       if (callNow) func.apply(context, args)
     },
     // echarts等地方需要动态改变字体大小，传入目标字体大小

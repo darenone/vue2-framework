@@ -1,6 +1,22 @@
 <template>
   <div class="flex-column">
-    <div class="flex justify-between flex-row-reverse" />
+    <div class="flex justify-between flex-row-reverse">
+      <div class="text-right  flex flex-wrap justify-end">
+        <el-input
+          v-model.trim="queryData.keyword"
+          v-filterCharacter
+          style="width: 200px"
+          class=" mb-10"
+          maxlength="32"
+          clearable
+          :placeholder="$t('SERVICE_NAME') + '/' + $t('SERVICE_CODE')"
+          @keyup.enter.native="$debounce(search)"
+        />
+        <el-button type="primary" class="ml-10 mb-10" @click="$debounce(search)">{{
+          $t('QUERY')
+        }}</el-button>
+      </div>
+    </div>
     <TableView
       :table-header="tableHeader"
       :table-data="tableData"
@@ -12,8 +28,9 @@
   </div>
 </template>
 <script>
+  import bizOpenApi from '@/api/oen/BizOpenApi'
   import TableView from '@/components/element-table/TableView'
-  const searchData = {} // 查询参数 只有点了查询有效
+  let searchData = {} // 查询参数 只有点了查询有效
   export default {
     components: {
       TableView
@@ -177,12 +194,16 @@
           ...{ page: this.pageData }
         }
         console.log('queryData', queryData)
-        // cableApi.queryPage(queryData).then(res => {
-        //   const list = res.list || []
-        //   this.reload(list)
-        //   console.log('this.tableData', this.tableData)
-        //   this.pageData.total = res.total
-        // })
+        bizOpenApi.queryPage(queryData, this.pageData).then(res => {
+          console.log(res)
+        })
+      },
+      // 关键字搜索
+      search() {
+        this.pageData.page = 1
+        this.queryData.keyword = this.queryData.keyword.trim()
+        searchData = { ...this.queryData }
+        this.loadData()
       },
       pageChange(data) {
         this.pageData = data

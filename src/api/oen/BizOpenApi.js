@@ -1,4 +1,5 @@
 import axios from 'axios'
+import vm from '@/main.js'
 import BaseApi from '@/api/BaseApi'
 import config from '@/config'
 
@@ -27,7 +28,7 @@ export default class extends BaseApi {
 
   // 获取列表
   static queryPage(params, page) {
-    return axios.post(`${this.basePath()}/queryPage`, params, { params: page })
+    return vm.$http.postJson(`${this.basePath()}/queryPage`, params, { params: page })
   }
 
   // 恢复
