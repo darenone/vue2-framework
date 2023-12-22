@@ -45,6 +45,7 @@
         },
         queryData: {
           keyword: '',
+          bizStatus: '',
           startStationIdList: [],
           endStationIdList: [],
           stationIdList: []
@@ -159,7 +160,11 @@
           }
         ],
         tableData: [],
-        rowData: {}
+        rowData: {},
+        sortData: {
+          field: null,
+          type: null
+        }
       }
     },
     methods: {
@@ -188,12 +193,17 @@
           break
         }
       },
+      sortChange(data) {
+        this.sortData = data
+        this.loadData()
+      },
       loadData() {
         const queryData = {
           ...searchData,
-          ...{ page: this.pageData }
+          sort: this.sortData.type ? this.sortData : null
         }
         console.log('queryData', queryData)
+        queryData.bizStatus = queryData.bizStatus || null
         bizOpenApi.queryPage(queryData, this.pageData).then(res => {
           console.log(res)
         })

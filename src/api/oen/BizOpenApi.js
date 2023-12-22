@@ -27,8 +27,9 @@ export default class extends BaseApi {
   }
 
   // 获取列表
-  static queryPage(params, page) {
-    return vm.$http.postJson(`${this.basePath()}/queryPage`, params, { params: page })
+  static queryPage(data, page) {
+    // return axios.post(`${this.basePath()}/queryPage`, data, { params: page })
+    return vm.$http.postJson(`${this.basePath()}/queryPage`, data, { params: page })
   }
 
   // 恢复

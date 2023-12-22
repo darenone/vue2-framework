@@ -1,5 +1,5 @@
 import Mock from 'mockjs'
-import qs from 'qs'
+// import qs from 'qs'
 
 const modulesFiles = require.context('./module', true, /\.js$/)
 const modules = modulesFiles.keys().reduce((modules, modulePath) => {
@@ -65,14 +65,10 @@ Mock.mock(/\/afs\/afsInfo\/deviceOnlineStatus/, 'post', options => {
 // http://192.168.55.117/services/oen/biz/queryPage?page=1&size=20&total=0
 Mock.mock(/\/oen\/biz\/queryPage/, 'post', options => {
   console.log('options', options)
-  console.log(qs.parse(options.url))
   console.log(JSON.parse(options.body))
   return {
     code: 0,
-    data: {
-      online: 4,
-      offline: 8
-    },
+    data: modules.bizOpenData,
     exception: null,
     message: '请求成功！'
   }

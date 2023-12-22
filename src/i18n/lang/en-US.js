@@ -64,5 +64,6 @@ export default {
   CREATION_TIME: 'creation Time',
   OK_YES: 'yes',
   OK_NO: 'no',
-  QUERY: 'query'
+  QUERY: 'query',
+  Z_END_STATION: 'Z-end station'
 }

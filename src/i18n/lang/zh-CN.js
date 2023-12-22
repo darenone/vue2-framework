@@ -64,5 +64,6 @@ export default {
   CREATION_TIME: '创建时间',
   OK_YES: '是',
   OK_NO: '否',
-  QUERY: '查询'
+  QUERY: '查询',
+  Z_END_STATION: 'Z端站点'
 }
