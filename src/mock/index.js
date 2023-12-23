@@ -64,11 +64,12 @@ Mock.mock(/\/afs\/afsInfo\/deviceOnlineStatus/, 'post', options => {
 
 // http://192.168.55.117/services/oen/biz/queryPage?page=1&size=20&total=0
 Mock.mock(/\/oen\/biz\/queryPage/, 'post', options => {
+  console.log(modules.bizOpenData)
   console.log('options', options)
   console.log(JSON.parse(options.body))
   return {
     code: 0,
-    data: modules.bizOpenData,
+    data: modules.bizOpenData(options),
     exception: null,
     message: '请求成功！'
   }

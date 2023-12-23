@@ -16,21 +16,21 @@
 
 ## 二、`get/post/delete/put`请求
 
-1、get请求
+1. get请求
 
 常见的几种参数携带方式：
 
 由于在[src\service\axios.js](src\service\axios.js)配置了如下代码：
-
-get请求的参数就会变成如下形式：
 
 ```js
 request.paramsSerializer = params => {
   return qs.stringify(params, { indices: false })
 }
 ```
-```js
 
+get请求的参数就会变成如下形式，例如：
+
+```js
 // 获取设备状态
 static getDeviceStatus(params) {
   return axios.get(`${this.basePath()}/getDeviceStatus`, { params })
@@ -45,7 +45,8 @@ axios.get('接口地址', {
     //执行成功后代码处理
   }
 )
-// get请求传递对象
+// get请求传递对象时：
+
 cont data = {
   page: 1,
   size: 20,
@@ -55,7 +56,8 @@ cont data = {
 http://192.168.55.117/services/afs/cluster/page?page=1&size=20&keyword=20231008093244093870857
 */ 
 
-// get请求传递数组
+// get请求传递数组时：
+
 const data = {
   ids: [1, 2, 3, 4, 5]
 }
@@ -63,7 +65,7 @@ const data = {
 http://192.168.55.117/services/afs/cluster/page?id=1&id=2&id=3&id=4&id=5
 */
 
-// get请求传递对象
+// get请求传递对象时：
 
 const data = {
   ids: '1,2,3,4,5'
@@ -90,7 +92,7 @@ qs.stringify({ a: [1, 2] }, { arrayFormat: 'repeat' }) // a=1&a=2
 qs.stringify({ a: [1, 2, 3, 4, 5] }, { arrayFormat: 'comma' }) // a=1,2,3,4,5
 ```
 
-get请求也可以直接把参数拼在请求路径里：
+get请求也可以直接把参数拼在请求路径里，例如：
 
 ```js
 // 这种方式不建议使用，参数直接暴露在路径里，不安全
@@ -102,12 +104,12 @@ static getLocks(id) {
 ```
 
 
-2、post请求
+2. post请求
 
 post请求既可以通过body传参，也可以通过url传参
 
 ```js
-// 只通过body传参
+// 通过body传参时
 // http://192.168.66.117/services/afs/deviceCtrl/cmdCtrl
 static cmdCtrl(data) {
   return axios.post(`${this.basePath()}/cmdCtrl`, data)
@@ -123,7 +125,7 @@ DeviceCtrlApi.cmdCtrl({
   deviceId： '2022101012'
 })
 
-// 既通过body又通过url传参
+// 既通过body又通过url传参时
 static batchUpdate(params, data = null) {
   return axios.post(`${this.basePath()}/batchUpdate`, params, { params: data })
 }
@@ -133,7 +135,7 @@ cableFiberApi.batchUpdate(requestData, { cableName: this.rowData.cableName }).th
 })
 ```
 
-post也可以直接传递一个数组，这种数据格式后端也可以接收到
+post也可以直接传递一个数组，这种数据格式后端也可以接收到：
 
 ```js
 const list = [
@@ -166,6 +168,7 @@ ClusterApi.changeName(list, { deviceName: this.params.deviceName }).then(res => 
 批量请求的写法：
 
 ```js
+// 批量写法1：
 static batchConfirm(data) {
   const allReq = []
   data.forEach(item => {
@@ -174,7 +177,7 @@ static batchConfirm(data) {
   return axios.all(allReq)
   // return axios.post(`${this.basePath()}/confirm`, data);
 }
-
+// 批量写法2：
 const promissArr = paramsList.map(i => {
   return CableGeoApi.save(i)
 })
@@ -182,12 +185,8 @@ Promise.all(promissArr).then(async res => {
   if (res.every(i => i)) {}
 })
 ```
-put的post类似，delete和get类似
+put的post类似，delete和get类似，这里就不做具体举例
 
-get（url传参）
-post(url传参，body传参)
-delete（url传参）
-put（url传参，body传参）
 
 
 
