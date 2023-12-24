@@ -16,12 +16,12 @@ const $http = {
     })
   },
   // post请求，
-  postJson: function(url, params) {
-    const header = {
-      'Content-Type': 'application/json'
-    }
+  postJson: function(url, data = {}, params = null) {
+    // const header = {
+    //   'Content-Type': 'application/json'
+    // }
     return new Promise(function(resolve, reject) {
-      axios.post(SERVER_URL + url, params || {}, { headers: header }).then(function(resp) {
+      axios.post(SERVER_URL + url, data, params).then(function(resp) {
         resolve(resp)
       }).catch(function(error) {
         reject(error)

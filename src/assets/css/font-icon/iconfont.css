@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2683885 */
-  src: url('iconfont.woff2?t=1666170040188') format('woff2'),
-       url('iconfont.woff?t=1666170040188') format('woff'),
-       url('iconfont.ttf?t=1666170040188') format('truetype');
+  src: url('iconfont.woff2?t=1700451471263') format('woff2'),
+       url('iconfont.woff?t=1700451471263') format('woff'),
+       url('iconfont.ttf?t=1700451471263') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,178 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-AFSodf:before {
+  content: "\e678";
+}
+
+.icon-AFSa-ziyuan75:before {
+  content: "\e693";
+}
+
+.icon-AFSa-ziyuan73:before {
+  content: "\e694";
+}
+
+.icon-AFSa-ziyuan72:before {
+  content: "\e695";
+}
+
+.icon-AFSa-ziyuan74:before {
+  content: "\e696";
+}
+
+.icon-AFSjiesuoyicharu:before {
+  content: "\e691";
+}
+
+.icon-AFSshixin:before {
+  content: "\e692";
+}
+
+.icon-AFSweicharu:before {
+  content: "\e68e";
+}
+
+.icon-AFSjiesuoweicharu:before {
+  content: "\e690";
+}
+
+.icon-AFSshouqi:before {
+  content: "\e68c";
+}
+
+.icon-AFSquanping:before {
+  content: "\e68d";
+}
+
+.icon-AFSaocc:before {
+  content: "\e68a";
+}
+
+.icon-AFSafs:before {
+  content: "\e68b";
+}
+
+.icon-AFSsdh:before {
+  content: "\e689";
+}
+
+.icon-AFSxiazaidaoru:before {
+  content: "\e8c6";
+}
+
+.icon-AFShome-biz:before {
+  content: "\e67c";
+}
+
+.icon-AFShome-hide:before {
+  content: "\e67e";
+}
+
+.icon-AFShome-open:before {
+  content: "\e67f";
+}
+
+.icon-AFShome-status:before {
+  content: "\e680";
+}
+
+.icon-AFShome-station:before {
+  content: "\e681";
+}
+
+.icon-AFShome-port:before {
+  content: "\e682";
+}
+
+.icon-AFShome-device:before {
+  content: "\e684";
+}
+
+.icon-AFShome-alarm:before {
+  content: "\e685";
+}
+
+.icon-AFShome-fiber:before {
+  content: "\e686";
+}
+
+.icon-AFShome-cable:before {
+  content: "\e687";
+}
+
+.icon-AFShome-trend:before {
+  content: "\e688";
+}
+
+.icon-AFScluster:before {
+  content: "\e66f";
+}
+
+.icon-AFSotn:before {
+  content: "\e66c";
+}
+
+.icon-AFSason:before {
+  content: "\e66d";
+}
+
+.icon-AFSpdh:before {
+  content: "\e66e";
+}
+
+.icon-AFSlight_split:before {
+  content: "\e671";
+}
+
+.icon-AFSptn:before {
+  content: "\e672";
+}
+
+.icon-AFSlight_delivery:before {
+  content: "\e673";
+}
+
+.icon-AFSafs1:before {
+  content: "\e674";
+}
+
+.icon-AFSrouter:before {
+  content: "\e675";
+}
+
+.icon-AFSolt:before {
+  content: "\e676";
+}
+
+.icon-AFSexchange:before {
+  content: "\e677";
+}
+
+.icon-AFSsdn:before {
+  content: "\e679";
+}
+
+.icon-AFSwdm:before {
+  content: "\e67a";
+}
+
+.icon-AFSaocc1:before {
+  content: "\e67b";
+}
+
+.icon-AFSprot-icon:before {
+  content: "\e66a";
+}
+
+.icon-AFScable-icon:before {
+  content: "\e66b";
+}
+
+.icon-AFSwenhao:before {
+  content: "\e8e9";
 }
 
 .icon-AFSshaixuan:before {
@@ -319,6 +491,10 @@
 
 .icon-AFSxiayibu:before {
   content: "\e80f";
+}
+
+.icon-AFSshanchu1-copy:before {
+  content: "\ec64";
 }
 
 .icon-AFSrizhi:before {
