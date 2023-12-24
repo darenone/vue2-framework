@@ -65,5 +65,20 @@ export default {
   OK_YES: '是',
   OK_NO: '否',
   QUERY: '查询',
-  Z_END_STATION: 'Z端站点'
+  Z_END_STATION: 'Z端站点',
+  CHANNEL: '通道',
+  MOD: '修改',
+  INTELLIGENCE_RECOVERY: '智能恢复',
+  TO_RESTORE: '重新恢复',
+  REDUCTION: '还原',
+  BIZ_FUNC_OTDR_TEST: 'OTDR测试',
+  BIZ_FUNC_OTDR_TEST_RESULT: 'OTDR测试记录',
+  SET_FAIL: '设为故障',
+  FAULT_LOCATION: '故障定位',
+  TROUBLE_SOLVED: '故障已排出',
+  DEL: '删除',
+  VIEW: '查看',
+  CONFIG: '配置',
+  MORE_OPERATE: '更多',
+  BIZ_LEVEL_TIPS: '重要业务：可以执行智能还原操作。<br> 一般业务：不能执行智能还原操作。'
 }

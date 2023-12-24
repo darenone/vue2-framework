@@ -6,6 +6,307 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "38139956",
+      "name": "odf",
+      "font_class": "odf",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "38132916",
+      "name": "有钥匙空心解锁",
+      "font_class": "a-ziyuan75",
+      "unicode": "e693",
+      "unicode_decimal": 59027
+    },
+    {
+      "icon_id": "38132915",
+      "name": "有钥匙实心",
+      "font_class": "a-ziyuan73",
+      "unicode": "e694",
+      "unicode_decimal": 59028
+    },
+    {
+      "icon_id": "38132914",
+      "name": "有钥匙空心",
+      "font_class": "a-ziyuan72",
+      "unicode": "e695",
+      "unicode_decimal": 59029
+    },
+    {
+      "icon_id": "38132913",
+      "name": "有钥匙实心解锁",
+      "font_class": "a-ziyuan74",
+      "unicode": "e696",
+      "unicode_decimal": 59030
+    },
+    {
+      "icon_id": "37925229",
+      "name": "icon-kfckfc",
+      "font_class": "jiesuoyicharu",
+      "unicode": "e691",
+      "unicode_decimal": 59025
+    },
+    {
+      "icon_id": "37925228",
+      "name": "实心",
+      "font_class": "shixin",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    },
+    {
+      "icon_id": "37925230",
+      "name": "icon-kfckfc",
+      "font_class": "weicharu",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
+    },
+    {
+      "icon_id": "37925231",
+      "name": "icon-kfckfc",
+      "font_class": "jiesuoweicharu",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
+      "icon_id": "37193142",
+      "name": "收起",
+      "font_class": "shouqi",
+      "unicode": "e68c",
+      "unicode_decimal": 59020
+    },
+    {
+      "icon_id": "37193141",
+      "name": "全屏",
+      "font_class": "quanping",
+      "unicode": "e68d",
+      "unicode_decimal": 59021
+    },
+    {
+      "icon_id": "36974545",
+      "name": "智能光交箱",
+      "font_class": "aocc",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "36974544",
+      "name": "光配机",
+      "font_class": "afs",
+      "unicode": "e68b",
+      "unicode_decimal": 59019
+    },
+    {
+      "icon_id": "36572911",
+      "name": "sdh",
+      "font_class": "sdh",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    },
+    {
+      "icon_id": "1727452",
+      "name": "218下载、导入",
+      "font_class": "xiazaidaoru",
+      "unicode": "e8c6",
+      "unicode_decimal": 59590
+    },
+    {
+      "icon_id": "36319666",
+      "name": "业务统计",
+      "font_class": "home-biz",
+      "unicode": "e67c",
+      "unicode_decimal": 59004
+    },
+    {
+      "icon_id": "36319667",
+      "name": "收起",
+      "font_class": "home-hide",
+      "unicode": "e67e",
+      "unicode_decimal": 59006
+    },
+    {
+      "icon_id": "36319668",
+      "name": "展开",
+      "font_class": "home-open",
+      "unicode": "e67f",
+      "unicode_decimal": 59007
+    },
+    {
+      "icon_id": "36319669",
+      "name": "设备状态统计",
+      "font_class": "home-status",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "36319670",
+      "name": "站点统计",
+      "font_class": "home-station",
+      "unicode": "e681",
+      "unicode_decimal": 59009
+    },
+    {
+      "icon_id": "36319671",
+      "name": "智能端口",
+      "font_class": "home-port",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
+      "icon_id": "36319673",
+      "name": "运行设备统计",
+      "font_class": "home-device",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "36319674",
+      "name": "告警统计",
+      "font_class": "home-alarm",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "36319675",
+      "name": "光纤资源",
+      "font_class": "home-fiber",
+      "unicode": "e686",
+      "unicode_decimal": 59014
+    },
+    {
+      "icon_id": "36319676",
+      "name": "光缆",
+      "font_class": "home-cable",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
+      "icon_id": "36319753",
+      "name": "业务增长趋势",
+      "font_class": "home-trend",
+      "unicode": "e688",
+      "unicode_decimal": 59016
+    },
+    {
+      "icon_id": "35950170",
+      "name": "光配机集群",
+      "font_class": "cluster",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "35892934",
+      "name": "otn",
+      "font_class": "otn",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "35892935",
+      "name": "ason",
+      "font_class": "ason",
+      "unicode": "e66d",
+      "unicode_decimal": 58989
+    },
+    {
+      "icon_id": "35892936",
+      "name": "pdh",
+      "font_class": "pdh",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "35892938",
+      "name": "光分器",
+      "font_class": "light_split",
+      "unicode": "e671",
+      "unicode_decimal": 58993
+    },
+    {
+      "icon_id": "35892939",
+      "name": "ptn",
+      "font_class": "ptn",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "35892940",
+      "name": "光交箱",
+      "font_class": "light_delivery",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "35892941",
+      "name": "光配机",
+      "font_class": "afs1",
+      "unicode": "e674",
+      "unicode_decimal": 58996
+    },
+    {
+      "icon_id": "35892942",
+      "name": "路由器",
+      "font_class": "router",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    },
+    {
+      "icon_id": "35892943",
+      "name": "olt",
+      "font_class": "olt",
+      "unicode": "e676",
+      "unicode_decimal": 58998
+    },
+    {
+      "icon_id": "35892944",
+      "name": "交换机",
+      "font_class": "exchange",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "35892946",
+      "name": "sdn",
+      "font_class": "sdn",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "35892947",
+      "name": "有源波分器",
+      "font_class": "wdm",
+      "unicode": "e67a",
+      "unicode_decimal": 59002
+    },
+    {
+      "icon_id": "35892948",
+      "name": "智能光交箱",
+      "font_class": "aocc1",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
+    },
+    {
+      "icon_id": "35823574",
+      "name": "资源 1",
+      "font_class": "prot-icon",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "35823575",
+      "name": "资源 2",
+      "font_class": "cable-icon",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "1727527",
+      "name": "306问号-线性圆框",
+      "font_class": "wenhao",
+      "unicode": "e8e9",
+      "unicode_decimal": 59625
+    },
+    {
       "icon_id": "1304883",
       "name": "筛选",
       "font_class": "shaixuan",
@@ -543,6 +844,13 @@
       "font_class": "xiayibu",
       "unicode": "e80f",
       "unicode_decimal": 59407
+    },
+    {
+      "icon_id": "34761928",
+      "name": "删 除 (1)-copy",
+      "font_class": "shanchu1-copy",
+      "unicode": "ec64",
+      "unicode_decimal": 60516
     },
     {
       "icon_id": "1166053",

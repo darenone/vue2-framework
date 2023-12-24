@@ -30,6 +30,22 @@
 <script>
   import bizOpenApi from '@/api/oen/BizOpenApi'
   import TableView from '@/components/element-table/TableView'
+  const BIZ_LEVEL = {
+    'IMPORTANT': '重要',
+    'GENERAL': '一般'
+  }
+  const BIZ_STATUS = {
+    'FAULT': '故障',
+    'OPEN_FAIL': '开通失败',
+    'RESTORE_FAIL': '恢复失败',
+    'REDUCTION_FAIL': '还原失败',
+    'RETURN_FAIL': '还原失败',
+    'OPENING': '开通中',
+    'RESTORING': '恢复中',
+    'RETURNING': '还原中',
+    'RESTORE': '恢复',
+    'NORMAL': '正常'
+  }
   let searchData = {} // 查询参数 只有点了查询有效
   export default {
     components: {
@@ -38,6 +54,7 @@
     data() {
       const _this = this
       return {
+        pageName: 'manager',
         pageData: {
           page: 1,
           size: 20,
@@ -66,7 +83,7 @@
             width: 160,
             configType: 'default',
             formatter(row) {
-              return row.bizLevel
+              return BIZ_LEVEL[row.bizLevel]
             }
           },
           {
@@ -75,7 +92,7 @@
             width: 120,
             configType: 'default',
             formatter(row) {
-              return row.bizStatus
+              return BIZ_STATUS[row.bizStatus]
             }
           },
           {
@@ -167,6 +184,34 @@
         }
       }
     },
+    computed: {
+      permission() {
+        return {
+          'open': true,
+          'channel': true,
+          'mod': true,
+          'del': true,
+          'restore': true,
+          'reduction': true,
+          'setFault': true,
+          'faultLocation': true,
+          'bulkexport': true,
+          'allexport': true,
+          'otdrtest': true,
+          'otdrrecord': true,
+          'faultsolved': true
+        }
+        // return this.$store.getters.getAuthData('biz:manager')
+      },
+      backupPermission() {
+        return {
+          'mod': true,
+          'bulkexport': true,
+          'allexport': true
+        }
+        // return this.$store.getters.getAuthData('biz:backup')
+      }
+    },
     methods: {
       operate(data) {
         switch (data.type) {
@@ -206,7 +251,170 @@
         queryData.bizStatus = queryData.bizStatus || null
         bizOpenApi.queryPage(queryData, this.pageData).then(res => {
           console.log(res)
+          const statusSort = [
+            'FAULT',
+            'OPEN_FAIL',
+            'RESTORE_FAIL',
+            'REDUCTION_FAIL',
+            'RETURN_FAIL',
+            'OPENING',
+            'RESTORING',
+            'RETURNING',
+            'RESTORE',
+            'NORMAL'
+          ]
+          const listData = res.list || []
+          listData.forEach(i => {
+            const statusIndex = i.bizChannelList.map(z =>
+              statusSort.findIndex(j => j === z.bizStatus)
+            )
+            i.bizStatus = statusSort[Math.min(...statusIndex)]
+            i.btns = this.getBtns(i)
+          })
+          if (!this.sortData.type) {
+            // 当前页面数据排序 1根据时间倒序排序2.优先把故障业务排在前面
+            listData
+              .sort((a, b) => new Date(b.createTime) - new Date(a.createTime))
+              .sort((a, b) => {
+                a.bizStatus === 'FAULT' ? 1 : 0
+                b.bizStatus === 'FAULT' ? 1 : 0
+                const aNum = a.bizStatus === 'FAULT' ? 1 : 0
+                const bNum = b.bizStatus === 'FAULT' ? 1 : 0
+                return bNum - aNum
+              })
+          }
+          this.tableData = listData
+          this.pageData.total = res.total
         })
+      },
+      // 获取操作按钮
+      getBtns(row) {
+        const unlocked =
+          !row.bizChannelList.some(i => i.lockStatus === 'LOCKED')
+        this.pageName === 'manager'
+        const managerBtn = [
+          {
+            key: 'channel', // 查看通道
+            show: this.pageName === 'manager' && this.permission.channel,
+            label: 'CHANNEL'
+          },
+          {
+            key: 'mod', // 修改名称
+            show: unlocked && this.permission.mod,
+            label: 'MOD'
+          },
+          {
+            key: 'restore', // 恢复
+            show:
+              unlocked &&
+              row.bizChannelList.every(
+                i =>
+                  i.bizStatus === 'FAULT' ||
+                  i.bizStatus === 'REDUCTION_FAIL' ||
+                  i.bizStatus === 'RETURN_FAIL'
+              ) &&
+              this.permission.restore,
+            label: 'INTELLIGENCE_RECOVERY'
+          },
+
+          {
+            key: 'restore', // 重新恢复
+            show:
+              unlocked &&
+              row.bizChannelList.some(i => i.bizStatus === 'RESTORE_FAIL') &&
+              this.permission.restore,
+            label: 'TO_RESTORE'
+          },
+          {
+            key: 'reduction', // 智能还原
+            show:
+              unlocked &&
+              row.bizChannelList.every(i => i.bizStatus === 'RESTORE') &&
+              this.permission.reduction &&
+              row.bizLevel === 'IMPORTANT',
+            label: 'REDUCTION'
+          },
+          {
+            key: 'otdrTest', // OTDR测试
+            show:
+              this.pageName === 'manager' &&
+              (row.bizChannelList.every(
+                i => i.bizStatus === 'RESTORE' || i.bizStatus === 'NORMAL'
+              ) ||
+                row.bizChannelList.some(i => i.bizStatus === 'FAULT')) &&
+              !row.bizChannelList.some(i => i.lockStatus === 'LOCKED') &&
+              this.permission.otdrtest,
+            label: 'BIZ_FUNC_OTDR_TEST'
+          },
+          {
+            key: 'otdrTestResult', // OTDR测试记录
+            show:
+              this.pageName === 'manager' &&
+              (row.bizChannelList.every(
+                i => i.bizStatus === 'RESTORE' || i.bizStatus === 'NORMAL'
+              ) ||
+                row.bizChannelList.some(i => i.bizStatus === 'FAULT')) &&
+              this.permission.otdrrecord,
+            label: 'BIZ_FUNC_OTDR_TEST_RESULT'
+          },
+          {
+            key: 'setFault', // 设为故障
+            show:
+              unlocked &&
+              row.bizChannelList.every(
+                i => i.bizStatus === 'RESTORE' || i.bizStatus === 'NORMAL'
+              ) &&
+              this.permission.setFault,
+            label: 'SET_FAIL'
+          },
+          {
+            key: 'faultLocation', // 故障定位
+            show:
+              unlocked &&
+              this.permission.faultLocation &&
+              row.bizChannelList.every(i => i.bizStatus === 'RESTORE'),
+            label: 'FAULT_LOCATION'
+          },
+
+          {
+            key: 'trouble_solved', // 故障已排除
+            show:
+              unlocked &&
+              row.bizChannelList.every(i => i.bizStatus === 'FAULT') &&
+              this.permission.faultsolved,
+            label: 'TROUBLE_SOLVED'
+          },
+          {
+            key: 'del', // 删除
+            show: unlocked && this.permission.del,
+            disabled: row.bizChannelList.some(
+              i =>
+                i.bizStatus === 'OPENING' ||
+                i.bizStatus === 'RESTORING' ||
+                i.bizStatus === 'RETURNING' ||
+                i.lockStatus === 'LOCKED'
+            ),
+            label: 'DEL'
+          },
+          {
+            key: 'view', // 查看备用通道
+            show: this.pageName === 'backup',
+            label: 'VIEW'
+          },
+          {
+            key: 'mod', // 配置备用
+            show: this.pageName === 'backup' && this.backupPermission.mod,
+            disabled: row.bizChannelList.some(
+              i =>
+                i.bizStatus === 'OPENING' ||
+                i.bizStatus === 'RESTORING' ||
+                i.bizStatus === 'RETURNING' ||
+                i.bizStatus === 'OPEN_FAIL'
+            ),
+            label: 'CONFIG'
+          }
+        ]
+        return managerBtn.filter(i => i.show)
       },
       // 关键字搜索
       search() {

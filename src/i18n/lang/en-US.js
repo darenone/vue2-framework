@@ -65,5 +65,20 @@ export default {
   OK_YES: 'yes',
   OK_NO: 'no',
   QUERY: 'query',
-  Z_END_STATION: 'Z-end station'
+  Z_END_STATION: 'Z-end station',
+  CHANNEL: 'channel',
+  MOD: 'modify',
+  INTELLIGENCE_RECOVERY: 'intelligent recovery',
+  TO_RESTORE: 'to restore',
+  REDUCTION: 'restore',
+  BIZ_FUNC_OTDR_TEST: 'OTDR test',
+  BIZ_FUNC_OTDR_TEST_RESULT: 'OTDR test result',
+  SET_FAIL: 'set to failure',
+  FAULT_LOCATION: 'fault location',
+  TROUBLE_SOLVED: 'trouble solved',
+  DEL: 'delete',
+  VIEW: 'view',
+  CONFIG: 'config',
+  MORE_OPERATE: 'more',
+  BIZ_LEVEL_TIPS: 'Important service: Intelligent restoration can be performed. <br> Common services: Intelligent restoration cannot be performed.'
 }
