@@ -67,7 +67,7 @@ npm install three@0.153 --save
         document.getElementsByClassName('canvas-container')[0].appendChild(renderer.domElement) // 将canvas画布放到body里
 
         // 4、创建几何体
-        const geometry = new THREE.BoxGeometry(1, 1, 1)
+        const geometry = new THREE.BoxGeometry(1, 1, 1) // 代表在x轴上宽度为1，y轴上宽度为1，z轴上宽度为1，这3个值也是默认值
         // 5、创建材质
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
         // 6、创建网格（创建物体）
@@ -164,6 +164,9 @@ const controls = new OrbitControls(camera, document.getElementsByClassName('canv
 代码如下：
 
 ```js
+// 导入轨道控制器
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+
 init() {
   // 创建场景
   const scene = new THREE.Scene()
@@ -310,6 +313,9 @@ exitFullScreen() {
 添加gui的方式如下：
 
 ```js
+// 导入lil.gui
+import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
+
 const gui = new GUI()
 gui.domElement.style.position = 'absolute'
 gui.domElement.style.top = '120'
@@ -342,7 +348,7 @@ gui.addColor(colorParams, 'cubeColor').name('立方体颜色').onChange(val => {
 
 `BufferGeometry`叫缓冲区几何体，这个是最基础的类，所有在three里面创建的类，都继承于此基础类，比如`BoxGeometry`就继承于此类
 
-在three里面，所有物体的面都是由三角形构成，2个三角形构成一个面，1个三角形有3个顶点，一个面有6个顶点（这6个顶点中有2个顶点是2个三角形共用的）所以正方体的面就有4个顶点，6个面，总计24个顶点，每一个顶点坐标由（x,y,z）组成
+在three里面，所有物体的面都是由三角形构成，比如立方体，2个三角形构成一个面，1个三角形有3个顶点，一个面有6个顶点（这6个顶点中有2个顶点是2个三角形共用的）所以正方体的一个面就有4个顶点，6个面，总计24个顶点，每一个顶点坐标由（x,y,z）组成
 
 创建一个几何体代码：
 
@@ -377,7 +383,7 @@ this.scene.add(cube)
 ![..\图片\画出正方体的一个面.png](..\图片\画出正方体的一个面.png)
 
 
-以上代码里创建一个面，设置了6个点的坐标，但是一个面只有4个顶点，此时就需要利用索引来创建面，代码如下：
+以上代码里，创建立方体一个面，设置了6个点的坐标，但是一个面只有4个顶点，此时就需要利用索引来创建面，代码如下：
 
 ```js
 const geometry = new THREE.BufferGeometry()
@@ -402,7 +408,7 @@ this.scene.add(cube)
 // ... 省略的代码和创建立方体代码一直
 ```
 
-先把一个立方体在三维空间内的坐标都标记出来，然后利用索引一个个面的设置，就画出了一个立方体，这也是在`three.js`里面渲染一个物体的底层原理
+以上代码只是演示了一个面的画法，其它面也是同样的逻辑，先把一个立方体在三维空间内的坐标都标记出来，然后利用索引一个个面的设置，就画出了一个立方体，这也是在`three.js`里面渲染一个物体的底层原理
 
 ## 八、几何体划分顶点组设置不同材质
 
@@ -438,8 +444,260 @@ const material1 = new THREE.MeshBasicMaterial({
 const cube = new THREE.Mesh(geometry, [material, material1])
 ```
 
+最开始我们创建的立方体，也可以分别设置它的6个main为不同材质：
 
+```js
+const cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
+// 创建材质
+const cubeMaterial0 = new THREE.MeshBasicMaterial({
+  color: 0x00ff00
+})
+const cubeMaterial1 = new THREE.MeshBasicMaterial({
+  color: 0xff0000
+})
+const cubeMaterial2 = new THREE.MeshBasicMaterial({
+  color: 0x0000ff
+})
+const cubeMaterial3 = new THREE.MeshBasicMaterial({
+  color: 0xffff00
+})
+const cubeMaterial4 = new THREE.MeshBasicMaterial({
+  color: 0x00ffff
+})
+const cubeMaterial5 = new THREE.MeshBasicMaterial({
+  color: 0xff00ff
+})
+const cube2 = new THREE.Mesh(cubeGeometry, [cubeMaterial0, cubeMaterial1, cubeMaterial2, cubeMaterial3, cubeMaterial4, cubeMaterial5])
+cube2.position.x = 2
+this.scene.add(cube2)
+```
 
+## 九、`three.js`中常见的几何体
 
+利用`BufferGeometry`创建几何体，需要我们一个一个标记好几何体顶点的位置，然后设置索引，以及设置每个面的材质，这样创建几何体非常麻烦，好在`three.js`给我们已经封装好了几个常见的几何体，供我们直接使用：`BoxGeometry`，`CircleGeometry`， `ConeGeometry`等
+
+## 十、基础网格材质`MeshBasicMaterial`
+
+以下几个属性都是`MeshBasicMaterial`对象下的属性
+
+1. 给一个平面添加纹理
+
+```js
+// 创建纹理加载器
+const textureLoader = new THREE.TextureLoader()
+// 加载纹理
+const texture = textureLoader.load(require('@/assets/img/errorimg/google.png'))
+// 创建几何体
+const planeGeometry = new THREE.PlaneGeometry(1, 1)
+const planeMaterial = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+  map: texture,
+  // 允许透明
+  transparent: true
+})
+// planeMaterial.map = texture
+const plane = new THREE.Mesh(planeGeometry, planeMaterial)
+this.scene.add(plane)
+```
+
+效果如下图1：
+
+![../图片/three_5.png](../图片/three_5.png)
+
+2. 添加aoMap（高光贴图）
+
+接着上面的代码
+
+```js
+// 加载ao贴图
+const aoMap = textureLoader.load(require('@/assets/img/errorimg/google.png'))
+const planeMaterial = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+  map: texture,
+  // 允许透明
+  transparent: true,
+  // 设置ao贴图
+  aoMap: aoMap,
+  aoMapIntensity: 1 // ao贴合强度，默认值1
+})
+```
+
+效果如下图2：
+
+![../图片/three_6.png](../图片/three_6.png)
+
+3. 添加alphaMap（透明贴图）
+
+```js
+// 透明度贴图
+const alphaMap = textureLoader.load(require('@/assets/img/errorimg/google.png'))
+const planeMaterial = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+  map: texture,
+  // 允许透明
+  transparent: true,
+  // 设置ao贴图
+  aoMap: aoMap,
+  aoMapIntensity: 1, // ao贴合强度，默认值1
+  // 透明度贴图
+  alphaMap: alphaMap
+})
+```
+
+效果如下图3：
+
+![../图片/three_7.png](../图片/three_7.png)
+
+4. 添加lightMap（光照贴图）
+
+```js
+// 光照贴图
+const lightMap = textureLoader.load(require('@/assets/img/errorimg/google.png'))
+const planeMaterial = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+  map: texture,
+  // 允许透明
+  transparent: true,
+  // 设置ao贴图
+  aoMap: aoMap,
+  aoMapIntensity: 1, // ao贴合强度，默认值1
+  // 透明度贴图
+  alphaMap: alphaMap,
+  // 光照贴图
+  lightMap: lightMap
+})
+```
+
+效果如下图4：
+
+![../图片/three_8.png](../图片/three_8.png)
+
+5. 添加envMap（环境贴图）
+
+这里的环境贴图必须是全景照片，格式为HDR格式
+
+```js
+// 导入hdr(全景)加载器
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
+
+// 创建几何体
+const planeGeometry = new THREE.PlaneGeometry(1, 1)
+const planeMaterial = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+  map: texture,
+  // 允许透明
+  transparent: true,
+  // 设置ao贴图
+  aoMap: aoMap,
+  aoMapIntensity: 1, // ao贴合强度，默认值1
+  // 透明度贴图
+  alphaMap: alphaMap,
+  lightMap: lightMap
+})
+
+// 加载hdr全景贴图
+const rgbeLoader = new RGBELoader()
+rgbeLoader.load('./statics/images/3d/wrestling_gym_1k.hdr', (envMap) => {
+  // 设置球形贴图
+  envMap.mapping = THREE.EquirectangularReflectionMapping
+  // 设置环境贴图
+  this.scene.background = envMap
+  // 设置环境贴图
+  this.scene.environment = envMap
+  // 设置plane的环境贴图
+  planeMaterial.envMap = envMap
+})
+
+const plane = new THREE.Mesh(planeGeometry, planeMaterial)
+this.scene.add(plane)
+```
+
+效果如下图5：
+
+![../图片/three_9.png](../图片/three_9.png)
+
+## 十一、纹理的颜色空间
+
+`LinearSRGBColorSpace`-线性空间，`SRGBColorSpace`-SRGB空间
+
+回到刚开始给平面添加纹理的代码，可以按到效果图1有些略微发白，此时需要设置一个属性，就能让纹理更加清晰
+
+```js
+const texture = textureLoader.load(require('@/assets/img/errorimg/google.png'))
+texture.colorSpace = THREE.SRGBColorSpace // 纹理看起来不发白
+texture.colorSpace = THREE.LinearSRGBColorSpace // 纹理看起来发白
+```
+
+## 十二、场景的线性雾和指数雾
+
+雾效果用来模拟真实世界中视觉深度递减的效果（近看的清楚，远看的模糊）
+
+设置雾代码如下：
+
+```js
+const boxGeometry = new THREE.BoxGeometry(1, 1, 100)
+const boxMaterial = new THREE.MeshBasicMaterial({
+  color: 0x00ff00
+})
+const cube = new THREE.Mesh(boxGeometry, boxMaterial)
+this.scene.add(cube)
+// 创建场景雾
+// this.scene.fog = new THREE.Fog(0x999999, 0.1, 50)
+// 创建指数雾
+this.scene.fog = new THREE.FogExp2(0x999999, 0.1)
+this.scene.background = new THREE.Color(0x999999) // 设置场景背景颜色
+```
+
+效果图如下：
+
+![../图片/three_10.png](../图片/three_10.png)
+
+## 十三、加载gltf模型和加载压缩过的模型
+
+gltf是一种开放格式的规范，用于传输和加载3d内容，该类文件以.gltf（JSON格式的数据）或.glb（二进制格式的数据）后缀存在
+
+加载模型：
+
+```js
+// 导入gltf加载器
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+// 实例化加载器
+const gltfLoader = new GLTFLoader()
+// 加载模型
+gltfLoader.load(
+  // 模型路径
+  './statics/glb/AFS-A-24.glb',
+  // 加载完的回调
+  (gltf) => {
+    console.log(gltf)
+    this.scene.add(gltf.scene)
+  }
+)
+this.scene.background = new THREE.Color(0x999999)
+```
+
+加载进来的模型如下图：
+
+![../图片/three_11.png](../图片/three_11.png)
+
+加载进来的模型显示是黑色，是因为需要有灯光的材质，它才能亮起来，如果有环境贴图也可以让物体亮起来，因为有环境贴图就会有四面八方的光照射进来
+
+```js
+// 导入hdr(全景)加载器
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
+
+// 加载环境贴图
+const rgbeLoader = new RGBELoader()
+rgbeLoader.load('./statics/images/3d/wrestling_gym_1k.hdr', (envMap) => {
+  // 设置球形贴图
+  envMap.mapping = THREE.EquirectangularReflectionMapping
+  // 设置环境贴图
+  this.scene.environment = envMap
+})
+```
+
+效果如下图：
+
+![../图片/three_12.png](../图片/three_12.png)
 
 

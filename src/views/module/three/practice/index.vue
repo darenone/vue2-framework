@@ -9,7 +9,11 @@
   // 导入轨道控制器
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
   // 导入lil.gui
-  import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
+  // import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
+  // 导入hdr(全景)加载器
+  import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
+  // 导入gltf加载器
+  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   export default {
     data() {
       return {
@@ -60,51 +64,27 @@
         this.renderer.setSize(width, height) // 需要渲染的最终尺寸
         document.getElementsByClassName('canvas-container')[0].appendChild(this.renderer.domElement) // 将canvas画布放到body里
 
-        // 创建几何体
-        // const geometry = new THREE.BoxGeometry(1, 1, 1)
-        const geometry = new THREE.BufferGeometry()
-        // 创建顶点数据，一个几何体有32个顶点，顶点是有顺序的(逆时针方向)，每3个为一个顶点，逆时针为正面
-        const vertices = new Float32Array([
-          -1.0, -1.0, 0.0, 1.0, -1.0, 0.0, 1.0, 1.0, 0.0, -1.0, 1.0, 0
-        ])
-        // 创建顶点属性
-        geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
-        // 创建索引
-        const indices = new Uint16Array([0, 1, 2, 2, 3, 0])
-        // 创建索引属性
-        geometry.setIndex(new THREE.BufferAttribute(indices, 1))
-        // 设置2个顶点组，形成2个材质
-        // addGroup(start, count, materialIndex)
-        // 参数解读：从0索引开始，添加3个顶点，用的第1个材质
-        geometry.addGroup(0, 3, 0)
-        geometry.addGroup(3, 3, 1) // 从3索引开始，添加3个顶点，用第2个材质
-        console.log('几何体', geometry)
-        // 创建材质
-        // const parentMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-        // 设置父元素材质为线框模式
-        // parentMaterial.wireframe = true
-        const material = new THREE.MeshBasicMaterial({
-          color: 'red',
-          side: THREE.DoubleSide // 正反面都可以看到
-          // wireframe: true
+        // 实例化加载器
+        const gltfLoader = new GLTFLoader()
+        // 加载模型
+        gltfLoader.load(
+          // 模型路径
+          './statics/glb/AFS-A-24.glb',
+          // 加载完的回调
+          (gltf) => {
+            console.log(gltf)
+            this.scene.add(gltf.scene)
+          }
+        )
+        this.scene.background = new THREE.Color(0x999999)
+        // 加载环境贴图
+        const rgbeLoader = new RGBELoader()
+        rgbeLoader.load('./statics/images/3d/wrestling_gym_1k.hdr', (envMap) => {
+          // 设置球形贴图
+          envMap.mapping = THREE.EquirectangularReflectionMapping
+          // 设置环境贴图
+          this.scene.environment = envMap
         })
-        const material1 = new THREE.MeshBasicMaterial({
-          color: 0x00ff00,
-          side: THREE.DoubleSide // 正反面都可以看到
-        })
-        // 创建网格（也叫创建物体）
-        // const parentCube = new THREE.Mesh(geometry, parentMaterial)
-        const cube = new THREE.Mesh(geometry, [material, material1])
-        cube.position.set(0, 0, 0)
-        // cube.scale.set(2, 2, 2)
-        // cube.rotation.x = Math.PI / 4
-        // parentCube.add(cube)
-        // parentCube.position.set(-3, 0, 0)
-        // parentCube.scale.set(2, 2, 2)
-        // parentCube.rotation.x = Math.PI / 4
-        // 将父元素添加到场景中
-        this.scene.add(cube)
-
         // 添加世界坐标辅助器
         const axesHelper = new THREE.AxesHelper(5)
         this.scene.add(axesHelper)
@@ -136,38 +116,6 @@
           this.camera.aspect = width / height
           // 更新相机投影矩阵
           this.camera.updateProjectionMatrix()
-        })
-
-        const eventObj = {
-          Fullscreen: function() {
-            document.getElementsByClassName('canvas-container')[0].requestFullscreen()
-          },
-          ExitFullscreen: function() {
-            document.exitFullscreen()
-          }
-        }
-        const gui = new GUI()
-        gui.domElement.style.position = 'absolute'
-        gui.domElement.style.top = '120'
-        gui.domElement.style.left = '5'
-        gui.add(eventObj, 'Fullscreen').name('全屏')
-        gui.add(eventObj, 'ExitFullscreen').name('退出全屏')
-        // 控制立方体的位置
-        const folder = gui.addFolder('立方体位置')
-        folder.add(cube.position, 'x', -5, 5).name('立方体x轴位置').onChange(val => {
-          console.log('立方体x轴位置', val)
-        })
-        folder.add(cube.position, 'x').min(-10).max(10).step(1).name('立方体x轴位置').onFinishChange(val => {
-          console.log('立方体x轴位置', val)
-        })
-        folder.add(cube.position, 'y').min(-10).max(10).step(1).name('立方体y轴位置')
-        folder.add(cube.position, 'z').min(-10).max(10).step(1).name('立方体z轴位置')
-        // gui.add(parentMaterial, 'wireframe').name('父元素线框模式')
-        const colorParams = {
-          cubeColor: '#ff0000'
-        }
-        gui.addColor(colorParams, 'cubeColor').name('立方体颜色').onChange(val => {
-          cube.material.color.set(val)
         })
       },
       removeObj(obj) {
