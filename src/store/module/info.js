@@ -1,5 +1,7 @@
 import SystemApi from '@/api/SystemApi'
+import userInfoApi from '@/api/basebiz/UserInfoApi'
 import config from '@/config'
+import i18n from '@/i18n'
 
 export default {
   state: {
@@ -17,13 +19,21 @@ export default {
       'green-theme',
       'blue-theme'
     ],
-    currentTheme: null // 当前主题
+    currentTheme: null, // 当前主题
+    columnsConfigData: []
   },
   getters: {
     getInfo: state => state.info, // 获取登录信息
     getUser: state => state.info.user, // 获取用户信息
+    getUserId: state => {
+      if (state.info && state.info.user) {
+        return state.info.user.userId
+      }
+      return i18n.t('NOTLOGIN')
+    },
     getThemeList: state => state.themeList,
-    getTheme: state => state.currentTheme // 获取当前主题
+    getTheme: state => state.currentTheme, // 获取当前主题
+    columnsConfigData: state => state.columnsConfigData // 获取可显示列信息
   },
   mutations: {
     SET_INFO(state, params) {
@@ -31,7 +41,8 @@ export default {
     },
     SET_THEME(state, theme) {
       state.currentTheme = theme
-    }
+    },
+    setColumnsConfigData: (state, data) => (state.columnsConfigData = data)
   },
   actions: {
     async upDateInfo({ dispatch, commit }) {
@@ -47,6 +58,12 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    // 获取可显示列信息
+    getViewConfig({ commit, state }) {
+      userInfoApi.getViewConfig({ userId: state.info.user.userId }).then(res => {
+        commit('setColumnsConfigData', res)
+      })
     }
   }
 }
