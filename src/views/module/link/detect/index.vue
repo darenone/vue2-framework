@@ -21,9 +21,13 @@
       :table-header="tableHeader"
       :table-data="tableData"
       :page-data="pageData"
+      :cell-class="cellClass"
+      :options="{ seletion: true }"
       :operate-width="230"
       @operate="operate"
+      @sortChange="sortChange"
       @pageChange="pageChange"
+      @selectionChange="selectionChange"
     />
   </div>
 </template>
@@ -46,7 +50,7 @@
     'RESTORE': '恢复',
     'NORMAL': '正常'
   }
-  let searchData = {} // 查询参数 只有点了查询有效
+  let searchData = {} // 查询参数，只有点了查询有效
   export default {
     components: {
       TableView
@@ -178,6 +182,7 @@
         ],
         tableData: [],
         rowData: {},
+        selectedRow: [],
         sortData: {
           field: null,
           type: null
@@ -212,30 +217,27 @@
         // return this.$store.getters.getAuthData('biz:backup')
       }
     },
+    mounted() {
+      this.loadData()
+    },
     methods: {
       operate(data) {
+        console.log(data)
         switch (data.type) {
-        case 'view':
-          this.operateType = 'view'
-          this.rowData = data.data
-          this.editShow = true
+        case 'restor':
+          console.log('执行智能恢复操作')
           break
-        case 'editFibre':
-          this.rowData = data.data
-          this.portInfoVisible = true
+        case 'setFault':
+          console.log('执行置为故障操作')
           break
-        case 'editPath':
-          this.rowData = data.data
-          this.editCablePathShow = true
-          break
-        case 'mod':
-          this.operateType = 'mod'
-          this.rowData = data.data
-          this.editShow = true
+        case 'trouble_solved':
+          console.log('故障已解决')
           break
         case 'del':
-          this.del(data.data)
+          console.log('删除业务')
           break
+        default:
+          this.$emit('operate', data)
         }
       },
       sortChange(data) {
@@ -426,6 +428,37 @@
       pageChange(data) {
         this.pageData = data
         this.loadData()
+      },
+      selectionChange(val) {
+        this.selectedRow = val
+      },
+      cellClass({ row, column }) {
+        const statusColor = [
+          {
+            value: 'fault',
+            keys: ['FAULT']
+          },
+          {
+            value: 'doing',
+            keys: [
+              'OPENING',
+              'RESTORING',
+              'RETURNING',
+              'OPEN_FAIL',
+              'RESTORE_FAIL',
+              'REDUCTION_FAIL',
+              'RETURN_FAIL'
+            ]
+          },
+          {
+            value: 'normal',
+            keys: ['RESTORE', 'NORMAL']
+          }
+        ]
+        if (column.property === 'bizStatus') {
+          const colorData = statusColor.find(i => i.keys.includes(row.bizStatus))
+          return 'color-' + (colorData ? colorData.value : 'normal')
+        }
       }
     }
   }

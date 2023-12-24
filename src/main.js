@@ -10,6 +10,7 @@ import '@/lib/flexible'
 import mixin from '@/lib/mixin'
 import '@/assets/js/elementui'
 import '@/assets/css/index.scss'
+import '@/assets/css/font-icon/iconfont.css'
 if (process.env.NODE_ENV !== 'production') {
   require('./mock/index') // 只有在开发环境才引入mock
 }
